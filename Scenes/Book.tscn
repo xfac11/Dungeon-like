@@ -1,0 +1,29 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Scripts/UpnDown.gd" type="Script" id=1]
+[ext_resource path="res://Textures/Bullet.png" type="Texture" id=2]
+[ext_resource path="res://Textures/Book.png" type="Texture" id=3]
+[ext_resource path="res://Scripts/Book.gd" type="Script" id=4]
+[ext_resource path="res://Scenes/Projectile.tscn" type="PackedScene" id=5]
+
+[node name="Book" type="Node2D"]
+script = ExtResource( 4 )
+projectile = ExtResource( 2 )
+frequency = 1.0
+Projectile = ExtResource( 5 )
+numberOfProjectiles = 3
+
+[node name="Sprite" type="Sprite" parent="."]
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 3 )
+
+[node name="Tween" type="Tween" parent="Sprite"]
+playback_speed = 0.5
+playback/speed = 0.5
+script = ExtResource( 1 )
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="tween_completed" from="Sprite/Tween" to="Sprite/Tween" method="_on_Tween_tween_completed"]
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

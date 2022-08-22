@@ -1,0 +1,17 @@
+[gd_resource type="Theme" load_steps=7 format=2]
+
+[ext_resource path="res://Fonts/FontBetterPixels56.tres" type="DynamicFont" id=1]
+[ext_resource path="res://Textures/window1_05.png" type="Texture" id=2]
+[ext_resource path="res://StyleWindowbox.tres" type="StyleBox" id=3]
+[ext_resource path="res://button_normal_style.tres" type="StyleBox" id=4]
+[ext_resource path="res://button_pressed_style.tres" type="StyleBox" id=5]
+[ext_resource path="res://button_hover_style.tres" type="StyleBox" id=6]
+
+[resource]
+default_font = ExtResource( 1 )
+Button/styles/hover = ExtResource( 6 )
+Button/styles/normal = ExtResource( 4 )
+Button/styles/pressed = ExtResource( 5 )
+VBoxContainer/constants/separation = 4
+VBoxContainer/icons/border = ExtResource( 2 )
+VBoxContainer/styles/texture = ExtResource( 3 )

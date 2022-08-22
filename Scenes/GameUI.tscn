@@ -1,0 +1,252 @@
+[gd_scene load_steps=22 format=2]
+
+[ext_resource path="res://Textures/bar_398.png" type="Texture" id=1]
+[ext_resource path="res://Textures/bar_400.png" type="Texture" id=2]
+[ext_resource path="res://Textures/window6_149.png" type="Texture" id=3]
+[ext_resource path="res://Scenes/ItemDisplay.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scripts/LevelTxtUI.gd" type="Script" id=5]
+[ext_resource path="res://Scripts/BarUI.gd" type="Script" id=6]
+[ext_resource path="res://Fonts/FontBetterPixels42.tres" type="DynamicFont" id=7]
+[ext_resource path="res://Textures/bar_04.png" type="Texture" id=8]
+[ext_resource path="res://Textures/bar_01.png" type="Texture" id=9]
+[ext_resource path="res://Fonts/FontBetterPixels32.tres" type="DynamicFont" id=10]
+[ext_resource path="res://Scripts/HPbar.gd" type="Script" id=11]
+[ext_resource path="res://Scripts/GameOverUI.gd" type="Script" id=12]
+[ext_resource path="res://Scenes/ItemSelect.tscn" type="PackedScene" id=13]
+[ext_resource path="res://vboxstyle.tres" type="Theme" id=14]
+[ext_resource path="res://Scripts/InventoryUI.gd" type="Script" id=15]
+[ext_resource path="res://Textures/buttons_04.png" type="Texture" id=16]
+[ext_resource path="res://Textures/window1_05.png" type="Texture" id=17]
+[ext_resource path="res://Textures/buttons_10.png" type="Texture" id=18]
+[ext_resource path="res://Textures/buttons_16.png" type="Texture" id=19]
+[ext_resource path="res://Scripts/ItemSelect.gd" type="Script" id=20]
+[ext_resource path="res://Scripts/StatsLabel.gd" type="Script" id=21]
+
+[node name="UI" type="Control"]
+pause_mode = 2
+margin_right = 1024.0
+margin_bottom = 600.0
+theme = ExtResource( 14 )
+
+[node name="LevelNumber" type="TextureRect" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -27.0
+margin_top = 8.0
+margin_right = 27.0
+margin_bottom = 61.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource( 3 )
+expand = true
+stretch_mode = 5
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Label" type="Label" parent="LevelNumber"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_colors/font_color = Color( 0.952941, 0.941176, 0.262745, 1 )
+custom_fonts/font = ExtResource( 7 )
+text = "1"
+align = 1
+valign = 1
+script = ExtResource( 5 )
+
+[node name="ExpBar" type="TextureProgress" parent="LevelNumber"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -150.0
+margin_top = 43.0
+margin_right = 147.0
+margin_bottom = 67.0
+texture_under = ExtResource( 1 )
+texture_progress = ExtResource( 2 )
+nine_patch_stretch = true
+script = ExtResource( 6 )
+
+[node name="HPbar" type="TextureProgress" parent="."]
+margin_left = 20.0
+margin_top = 18.0
+margin_right = 206.0
+margin_bottom = 58.0
+value = 100.0
+texture_under = ExtResource( 9 )
+texture_progress = ExtResource( 8 )
+nine_patch_stretch = true
+script = ExtResource( 11 )
+
+[node name="Label" type="Label" parent="HPbar"]
+margin_top = -16.0
+margin_right = 70.0
+margin_bottom = 10.0
+custom_fonts/font = ExtResource( 10 )
+text = "Health"
+
+[node name="GameOver" type="AcceptDialog" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 418.0
+margin_top = 240.0
+margin_right = 607.0
+margin_bottom = 298.0
+mouse_default_cursor_shape = 2
+popup_exclusive = true
+window_title = "Game over"
+dialog_text = "You died!"
+dialog_autowrap = true
+script = ExtResource( 12 )
+
+[node name="PauseMenu" type="NinePatchRect" parent="."]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 367.5
+margin_top = 84.0
+margin_right = 656.5
+margin_bottom = 516.0
+texture = ExtResource( 17 )
+patch_margin_left = 6
+patch_margin_top = 6
+patch_margin_right = 6
+patch_margin_bottom = 6
+
+[node name="VerticalContainer" type="VBoxContainer" parent="PauseMenu"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -105.0
+margin_top = -338.0
+margin_right = 107.0
+margin_bottom = -8.0
+size_flags_vertical = 3
+theme = ExtResource( 14 )
+custom_constants/separation = -54
+
+[node name="TextureButton3" type="TextureButton" parent="PauseMenu/VerticalContainer"]
+margin_right = 212.0
+margin_bottom = 70.0
+rect_min_size = Vector2( 0, 70 )
+size_flags_horizontal = 3
+size_flags_vertical = 2
+texture_normal = ExtResource( 16 )
+texture_pressed = ExtResource( 19 )
+texture_hover = ExtResource( 18 )
+expand = true
+
+[node name="Label" type="Label" parent="PauseMenu/VerticalContainer/TextureButton3"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -60.5
+margin_top = -20.0
+margin_right = 60.5
+margin_bottom = 20.0
+custom_fonts/font = ExtResource( 10 )
+text = "Resume"
+align = 1
+uppercase = true
+
+[node name="TextureButton4" type="TextureButton" parent="PauseMenu/VerticalContainer"]
+margin_top = 92.0
+margin_right = 212.0
+margin_bottom = 162.0
+rect_min_size = Vector2( 0, 70 )
+size_flags_horizontal = 3
+size_flags_vertical = 2
+texture_normal = ExtResource( 16 )
+texture_pressed = ExtResource( 19 )
+texture_hover = ExtResource( 18 )
+expand = true
+
+[node name="Label" type="Label" parent="PauseMenu/VerticalContainer/TextureButton4"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -60.5
+margin_top = -20.0
+margin_right = 60.5
+margin_bottom = 20.0
+custom_fonts/font = ExtResource( 10 )
+text = "Options"
+align = 1
+uppercase = true
+
+[node name="TextureButton5" type="TextureButton" parent="PauseMenu/VerticalContainer"]
+margin_top = 184.0
+margin_right = 212.0
+margin_bottom = 254.0
+rect_min_size = Vector2( 0, 70 )
+size_flags_horizontal = 3
+size_flags_vertical = 2
+texture_normal = ExtResource( 16 )
+texture_pressed = ExtResource( 19 )
+texture_hover = ExtResource( 18 )
+expand = true
+
+[node name="Label" type="Label" parent="PauseMenu/VerticalContainer/TextureButton5"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -60.5
+margin_top = -20.0
+margin_right = 60.5
+margin_bottom = 20.0
+custom_fonts/font = ExtResource( 10 )
+text = "Quit"
+align = 1
+uppercase = true
+
+[node name="Label" type="Label" parent="PauseMenu"]
+margin_right = 290.0
+margin_bottom = 94.0
+theme = ExtResource( 14 )
+custom_colors/font_color = Color( 0, 0.811765, 1, 1 )
+custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
+text = "Paused"
+align = 1
+valign = 1
+
+[node name="InventoryUI" type="NinePatchRect" parent="."]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -279.0
+margin_top = 18.0
+margin_right = -30.0
+margin_bottom = 50.0
+patch_margin_left = 2
+patch_margin_top = 2
+patch_margin_right = 2
+patch_margin_bottom = 2
+script = ExtResource( 15 )
+itemDisplay = ExtResource( 4 )
+
+[node name="HBoxContainer" type="HBoxContainer" parent="InventoryUI"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="ItemSelect" parent="." instance=ExtResource( 13 )]
+script = ExtResource( 20 )
+
+[node name="StatsLabel" type="Label" parent="."]
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_top = -19.0
+margin_right = 184.0
+margin_bottom = 298.0
+custom_fonts/font = ExtResource( 10 )
+autowrap = true
+script = ExtResource( 21 )
+
+[connection signal="confirmed" from="GameOver" to="GameOver" method="_on_GameOver_confirmed"]

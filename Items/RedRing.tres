@@ -1,0 +1,20 @@
+[gd_resource type="Resource" load_steps=3 format=2]
+
+[ext_resource path="res://Scripts/Item.gd" type="Script" id=1]
+[ext_resource path="res://Textures/RedRing.png" type="Texture" id=2]
+
+[resource]
+script = ExtResource( 1 )
+name = "Red Ring"
+stackable = true
+maxStackSize = 10
+frequency = 0
+damage = 0
+lifetime = 0
+health = 20
+speed = 0.0
+projectileSpeed = 1.0
+texture = ExtResource( 2 )
+damageType = 2
+itemType = 2
+shootingType = 0
