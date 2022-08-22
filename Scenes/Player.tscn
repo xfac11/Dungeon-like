@@ -89,6 +89,7 @@ shape = SubResource( 1 )
 scale = Vector2( 0.615385, 0.666667 )
 frames = SubResource( 4 )
 animation = "right_walk"
+frame = 1
 playing = true
 
 [node name="PickUpArea" type="Area2D" parent="."]

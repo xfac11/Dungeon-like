@@ -45,7 +45,7 @@ position = Vector2( 55, 55 )
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 current = true
-zoom = Vector2( 0.4, 0.4 )
+zoom = Vector2( 0.6, 0.6 )
 editor_draw_limits = true
 
 [node name="ItemGiver" type="Node" parent="."]
