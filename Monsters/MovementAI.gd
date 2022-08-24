@@ -3,6 +3,7 @@ extends KinematicBody2D
 onready var _animated_sprite = $AnimatedSprite
 export(PackedScene) var ExpOrb
 export(PackedScene) var DamageEffect
+onready var damageArea = $DamageArea
 var right = Vector2(1,0)
 var left = Vector2(-1,0)
 var up = Vector2(0,-1)
@@ -24,7 +25,8 @@ func _physics_process(delta):
 		direction = direction.normalized()
 		velocity = direction;
 		move_and_slide(velocity.normalized()*speed) #move_and_slide uses delta internally so no need to *delta
-
+	elif GameHandler.player:
+		player = GameHandler.player
 
 func _process(_delta):
 	if velocity.x > 0:
@@ -40,7 +42,7 @@ func _process(_delta):
 		
 func SpawnExpOrb():
 	var newOrb = ExpOrb.instance()
-	owner.add_child(newOrb)
+	get_parent().add_child(newOrb)
 	newOrb.transform = global_transform
 
 
@@ -50,5 +52,6 @@ func _on_Health_healthDepleted():
 
 func _on_Health_damageTaken(currentHealth, maximumHealth):
 	var damageEffect = DamageEffect.instance()
-	owner.add_child(damageEffect)
+	get_parent().add_child(damageEffect)
 	damageEffect.transform = global_transform
+	move_and_slide(Vector2(0,1000))

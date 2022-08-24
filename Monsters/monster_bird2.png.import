@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/$monster_bird2.png-cf5040356e1bbf402b58de64df4ae515.stex"
+path="res://.import/monster_bird2.png-bc0fb8096b88c74471bbc1ee7168693d.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Monsters/$monster_bird2.png"
-dest_files=[ "res://.import/$monster_bird2.png-cf5040356e1bbf402b58de64df4ae515.stex" ]
+source_file="res://Monsters/monster_bird2.png"
+dest_files=[ "res://.import/monster_bird2.png-bc0fb8096b88c74471bbc1ee7168693d.stex" ]
 
 [params]
 

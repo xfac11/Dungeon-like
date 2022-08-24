@@ -19,13 +19,13 @@ region = Rect2( 0, 108, 26, 36 )
 atlas = ExtResource( 1 )
 region = Rect2( 52, 108, 26, 36 )
 
-[sub_resource type="AtlasTexture" id=5]
+[sub_resource type="AtlasTexture" id=9]
 atlas = ExtResource( 1 )
-region = Rect2( 0, 0, 26, 36 )
+region = Rect2( 52, 72, 26, 36 )
 
-[sub_resource type="AtlasTexture" id=6]
+[sub_resource type="AtlasTexture" id=10]
 atlas = ExtResource( 1 )
-region = Rect2( 52, 0, 26, 36 )
+region = Rect2( 0, 72, 26, 36 )
 
 [sub_resource type="AtlasTexture" id=11]
 atlas = ExtResource( 1 )
@@ -35,13 +35,13 @@ region = Rect2( 0, 36, 26, 36 )
 atlas = ExtResource( 1 )
 region = Rect2( 52, 36, 26, 36 )
 
-[sub_resource type="AtlasTexture" id=9]
+[sub_resource type="AtlasTexture" id=5]
 atlas = ExtResource( 1 )
-region = Rect2( 52, 72, 26, 36 )
+region = Rect2( 0, 0, 26, 36 )
 
-[sub_resource type="AtlasTexture" id=10]
+[sub_resource type="AtlasTexture" id=6]
 atlas = ExtResource( 1 )
-region = Rect2( 0, 72, 26, 36 )
+region = Rect2( 52, 0, 26, 36 )
 
 [sub_resource type="SpriteFrames" id=4]
 animations = [ {
@@ -50,9 +50,9 @@ animations = [ {
 "name": "up_walk",
 "speed": 5.0
 }, {
-"frames": [ SubResource( 5 ), SubResource( 6 ) ],
+"frames": [ SubResource( 9 ), SubResource( 10 ) ],
 "loop": true,
-"name": "down_walk",
+"name": "right_walk",
 "speed": 5.0
 }, {
 "frames": [ SubResource( 11 ), SubResource( 12 ) ],
@@ -60,9 +60,9 @@ animations = [ {
 "name": "left_walk",
 "speed": 5.0
 }, {
-"frames": [ SubResource( 9 ), SubResource( 10 ) ],
+"frames": [ SubResource( 5 ), SubResource( 6 ) ],
 "loop": true,
-"name": "right_walk",
+"name": "down_walk",
 "speed": 5.0
 } ]
 
@@ -89,7 +89,6 @@ shape = SubResource( 1 )
 scale = Vector2( 0.615385, 0.666667 )
 frames = SubResource( 4 )
 animation = "right_walk"
-frame = 1
 playing = true
 
 [node name="PickUpArea" type="Area2D" parent="."]
@@ -102,7 +101,8 @@ shape = SubResource( 14 )
 
 [node name="ExperienceSystem" type="Node" parent="."]
 script = ExtResource( 4 )
-increase = 1.2
+maximumExp = 50.0
+increase = 1.3
 increaseMethod = 1
 
 [node name="Health" type="Node" parent="."]
@@ -131,7 +131,6 @@ scale = Vector2( 0.6875, 1.875 )
 texture = ExtResource( 6 )
 
 [node name="Timer" type="Timer" parent="Pivot/MeleeWeapon"]
-wait_time = 2.0
 autostart = true
 
 [node name="OutTimer" type="Timer" parent="Pivot/MeleeWeapon"]

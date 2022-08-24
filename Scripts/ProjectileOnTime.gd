@@ -26,3 +26,8 @@ func InitBullet():
 	newBullet.speed = speed*5
 	newBullet.theOwner = theOwner
 	return newBullet
+
+
+
+func _on_ProjectileOnTime_body_entered(body):
+	pass # Replace with function body.

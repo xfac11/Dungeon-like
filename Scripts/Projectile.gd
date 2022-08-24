@@ -11,9 +11,9 @@ var theOwner
 var globalTransform
 onready var direction = Vector2(1,0).rotated(randf() * 2.0 * PI)
 func _process(delta):
-	Movement(delta)
 	CalcTime(delta)
-
+func _physics_process(delta):
+	Movement(delta)
 func SetDirection(var newDirection:Vector2):
 	direction = newDirection
 

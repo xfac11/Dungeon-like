@@ -23,7 +23,6 @@ func _ready():
 	inventory.connect("inventoryChanged",self,"ApplyStat")
 	speed = currentStat.speed
 	timer.connect("timeout",self,"ProcessItems")
-	inventory.AddItem("Fire Book", 1)
 
 func _physics_process(_delta):
 	var velocity = Vector2(0,0)

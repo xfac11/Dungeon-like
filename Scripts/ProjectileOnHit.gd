@@ -25,5 +25,5 @@ func SpawnProjectiles():
 		direction = direction.rotated(deg2rad(90))
 
 
-func _on_ProjectileOnTime_body_entered(body):
+func _on_ProjectileOnHit_body_entered(body):
 	HitBody(body)

@@ -2,7 +2,7 @@
 
 [ext_resource path="res://Scripts/Item.gd" type="Script" id=1]
 [ext_resource path="res://Textures/Misc_45.png" type="Texture" id=2]
-[ext_resource path="res://Scenes/ProjectileOnTime.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scenes/ProjectileOnHit.tscn" type="PackedScene" id=3]
 
 [resource]
 script = ExtResource( 1 )
@@ -10,11 +10,11 @@ name = "Fire Book"
 stackable = true
 maxStackSize = 10
 frequency = 0
-damage = 10
+damage = 5
 lifetime = 1
 health = 0
 speed = 0.0
-projectileSpeed = 10.0
+projectileSpeed = 50.0
 texture = ExtResource( 2 )
 projectilePS = ExtResource( 3 )
 damageType = 1

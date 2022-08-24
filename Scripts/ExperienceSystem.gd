@@ -4,7 +4,7 @@ var experiencePoints = 0
 var level = 1
 export var maximumExp = 10.0
 export var increase = 10.0
-export var increaseMethod = IncreaseMethod.ADDITIVE
+export(IncreaseMethod) var increaseMethod = IncreaseMethod.ADDITIVE
 signal leveledup(maximumExp, level)
 signal gainedExperience(maximumExp, currentExp)
 
