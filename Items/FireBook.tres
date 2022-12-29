@@ -7,6 +7,7 @@
 [resource]
 script = ExtResource( 1 )
 name = "Fire Book"
+description = "Shoots fireballs in random direction"
 stackable = true
 maxStackSize = 10
 frequency = 0
@@ -18,5 +19,5 @@ projectileSpeed = 50.0
 texture = ExtResource( 2 )
 projectilePS = ExtResource( 3 )
 damageType = 1
-itemType = 0
 shootingType = 0
+itemType = 0

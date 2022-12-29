@@ -3,11 +3,12 @@ extends Projectile
 var theTarget
 var percent:float = 0.0
 export var percentIncrease:float = 0.1
+onready var player = theOwner.get_tree().get_nodes_in_group("PLAYER")[0]
 func FindNearestEnemy(var distance:float):
 	var enemies = theOwner.get_tree().get_nodes_in_group("ENEMIES")
 	var nearestEnemy
 	for enemy in enemies:
-		var enemyToPlayer:Vector2 = GameHandler.player.position - enemy.position
+		var enemyToPlayer:Vector2 = player.position - enemy.position
 		var length = enemyToPlayer.length()
 		if length < distance:
 			distance = length

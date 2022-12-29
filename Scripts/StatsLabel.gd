@@ -1,13 +1,10 @@
 extends Label
 
 
-var stats
-func _ready():
-	var _unused = GameHandler.connect("playerInitialized",self,"ConnectStats")
-	
-func ConnectStats(player):
-	stats = player.currentStat
-
+var stats:Stat
+onready var player = owner.get_tree().get_nodes_in_group("PLAYER")[0]	
 func _process(_delta):
-	text = stats.GetStatStr()
+	stats = player.currentStat
+	if is_instance_valid(stats):
+		text = stats.GetStatsAsJSON()
 	

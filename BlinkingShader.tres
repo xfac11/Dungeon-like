@@ -1,0 +1,32 @@
+[gd_resource type="Shader" format=2]
+
+[resource]
+code = "shader_type canvas_item;
+uniform float blinkValue;
+uniform vec3 blinkcolor = vec3(1,1,1);
+uniform bool edgeShading = false;
+uniform vec4 edgeColor : hint_color = vec4(1);
+uniform float lineThickness : hint_range(0.0, 10.0) = 1.0;
+void fragment()
+{
+	
+	vec2 size = TEXTURE_PIXEL_SIZE * lineThickness * float(edgeShading);
+	float left = texture(TEXTURE, UV + vec2(-size.x, 0)).a;
+	float right = texture(TEXTURE, UV + vec2(size.x, 0)).a;
+	float up = texture(TEXTURE, UV + vec2(0, -size.y)).a;
+	float down = texture(TEXTURE, UV + vec2(0, size.y)).a;
+	float upperLeft = texture(TEXTURE, UV + vec2(-size.x,-size.y)).a;
+	float upperRight = texture(TEXTURE, UV + vec2(size.x,-size.y)).a;
+	float bottomLeft = texture(TEXTURE, UV + vec2(-size.x,size.y)).a;
+	float bottomRight = texture(TEXTURE, UV + vec2(size.x,size.y)).a;
+	float sum = left + right + up + down + upperLeft + upperRight + bottomLeft + bottomRight;
+	
+	float outline = min(sum, 1.0);
+	
+	vec4 color = texture(TEXTURE,UV);
+	
+	COLOR = mix(color, edgeColor, outline - color.a);
+	
+	COLOR+= vec4(blinkValue*blinkcolor.r,blinkValue*blinkcolor.g,blinkValue*blinkcolor.b,0);
+}
+"

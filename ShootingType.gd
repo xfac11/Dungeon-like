@@ -1,0 +1,7 @@
+enum ShootingType{
+	RANDOMDIR,
+	RANDOMDIREACH,
+	SPRAY,
+	ROTATING,
+	TOWARDENEMY
+}

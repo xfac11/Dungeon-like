@@ -1,0 +1,244 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://ShopUITheme.tres" type="Theme" id=1]
+[ext_resource path="res://Fonts/BetterPixels.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://Fonts/FontBetterPixels32.tres" type="DynamicFont" id=3]
+[ext_resource path="res://Scenes/MainMenuUI.gd" type="Script" id=4]
+[ext_resource path="res://Fonts/FontBetterPixels56.tres" type="DynamicFont" id=5]
+[ext_resource path="res://Scripts/OptionMenu.gd" type="Script" id=6]
+
+[sub_resource type="ShaderMaterial" id=6]
+
+[sub_resource type="Gradient" id=7]
+offsets = PoolRealArray( 0, 0.00546448, 1 )
+colors = PoolColorArray( 0, 0, 0, 1, 0.185792, 0.185792, 0.185792, 1, 1, 1, 1, 1 )
+
+[sub_resource type="GradientTexture" id=8]
+gradient = SubResource( 7 )
+width = 512
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0.6, 0.6, 0.6, 0 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 128
+outline_size = 2
+font_data = ExtResource( 2 )
+
+[node name="MainMenuUI" type="ViewportContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+script = ExtResource( 4 )
+
+[node name="TextureRect" type="TextureRect" parent="."]
+modulate = Color( 0.243137, 0.819608, 0.752941, 1 )
+material = SubResource( 6 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -1018.0
+margin_top = 115.0
+margin_right = 263.0
+margin_bottom = 1680.0
+rect_rotation = -59.9999
+texture = SubResource( 8 )
+expand = true
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -358.5
+margin_top = -105.0
+margin_right = 358.5
+margin_bottom = 287.0
+custom_styles/panel = SubResource( 1 )
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
+margin_right = 717.0
+margin_bottom = 392.0
+theme = ExtResource( 1 )
+custom_constants/margin_right = 64
+custom_constants/margin_top = 64
+custom_constants/margin_left = 64
+custom_constants/margin_bottom = 64
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="PanelContainer/MarginContainer"]
+margin_left = 64.0
+margin_top = 64.0
+margin_right = 653.0
+margin_bottom = 328.0
+custom_constants/separation = 20
+alignment = 1
+
+[node name="MarginContainer2" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer2"]
+margin_right = 589.0
+margin_bottom = 112.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 3.0
+custom_constants/margin_right = 0
+custom_constants/margin_top = 0
+custom_constants/margin_left = 0
+custom_constants/margin_bottom = 0
+
+[node name="Button" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer2/MarginContainer2"]
+margin_right = 589.0
+margin_bottom = 112.0
+size_flags_horizontal = 7
+size_flags_vertical = 7
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer2/MarginContainer2"]
+margin_right = 589.0
+margin_bottom = 112.0
+size_flags_horizontal = 3
+size_flags_vertical = 7
+custom_colors/font_color = Color( 0.172549, 1, 0, 1 )
+custom_fonts/font = ExtResource( 3 )
+text = "Play"
+align = 1
+valign = 1
+
+[node name="MarginContainer3" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer2"]
+margin_top = 132.0
+margin_right = 589.0
+margin_bottom = 206.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 2.0
+custom_constants/margin_right = 32
+custom_constants/margin_top = 0
+custom_constants/margin_left = 32
+custom_constants/margin_bottom = 0
+
+[node name="Button" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer2/MarginContainer3"]
+margin_left = 32.0
+margin_right = 557.0
+margin_bottom = 74.0
+size_flags_horizontal = 7
+size_flags_vertical = 7
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer2/MarginContainer3"]
+margin_left = 32.0
+margin_right = 557.0
+margin_bottom = 74.0
+size_flags_horizontal = 3
+size_flags_vertical = 7
+custom_fonts/font = ExtResource( 3 )
+text = "Options"
+align = 1
+valign = 1
+
+[node name="MarginContainer4" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer2"]
+margin_top = 226.0
+margin_right = 589.0
+margin_bottom = 264.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/margin_right = 64
+custom_constants/margin_top = 0
+custom_constants/margin_left = 64
+custom_constants/margin_bottom = 0
+
+[node name="Button" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer2/MarginContainer4"]
+margin_left = 64.0
+margin_right = 525.0
+margin_bottom = 38.0
+size_flags_horizontal = 7
+size_flags_vertical = 7
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer2/MarginContainer4"]
+margin_left = 64.0
+margin_right = 525.0
+margin_bottom = 38.0
+size_flags_horizontal = 3
+size_flags_vertical = 7
+custom_fonts/font = ExtResource( 3 )
+text = "Quit"
+align = 1
+valign = 1
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+anchor_right = 1.0
+margin_top = 40.0
+margin_bottom = 177.0
+
+[node name="Label" type="Label" parent="CenterContainer"]
+margin_left = 36.0
+margin_top = 17.0
+margin_right = 604.0
+margin_bottom = 119.0
+size_flags_horizontal = 7
+size_flags_vertical = 7
+custom_colors/font_color = Color( 1, 0.6, 0, 1 )
+custom_fonts/font = SubResource( 2 )
+text = "Bullet Haven"
+align = 1
+valign = 1
+
+[node name="OptionMenu" type="ColorRect" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.145098, 0.12549, 0.12549, 1 )
+script = ExtResource( 6 )
+
+[node name="ResolutionOptBtn" type="OptionButton" parent="OptionMenu"]
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_left = 96.0
+margin_top = -21.0
+margin_right = 309.0
+margin_bottom = 22.0
+text = "1920x1080"
+
+[node name="Label" type="Label" parent="OptionMenu/ResolutionOptBtn"]
+margin_left = -62.0
+margin_top = -40.0
+margin_right = 112.0
+margin_bottom = -2.0
+text = "Resolution"
+
+[node name="WindowModeOptBtn" type="OptionButton" parent="OptionMenu"]
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_left = 95.0
+margin_top = 74.0
+margin_right = 308.0
+margin_bottom = 117.0
+text = "Windowed"
+selected = 0
+
+[node name="Label" type="Label" parent="OptionMenu/WindowModeOptBtn"]
+margin_left = -62.0
+margin_top = -40.0
+margin_right = 112.0
+margin_bottom = -2.0
+text = "Window mode"
+
+[node name="BackToMenuBtn" type="Button" parent="OptionMenu"]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 32.0
+margin_top = -65.0
+margin_right = 177.0
+margin_bottom = -19.0
+text = "Back"
+
+[node name="Label" type="Label" parent="OptionMenu"]
+anchor_right = 1.0
+margin_bottom = 34.0
+custom_fonts/font = ExtResource( 5 )
+text = "Options"
+align = 1
+valign = 1
+
+[connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer2/MarginContainer2/Button" to="." method="_on_PlayButton_pressed"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer2/MarginContainer3/Button" to="." method="_on_OptionButton_pressed"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer2/MarginContainer4/Button" to="." method="_on_QuitButton_pressed"]
+[connection signal="item_selected" from="OptionMenu/ResolutionOptBtn" to="OptionMenu" method="_on_ResolutionOptBtn_item_selected"]
+[connection signal="item_selected" from="OptionMenu/WindowModeOptBtn" to="OptionMenu" method="_on_WindowModeOptBtn_item_selected"]
+[connection signal="pressed" from="OptionMenu/BackToMenuBtn" to="OptionMenu" method="_on_BackToMenuBtn_pressed"]

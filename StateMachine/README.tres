@@ -1,0 +1,34 @@
+Create a node with the FiniteStateMachine.gd script attatched to it.
+Name it FiniteStateMachine or whater you like.
+Attach child nodes to this FSM node which will be the states used by the FSM.
+Each child node needs a script which
+extends the State class. 
+The script which extends the State class will implement Enter, Exit, Update,
+ and InputUpdate.
+Enter will be called when the FSM changes to this State.
+Exit will be when the FSM changes to another one. 
+Update is where the logic should be.
+	Preferably on the object which is sent by the FSM to keep code clean.
+InputUpdate returns null or return stateDictionary[name of the state node]. 
+	Null mean keep this state currently in and
+	a new state will change the current state to the returned one.
+	ex:
+	Idle.gd:
+		func InputUpdate(event, object, delta):
+			if  right || left || up || down:
+				return stateDictionary["Run"] 
+			return null
+	This will change the current state to "Run" if right or left or up or down
+	is true. Otherwise keep the current state which will be "Idle"
+
+Attach the FSM to ex: a player or enemy. Call the Update method of the FSM in
+_physics_process and ProcessEvent in _process. Object should be the enemy or
+player and the event should be Input or a brain of an enemy. Delta is just
+the delta time. In the _ready function call Initate on the FSM and pass
+the first state it should start with. This will call Enter on the state and 
+put this state as the current state of the FSM.
+
+PS: Keep in mind that InputUpdate needs to be carefully implemented so you don't
+get stuck in a state by accident. If you only return null you are stuck in 
+that state until you reset by calling Initate again with another state
+or restarting the game.

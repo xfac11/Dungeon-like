@@ -1,0 +1,12 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=2]
+
+[ext_resource path="res://BlinkingShader.tres" type="Shader" id=1]
+
+[resource]
+resource_local_to_scene = true
+shader = ExtResource( 1 )
+shader_param/blinkValue = 0.0
+shader_param/blinkcolor = Vector3( 1, 1, 1 )
+shader_param/edgeShading = false
+shader_param/edgeColor = Color( 0.0784314, 0.364706, 0.913725, 1 )
+shader_param/lineThickness = 1.294

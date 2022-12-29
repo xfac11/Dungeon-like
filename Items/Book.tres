@@ -7,6 +7,7 @@
 [resource]
 script = ExtResource( 1 )
 name = "Book"
+description = "Rotating book(s) with 10 damage each"
 stackable = true
 maxStackSize = 5
 frequency = 2
@@ -18,5 +19,5 @@ projectileSpeed = 200.0
 texture = ExtResource( 2 )
 projectilePS = ExtResource( 3 )
 damageType = 1
-itemType = 0
 shootingType = 3
+itemType = 0

@@ -1,30 +1,35 @@
 extends KinematicBody2D
+class_name Player
 
-var inventoryResource = load("res://Inventory.gd")
-var inventory = inventoryResource.new()
-
-class Stat:
-	var speed:float = 100
-	var health:int = 100
-	func GetStatStr():
-		return "Speed: " + str(speed) + "\n" + "Health: " + str(health) + "\n"
-		 
-var currentStat:Stat = Stat.new()
-onready var _animated_sprite = $AnimatedSprite
-onready var timer = $Timer
-var right = Vector2(1,0)
-var left = Vector2(-1,0)
-var up = Vector2(0,-1)
-var down =  Vector2(0,1)
-export var speed = 100
+onready var experienceSystem:ExperienceSystem = $ExperienceSystem
+onready var animatedSprite = $AnimatedSprite
 onready var pivot = $Pivot
-var itemHandler:HandleItems = HandleItems.new()
-func _ready():
-	inventory.connect("inventoryChanged",self,"ApplyStat")
-	speed = currentStat.speed
-	timer.connect("timeout",self,"ProcessItems")
+onready var timer = $Timer
+onready var health:Health = $Health
+onready var pickUpArea:PickupArea = $PickupArea
 
-func _physics_process(_delta):
+const ItemTypeResource = preload("res://ItemType.gd")
+var inventoryResource = load("res://Inventory.gd")
+var inventory:Inventory = inventoryResource.new()
+var playerStatResource = load("res://Stats/PlayerStat.tres")
+var baseStat:Stat = playerStatResource
+var currentStat:Stat = Stat.new()
+var itemHandler:HandleItems = HandleItems.new()
+var coins = 0
+
+const right = Vector2(1,0)
+const left = Vector2(-1,0)
+const up = Vector2(0,-1)
+const down =  Vector2(0,1)
+
+func _ready() -> void:
+	inventory.Clear()
+	SetBaseStat()
+	inventory.connect("inventoryChanged",self,"ApplyStat")
+	timer.connect("timeout",self,"ProcessItems")
+	pickUpArea.SetCharacter(self)
+
+func _physics_process(_delta:float) -> void:
 	var velocity = Vector2(0,0)
 	if Input.is_action_pressed("ui_right"):
 		velocity.x = 1
@@ -38,43 +43,64 @@ func _physics_process(_delta):
 	elif Input.is_action_pressed("ui_up"):
 		velocity.y = -1
 		pivot.rotation_degrees = 270
-	var _unused = move_and_slide(velocity.normalized()*speed)
+	var _unused = move_and_slide(velocity.normalized()*currentStat.speed)
 	
 	
+func GiveExp(value):
+	experienceSystem.AddExperience(value)
 
-
-func _process(_delta):
+func GiveCoin(value):
+	coins += value
+func _process(_delta:float) -> void:
 	#if Input.is_action_pressed("ui_right"):
-	#	_animated_sprite.play("right_walk")
+	#	animatedSprite.play("right_walk")
 	#else:
-	#	_animated_sprite.stop()
+	#	animatedSprite.stop()
 	if Input.is_action_pressed("ui_right"):
-		_animated_sprite.play("right_walk")
+		animatedSprite.play("right_walk")
 	elif Input.is_action_pressed("ui_left"):
-		_animated_sprite.play("left_walk")
+		animatedSprite.play("left_walk")
 	elif Input.is_action_pressed("ui_down"):
-		_animated_sprite.play("down_walk")
+		animatedSprite.play("down_walk")
 	elif Input.is_action_pressed("ui_up"):
-		_animated_sprite.play("up_walk")
+		animatedSprite.play("up_walk")
 	else:
-		_animated_sprite.stop()
+		animatedSprite.stop()
 	
 	
 	
 	
-func ProcessItems():
-	var itemSlots = inventory.GetItems()
-	for itemSlot in itemSlots:
+func ProcessItems() -> void:
+	var itemSlots:Array = inventory.GetItems()
+	for slot in itemSlots:
+		var itemSlot:Inventory.ItemSlot = slot
 		var item:Item = itemSlot.item
 		var nrOfStacks:int = itemSlot.nrOfStacks
 		
-		if item.itemType == item.ItemType.WEAPON:
+		if item.itemType == ItemTypeResource.ItemType.WEAPON:
 			itemHandler.Shoot(item, nrOfStacks, owner, global_transform)
 		
 
-func ApplyStat(_items, newItemName, stacks):
-	var item = ItemDatabase.GetItem(newItemName)
+func ApplyStat(_items:Array, newItemName:String, stacks:int) -> void:
+	var item:Item = ItemDatabase.GetItem(newItemName)
 	currentStat.health += item.health*stacks
 	currentStat.speed += item.speed*stacks
-	get_node("Health").SetHealth(currentStat.health)
-	speed = currentStat.speed
+	health.SetHealth(currentStat.health)
+
+func SetBaseStat() -> void:
+	currentStat.health = baseStat.health
+	currentStat.damage = baseStat.damage
+	currentStat.speed = baseStat.speed
+	
+	currentStat.health += GameHandler.shopPlayerStat.health
+	currentStat.damage += GameHandler.shopPlayerStat.damage
+	currentStat.speed += GameHandler.shopPlayerStat.speed
+
+
+func _on_Health_damageTaken(currentHealth, maximumHealth):
+	var tween = get_node("Tween")
+	tween.interpolate_property($AnimatedSprite.material, "shader_param/blinkValue",
+		1, 0, 0.25,
+		Tween.TRANS_LINEAR, Tween.EASE_IN)
+	tween.start()
+	

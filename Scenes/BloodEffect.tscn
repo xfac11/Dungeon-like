@@ -4,13 +4,25 @@
 [ext_resource path="res://Scripts/BloodEffect.gd" type="Script" id=2]
 
 [node name="BloodEffect" type="AnimatedSprite"]
-scale = Vector2( 5, 5 )
 z_index = 10
 frames = ExtResource( 1 )
 animation = "Blood"
-frame = 3
-speed_scale = 1.5
+frame = 1
+speed_scale = 2.0
 playing = true
 script = ExtResource( 2 )
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+lifetime = 0.25
+explosiveness = 0.5
+lifetime_randomness = 0.5
+direction = Vector2( 0, 0 )
+spread = 180.0
+gravity = Vector2( 0, 0 )
+initial_velocity = 73.39
+radial_accel = 97.25
+scale_amount = 2.0
+scale_amount_random = 0.5
+color = Color( 0.882353, 0.0941176, 0.0941176, 1 )
 
 [connection signal="animation_finished" from="." to="." method="_on_BloodEffect_animation_finished"]

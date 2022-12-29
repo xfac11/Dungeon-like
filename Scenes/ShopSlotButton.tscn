@@ -1,0 +1,74 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Fonts/FontBetterPixels32.tres" type="DynamicFont" id=1]
+[ext_resource path="res://VFX/explosionV007effect001.png" type="Texture" id=2]
+[ext_resource path="res://Scripts/ShopSlotButtonUI.gd" type="Script" id=3]
+[ext_resource path="res://Textures/Knife.png" type="Texture" id=4]
+
+[node name="ShopSlotButton" type="Button"]
+margin_right = 169.0
+margin_bottom = 93.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_fonts/font = ExtResource( 1 )
+script = ExtResource( 3 )
+
+[node name="Texture" type="TextureRect" parent="."]
+modulate = Color( 0.317647, 0.317647, 0.317647, 1 )
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_top = -45.5
+margin_right = 89.0
+margin_bottom = 45.5
+texture = ExtResource( 4 )
+expand = true
+
+[node name="Description" type="Label" parent="."]
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_top = -46.5
+margin_right = 86.0
+margin_bottom = 46.5
+custom_fonts/font = ExtResource( 1 )
+text = "Add 5 damage"
+align = 1
+autowrap = true
+
+[node name="TextureRect" type="TextureRect" parent="."]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = 23.0
+margin_top = -40.0
+margin_right = 55.0
+margin_bottom = -8.0
+texture = ExtResource( 2 )
+
+[node name="Cost" type="Label" parent="."]
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -81.0
+margin_top = -14.5
+margin_right = 15.0
+margin_bottom = 11.5
+rect_scale = Vector2( 0.8, 0.8 )
+custom_colors/font_color = Color( 0.992157, 1, 0.0862745, 1 )
+custom_fonts/font = ExtResource( 1 )
+text = "2340"
+valign = 1
+autowrap = true
+
+[node name="Stacks" type="Label" parent="."]
+modulate = Color( 0.72, 0.72, 0.72, 1 )
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -87.0
+margin_right = 85.0
+margin_bottom = 26.0
+rect_scale = Vector2( 0.5, 0.5 )
+custom_fonts/font = ExtResource( 1 )
+align = 2

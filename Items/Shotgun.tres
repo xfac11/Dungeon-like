@@ -7,6 +7,7 @@
 [resource]
 script = ExtResource( 1 )
 name = "Shotgun"
+description = "Shoots spray bullets "
 stackable = true
 maxStackSize = 15
 frequency = 0
@@ -18,5 +19,5 @@ projectileSpeed = 300.0
 texture = ExtResource( 2 )
 projectilePS = ExtResource( 3 )
 damageType = 1
-itemType = 0
 shootingType = 2
+itemType = 0

@@ -6,6 +6,7 @@
 [resource]
 script = ExtResource( 1 )
 name = "White Ring"
+description = "Increase speed by 20"
 stackable = true
 maxStackSize = 10
 frequency = 0
@@ -16,5 +17,5 @@ speed = 10.0
 projectileSpeed = 1.0
 texture = ExtResource( 2 )
 damageType = 2
-itemType = 2
 shootingType = 0
+itemType = 2

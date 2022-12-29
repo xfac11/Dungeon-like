@@ -1,0 +1,31 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Looting/PickupArea.gd" type="Script" id=1]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 100.0
+
+[sub_resource type="CircleShape2D" id=2]
+radius = 5.09902
+
+[node name="PickupArea" type="Node2D"]
+script = ExtResource( 1 )
+speed = 50.0
+
+[node name="AttractionArea" type="Area2D" parent="."]
+collision_mask = 128
+monitorable = false
+
+[node name="AttractionCollision" type="CollisionShape2D" parent="AttractionArea"]
+modulate = Color( 0.772549, 0.945098, 0.498039, 1 )
+shape = SubResource( 1 )
+
+[node name="Pickup" type="Area2D" parent="."]
+collision_mask = 128
+monitorable = false
+
+[node name="PickupCollision" type="CollisionShape2D" parent="Pickup"]
+shape = SubResource( 2 )
+
+[connection signal="area_entered" from="AttractionArea" to="." method="_on_Area2D_area_entered"]
+[connection signal="area_entered" from="Pickup" to="." method="_on_Pickup_area_entered"]

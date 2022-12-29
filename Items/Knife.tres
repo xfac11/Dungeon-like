@@ -1,14 +1,13 @@
-[gd_resource type="Resource" load_steps=5 format=2]
+[gd_resource type="Resource" load_steps=4 format=2]
 
 [ext_resource path="res://Scripts/Item.gd" type="Script" id=1]
 [ext_resource path="res://Textures/Knife.png" type="Texture" id=2]
 [ext_resource path="res://Scenes/KnifeProjectile.tscn" type="PackedScene" id=3]
 
-[sub_resource type="GDScript" id=1]
-
 [resource]
 script = ExtResource( 1 )
 name = "Knife"
+description = "Shoots a knife toward enemy"
 stackable = true
 maxStackSize = 10
 frequency = 5
@@ -20,6 +19,5 @@ projectileSpeed = 100.0
 texture = ExtResource( 2 )
 projectilePS = ExtResource( 3 )
 damageType = 0
-itemType = 0
 shootingType = 4
-effects = SubResource( 1 )
+itemType = 0

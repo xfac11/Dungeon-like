@@ -1,0 +1,21 @@
+[gd_resource type="Resource" load_steps=5 format=2]
+
+[ext_resource path="res://Scripts/ShopSlot.gd" type="Script" id=1]
+[ext_resource path="res://Textures/buttons_65.png" type="Texture" id=2]
+[ext_resource path="res://Scripts/Stat.gd" type="Script" id=3]
+
+[sub_resource type="Resource" id=1]
+script = ExtResource( 3 )
+damage = 0
+speed = 0.5
+health = 0
+
+[resource]
+script = ExtResource( 1 )
+cost = 20
+costIncrease = 40
+numberOfStacks = 5
+texture = ExtResource( 2 )
+description = "Increase speed by flat 0.5"
+varaibleChange = "speed * 0.5"
+stat = SubResource( 1 )

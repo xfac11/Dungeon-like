@@ -1,19 +1,21 @@
 extends Node
 class_name Health
 
-signal healthDepleted()
+signal healthDepleted(parent)
 signal damageTaken(currentHealth, maximumHealth)
 
 export var maximumHealth = 100
 var currentHealth = maximumHealth
 var dead:bool = false
+func _ready():
+	currentHealth = maximumHealth
 func TakeDamage(damage:int):
 	if dead:
 		return
 	currentHealth -= damage
 	if currentHealth <= 0:
 		currentHealth = 0
-		emit_signal("healthDepleted")
+		emit_signal("healthDepleted", get_parent())
 		dead = true
 	emit_signal("damageTaken", currentHealth, maximumHealth)
 

@@ -6,7 +6,9 @@ class ItemSlot:
 
 export var items = Array() setget SetItems, GetItems
 signal inventoryChanged(items, itemName, quantity)
-func AddItem(itemName, quantity):
+func Clear() -> void:
+	items.clear()
+func AddItem(itemName, quantity) -> void:
 	var item = ItemDatabase.GetItem(itemName)
 	if item == null:
 		return
@@ -29,13 +31,16 @@ func AddItem(itemName, quantity):
 	
 	emit_signal("inventoryChanged",items, itemName, quantity)
 	
-	
-func GetItems():
+func AddItems(itemsArray):
+	for name in itemsArray:
+		AddItem(name, 1)
+
+func GetItems() -> Array:
 	return items
 
-func SetItems(newItems):
+func SetItems(newItems) -> void:
 	items = newItems
 
-func GetItem(index):
+func GetItem(index) -> ItemSlot:
 	return items[index]
 

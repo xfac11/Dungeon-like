@@ -4,11 +4,10 @@ onready var container = $HBoxContainer
 export(PackedScene) var itemDisplay:PackedScene
 
 func _ready():
-	
-	var _unused = GameHandler.connect("playerInitialized", self, "ConnectInventory")
+	ConnectInventory()
 
-func ConnectInventory(player):
-	player.inventory.connect("inventoryChanged", self, "UpdateInventoryUI")
+func ConnectInventory():
+	get_tree().get_nodes_in_group("PLAYER")[0].inventory.connect("inventoryChanged", self, "UpdateInventoryUI")
 
 func UpdateInventoryUI(items, _newItemName, _quantity):
 	for i in items:

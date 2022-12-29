@@ -5,7 +5,7 @@ export var distance = 25
 var startingVector = Vector2(0,1)
 var aroundObject
 func _ready():
-	aroundObject = GameHandler.player
+	aroundObject = theOwner.get_tree().get_nodes_in_group("PLAYER")[0]
 func Movement(delta):
 	var newPosition = aroundObject.position + (startingVector * distance)
 	startingVector = startingVector.rotated(angle*delta)

@@ -1,0 +1,313 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://ShopUITheme.tres" type="Theme" id=1]
+[ext_resource path="res://Textures/window2_10.png" type="Texture" id=2]
+[ext_resource path="res://Textures/CoinTexture.png" type="Texture" id=3]
+[ext_resource path="res://vboxstyle.tres" type="Theme" id=4]
+[ext_resource path="res://Textures/Misc_35.png" type="Texture" id=5]
+[ext_resource path="res://Scenes/ShopSlotButton.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Scripts/ShopCoinUI.gd" type="Script" id=8]
+[ext_resource path="res://Scripts/Shop.gd" type="Script" id=9]
+
+[sub_resource type="Theme" id=2]
+
+[node name="ShopUI" type="Control"]
+margin_right = 1024.0
+margin_bottom = 600.0
+theme = ExtResource( 4 )
+script = ExtResource( 9 )
+shopSlotButton = ExtResource( 7 )
+
+[node name="DiscoverItemButton" type="Button" parent="."]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -272.0
+margin_top = -200.0
+margin_right = -18.0
+margin_bottom = -45.0
+theme = ExtResource( 1 )
+text = "Discover Item"
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Label" type="Label" parent="DiscoverItemButton"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -83.5
+margin_top = -65.0
+margin_right = 83.5
+margin_bottom = -27.0
+custom_colors/font_color = Color( 0.992157, 1, 0.0862745, 1 )
+text = "1000"
+align = 1
+
+[node name="TextureRect" type="TextureRect" parent="DiscoverItemButton/Label"]
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -40.0
+margin_top = -20.0
+margin_bottom = 20.0
+texture = ExtResource( 3 )
+expand = true
+
+[node name="ShopTabContainer" type="TabContainer" parent="."]
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_left = 16.0
+margin_top = -284.0
+margin_right = 551.0
+margin_bottom = 270.0
+tab_align = 0
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sword" type="Tabs" parent="ShopTabContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 52.0
+margin_right = -4.0
+margin_bottom = -4.0
+theme = SubResource( 2 )
+tab_align = 0
+
+[node name="GridContainer" type="GridContainer" parent="ShopTabContainer/Sword"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 5.0
+margin_top = 5.0
+margin_right = -5.0
+margin_bottom = -5.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource( 1 )
+custom_constants/vseparation = 10
+custom_constants/hseparation = 10
+columns = 3
+
+[node name="Player" type="Tabs" parent="ShopTabContainer"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 52.0
+margin_right = -4.0
+margin_bottom = -4.0
+theme = SubResource( 2 )
+tab_align = 0
+
+[node name="GridContainer" type="GridContainer" parent="ShopTabContainer/Player"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 5.0
+margin_top = 5.0
+margin_right = -5.0
+margin_bottom = -5.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource( 1 )
+custom_constants/vseparation = 10
+custom_constants/hseparation = 10
+columns = 3
+
+[node name="Items" type="Tabs" parent="ShopTabContainer"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 52.0
+margin_right = -4.0
+margin_bottom = -4.0
+theme = SubResource( 2 )
+tab_align = 0
+
+[node name="GridContainer" type="GridContainer" parent="ShopTabContainer/Items"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 5.0
+margin_top = 5.0
+margin_right = -5.0
+margin_bottom = -5.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource( 1 )
+custom_constants/vseparation = 10
+custom_constants/hseparation = 10
+columns = 3
+
+[node name="Coins" type="HBoxContainer" parent="."]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -236.0
+margin_top = 16.0
+margin_right = -18.0
+margin_bottom = 56.0
+custom_constants/separation = 0
+script = ExtResource( 8 )
+__meta__ = {
+"_edit_group_": true
+}
+displayCoins = 250
+valueColor = Color( 0.992157, 1, 0.0862745, 1 )
+
+[node name="fifth" type="NinePatchRect" parent="Coins"]
+margin_right = 43.0
+margin_bottom = 40.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource( 2 )
+
+[node name="Label" type="Label" parent="Coins/fifth"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -35.0
+margin_top = -35.0
+margin_right = 29.0
+margin_bottom = 29.0
+rect_scale = Vector2( 1.1, 1.1 )
+theme = ExtResource( 4 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "2"
+align = 1
+valign = 1
+
+[node name="fourth" type="NinePatchRect" parent="Coins"]
+margin_left = 43.0
+margin_right = 87.0
+margin_bottom = 40.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource( 2 )
+
+[node name="Label" type="Label" parent="Coins/fourth"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -35.5
+margin_top = -35.0
+margin_right = 28.5
+margin_bottom = 29.0
+rect_scale = Vector2( 1.1, 1.1 )
+theme = ExtResource( 4 )
+custom_colors/font_color = Color( 0.992157, 1, 0.0862745, 1 )
+text = "2"
+align = 1
+valign = 1
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="third" type="NinePatchRect" parent="Coins"]
+margin_left = 87.0
+margin_right = 130.0
+margin_bottom = 40.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource( 2 )
+
+[node name="Label" type="Label" parent="Coins/third"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -35.0
+margin_top = -35.0
+margin_right = 29.0
+margin_bottom = 29.0
+rect_scale = Vector2( 1.1, 1.1 )
+theme = ExtResource( 4 )
+custom_colors/font_color = Color( 0.992157, 1, 0.0862745, 1 )
+text = "2"
+align = 1
+valign = 1
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="second" type="NinePatchRect" parent="Coins"]
+margin_left = 130.0
+margin_right = 174.0
+margin_bottom = 40.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource( 2 )
+
+[node name="Label" type="Label" parent="Coins/second"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -35.5
+margin_top = -35.0
+margin_right = 28.5
+margin_bottom = 29.0
+rect_scale = Vector2( 1.1, 1.1 )
+theme = ExtResource( 4 )
+custom_colors/font_color = Color( 0.992157, 1, 0.0862745, 1 )
+text = "2"
+align = 1
+valign = 1
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="first" type="NinePatchRect" parent="Coins"]
+margin_left = 174.0
+margin_right = 218.0
+margin_bottom = 40.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource( 2 )
+
+[node name="Label" type="Label" parent="Coins/first"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -35.5
+margin_top = -35.0
+margin_right = 28.5
+margin_bottom = 29.0
+rect_scale = Vector2( 1.1, 1.1 )
+theme = ExtResource( 4 )
+custom_colors/font_color = Color( 0.992157, 1, 0.0862745, 1 )
+text = "2"
+align = 1
+valign = 1
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="StartGameButton" type="Button" parent="."]
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -166.0
+margin_top = -20.0
+margin_right = -19.0
+margin_bottom = 22.0
+theme = ExtResource( 1 )
+custom_colors/font_color = Color( 0.286275, 1, 0.345098, 1 )
+text = "Start"
+
+[node name="TextureRect" type="TextureRect" parent="."]
+margin_left = 744.0
+margin_top = 16.0
+margin_right = 784.0
+margin_bottom = 56.0
+texture = ExtResource( 5 )
+expand = true
+
+[connection signal="pressed" from="StartGameButton" to="." method="_on_Button_pressed"]

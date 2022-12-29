@@ -1,14 +1,17 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Enemy.tres" type="SpriteFrames" id=1]
 [ext_resource path="res://Monsters/MovementAI.gd" type="Script" id=2]
-[ext_resource path="res://Scenes/ExpOrb.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scripts/Health.gd" type="Script" id=4]
 [ext_resource path="res://Scripts/DamageArea.gd" type="Script" id=5]
 [ext_resource path="res://Scenes/BloodEffect.tscn" type="PackedScene" id=6]
+[ext_resource path="res://BlinkingMaterial.tres" type="Material" id=7]
+[ext_resource path="res://Scripts/DefaultEnemyStates/IdleAI.gd" type="Script" id=8]
+[ext_resource path="res://StateMachine/FiniteStateMachine.gd" type="Script" id=9]
+[ext_resource path="res://Scripts/DefaultEnemyStates/Staggered.gd" type="Script" id=10]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 15, 15 )
+extents = Vector2( 13.3333, 9.16667 )
 
 [sub_resource type="CircleShape2D" id=2]
 radius = 23.3928
@@ -18,18 +21,21 @@ scale = Vector2( 0.6, 0.6 )
 collision_layer = 8
 collision_mask = 11
 script = ExtResource( 2 )
-ExpOrb = ExtResource( 3 )
 DamageEffect = ExtResource( 6 )
-speed = 30
+startStatePath = NodePath("FiniteStateMachine/IdleAI")
+speed = 15
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
-position = Vector2( 3, -18 )
+material = ExtResource( 7 )
+position = Vector2( 5, -1.66667 )
 frames = ExtResource( 1 )
-animation = "left_walk"
+animation = "down_walk"
 frame = 1
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2( 0, 4.16667 )
 shape = SubResource( 1 )
 
 [node name="Health" type="Node" parent="."]
@@ -37,6 +43,7 @@ script = ExtResource( 4 )
 maximumHealth = 150
 
 [node name="DamageArea" type="Area2D" parent="."]
+visible = false
 collision_layer = 32
 collision_mask = 2
 script = ExtResource( 5 )
@@ -47,7 +54,21 @@ shape = SubResource( 2 )
 [node name="Timer" type="Timer" parent="DamageArea"]
 wait_time = 2.0
 
+[node name="Tween" type="Tween" parent="."]
+
+[node name="FiniteStateMachine" type="Node" parent="."]
+script = ExtResource( 9 )
+
+[node name="IdleAI" type="Node" parent="FiniteStateMachine"]
+script = ExtResource( 8 )
+direction = Vector2( 0, -1 )
+
+[node name="Staggered" type="Node" parent="FiniteStateMachine"]
+script = ExtResource( 10 )
+staggeredSeconds = 0.25
+
 [connection signal="damageTaken" from="Health" to="." method="_on_Health_damageTaken"]
+[connection signal="damageTaken" from="Health" to="FiniteStateMachine/IdleAI" method="_on_Health_damageTaken"]
 [connection signal="healthDepleted" from="Health" to="." method="_on_Health_healthDepleted"]
 [connection signal="body_entered" from="DamageArea" to="DamageArea" method="_on_DamageArea_body_entered"]
 [connection signal="body_exited" from="DamageArea" to="DamageArea" method="_on_DamageArea_body_exited"]

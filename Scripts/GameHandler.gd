@@ -1,22 +1,31 @@
 extends Node
-
-#TODO MOVE MAXENEMIES TO GAMESCENE
-
-var maximumEnemies = 25
+var discoveredItems:Array = ["Red Ring", "Knife", "Fire Book"]
+var defaultDiscoveredSize = discoveredItems.size()
 var player
-signal playerInitialized(player)
-func _process(_delta):
-	if not player:
-		InitPlayer()
-		return
-	
-func InitPlayer():
-	player = get_node("/root/GameScene/Player")
-	if not player:
-		return
-	emit_signal("playerInitialized", player)
-	player.get_node("ExperienceSystem").connect("leveledup",self,"IncreaseEnemies")
-	
+var shopPlayerStat:Stat = Stat.new()
+var shopSwordStat:Stat = Stat.new()
+var level = 0
+var coins = 0
+func AddDiscoveredItem() -> Item:
+	var newItem:Item = GetRandomHidenItem()
+	discoveredItems.append(newItem.name)
+	return newItem
 
-func IncreaseEnemies(_maxExp,_level):
-	maximumEnemies+= 10
+func GetRandomHidenItem() -> Item:
+	var items = ItemDatabase.items
+	var newItem:Item
+	var itemIndexArray = Array()
+	var index = 0
+	for item in items:
+		var found = false
+		for discoveredItem in discoveredItems:
+			if item.name == discoveredItem:
+				found = true
+		if !found:
+			itemIndexArray.append(index)
+		index += 1
+	
+	var newItemIndex:int = randi()%itemIndexArray.size()
+	return items[itemIndexArray[newItemIndex]]
+func CoinsFromLevel(level):
+	return (level - 1) * 25

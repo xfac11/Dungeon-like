@@ -1,4 +1,5 @@
 extends Node
+class_name ExperienceSystem
 enum IncreaseMethod {ADDITIVE, MULTIPLE}
 var experiencePoints = 0
 var level = 1

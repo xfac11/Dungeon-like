@@ -1,14 +1,15 @@
 extends Node
-var itemSelect
-func _ready():
-	var _unused = GameHandler.connect("playerInitialized",self,"Init")
-func Init(player):
-	var expSystem = player.get_node("ExperienceSystem")
+var itemSelect:ItemSelect
+func _ready() -> void:
+	Init()
+func Init() -> void:
+	var expSystem:ExperienceSystem = get_tree().get_nodes_in_group("PLAYER")[0].get_node("ExperienceSystem")
 	expSystem.connect("leveledup",self,"ShowItems")
 	itemSelect = get_node("/root/GameScene/UICanvasLayer/UI/ItemSelect")
 
-func ShowItems(_maxExp, _lelve):
+func ShowItems(_maxExp, _level) -> void:
 	var randomItems = Array()
 	for i in 3:
-		randomItems.append(ItemDatabase.GetRandomItem().name)
+		var randomIndex = randi()%GameHandler.discoveredItems.size()
+		randomItems.append(GameHandler.discoveredItems[randomIndex])
 	itemSelect.InitButtons(randomItems)

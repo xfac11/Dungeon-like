@@ -1,18 +1,18 @@
 class_name HandleItems
-
+const ShootingTypeResource = preload("res://ShootingType.gd")
 var directions = [Vector2(0,1),Vector2(0,-1),Vector2(1,0),Vector2(-1,0),Vector2(0.5,0.5),Vector2(-0.5,0.5),Vector2(0.5,-0.5),Vector2(-0.5,-0.5)]
 var bullets = {}
 func Shoot(item:Item, nrOfStacks:int, owner, global_transform):
 	match(item.shootingType):
-		Item.ShootingType.RANDOMDIR:
+		ShootingTypeResource.ShootingType.RANDOMDIR:
 			ShootRandomDir(item, nrOfStacks, owner, global_transform)
-		Item.ShootingType.RANDOMDIREACH:
+		ShootingTypeResource.ShootingType.RANDOMDIREACH:
 			ShootRandomDirEach(item, nrOfStacks, owner, global_transform)
-		Item.ShootingType.ROTATING:
+		ShootingTypeResource.ShootingType.ROTATING:
 			ShootRotating(item, nrOfStacks, owner, global_transform)
-		Item.ShootingType.SPRAY:
+		ShootingTypeResource.ShootingType.SPRAY:
 			ShootSpray(item, nrOfStacks, owner, global_transform)
-		Item.ShootingType.TOWARDENEMY:
+		ShootingTypeResource.ShootingType.TOWARDENEMY:
 			ShootTowardEnemy(item, nrOfStacks, owner, global_transform)
 		
 func ShootRandomDir(item:Item, nrOfStacks, owner, global_transform):
@@ -79,9 +79,10 @@ func ShootSpray(item:Item, nrOfStacks, owner, global_transform):
 func ShootTowardEnemy(item, nrOfStacks, owner, global_transform):
 	var enemies = owner.get_tree().get_nodes_in_group("ENEMIES")
 	var distance:float = 100.0
+	var playerPos:Vector2 = owner.get_tree().get_nodes_in_group("PLAYER")[0].position
 	var nearestEnemy
 	for enemy in enemies:
-		var enemyToPlayer:Vector2 = GameHandler.player.position - enemy.position
+		var enemyToPlayer:Vector2 = playerPos - enemy.position
 		var length = enemyToPlayer.length()
 		if length < distance:
 			distance = length
@@ -89,7 +90,7 @@ func ShootTowardEnemy(item, nrOfStacks, owner, global_transform):
 	
 	if enemies.size() == 0 or nearestEnemy == null:
 		return
-	var direction:Vector2 = nearestEnemy.position - GameHandler.player.position
+	var direction:Vector2 = nearestEnemy.position - playerPos
 	direction = direction.normalized()
 	var newBullet = item.projectilePS.instance()
 	owner.add_child(newBullet)

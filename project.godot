@@ -9,6 +9,51 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "State",
+"class": "Charge",
+"language": "GDScript",
+"path": "res://Scripts/ChargerEnemyStates/Charge.gd"
+}, {
+"base": "Lootable",
+"class": "Chest",
+"language": "GDScript",
+"path": "res://Looting/Chest.gd"
+}, {
+"base": "Lootable",
+"class": "Coin",
+"language": "GDScript",
+"path": "res://Looting/Coin.gd"
+}, {
+"base": "Node2D",
+"class": "EnemyPack",
+"language": "GDScript",
+"path": "res://Scripts/EnemyChargePack.gd"
+}, {
+"base": "Lootable",
+"class": "ExpDrop",
+"language": "GDScript",
+"path": "res://Looting/ExpDrop.gd"
+}, {
+"base": "Node",
+"class": "ExperienceSystem",
+"language": "GDScript",
+"path": "res://Scripts/ExperienceSystem.gd"
+}, {
+"base": "Node",
+"class": "FiniteStateMachine",
+"language": "GDScript",
+"path": "res://StateMachine/FiniteStateMachine.gd"
+}, {
+"base": "AcceptDialog",
+"class": "GameOverUI",
+"language": "GDScript",
+"path": "res://Scripts/GameOverUI.gd"
+}, {
+"base": "State",
+"class": "Grounded",
+"language": "GDScript",
+"path": "res://StateMachine/States/Grounded.gd"
+}, {
 "base": "Reference",
 "class": "HandleItems",
 "language": "GDScript",
@@ -19,6 +64,16 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scripts/Health.gd"
 }, {
+"base": "State",
+"class": "Idle",
+"language": "GDScript",
+"path": "res://StateMachine/States/Idle.gd"
+}, {
+"base": "State",
+"class": "IdleAI",
+"language": "GDScript",
+"path": "res://Scripts/DefaultEnemyStates/IdleAI.gd"
+}, {
 "base": "Resource",
 "class": "Inventory",
 "language": "GDScript",
@@ -28,6 +83,41 @@ _global_script_classes=[ {
 "class": "Item",
 "language": "GDScript",
 "path": "res://Scripts/Item.gd"
+}, {
+"base": "ColorRect",
+"class": "ItemSelect",
+"language": "GDScript",
+"path": "res://Scripts/ItemSelect.gd"
+}, {
+"base": "ShopSlot",
+"class": "ItemShopSlot",
+"language": "GDScript",
+"path": "res://Scripts/ItemShopSlot.gd"
+}, {
+"base": "Stat",
+"class": "ItemStat",
+"language": "GDScript",
+"path": "res://Scripts/ItemStat.gd"
+}, {
+"base": "Area2D",
+"class": "Lootable",
+"language": "GDScript",
+"path": "res://Looting/Lootable.gd"
+}, {
+"base": "KinematicBody2D",
+"class": "MovementAI",
+"language": "GDScript",
+"path": "res://Monsters/MovementAI.gd"
+}, {
+"base": "Node2D",
+"class": "PickupArea",
+"language": "GDScript",
+"path": "res://Looting/PickupArea.gd"
+}, {
+"base": "KinematicBody2D",
+"class": "Player",
+"language": "GDScript",
+"path": "res://Scripts/Player.gd"
 }, {
 "base": "Node2D",
 "class": "Projectile",
@@ -43,15 +133,111 @@ _global_script_classes=[ {
 "class": "ProjectileRotating",
 "language": "GDScript",
 "path": "res://Scripts/ProjectileRotating.gd"
+}, {
+"base": "Object",
+"class": "RandomGen",
+"language": "GDScript",
+"path": "res://Scripts/RandomGen.gd"
+}, {
+"base": "State",
+"class": "Run",
+"language": "GDScript",
+"path": "res://StateMachine/States/Run.gd"
+}, {
+"base": "State",
+"class": "Shooting",
+"language": "GDScript",
+"path": "res://StateMachine/States/Shooting.gd"
+}, {
+"base": "Node",
+"class": "Shop",
+"language": "GDScript",
+"path": "res://Scripts/Shop.gd"
+}, {
+"base": "HBoxContainer",
+"class": "ShopCoinUI",
+"language": "GDScript",
+"path": "res://Scripts/ShopCoinUI.gd"
+}, {
+"base": "Resource",
+"class": "ShopSlot",
+"language": "GDScript",
+"path": "res://Scripts/ShopSlot.gd"
+}, {
+"base": "Button",
+"class": "ShopSlotButton",
+"language": "GDScript",
+"path": "res://Scripts/ShopSlotButtonUI.gd"
+}, {
+"base": "State",
+"class": "Staggered",
+"language": "GDScript",
+"path": "res://Scripts/DefaultEnemyStates/Staggered.gd"
+}, {
+"base": "Resource",
+"class": "Stat",
+"language": "GDScript",
+"path": "res://Scripts/Stat.gd"
+}, {
+"base": "Object",
+"class": "StatFilter",
+"language": "GDScript",
+"path": "res://Scripts/StatFilter.gd"
+}, {
+"base": "Node",
+"class": "State",
+"language": "GDScript",
+"path": "res://StateMachine/States/State.gd"
+}, {
+"base": "State",
+"class": "Walk",
+"language": "GDScript",
+"path": "res://Scripts/ChargerEnemyStates/Walk.gd"
+}, {
+"base": "State",
+"class": "WalkTowards",
+"language": "GDScript",
+"path": "res://Scripts/EnemyPackStates/WalkTowards.gd"
 } ]
 _global_script_class_icons={
+"Charge": "",
+"Chest": "",
+"Coin": "",
+"EnemyPack": "",
+"ExpDrop": "",
+"ExperienceSystem": "",
+"FiniteStateMachine": "",
+"GameOverUI": "",
+"Grounded": "",
 "HandleItems": "",
 "Health": "",
+"Idle": "",
+"IdleAI": "",
 "Inventory": "",
 "Item": "",
+"ItemSelect": "",
+"ItemShopSlot": "",
+"ItemStat": "",
+"Lootable": "",
+"MovementAI": "",
+"PickupArea": "",
+"Player": "",
 "Projectile": "",
 "ProjectileOnHit": "",
-"ProjectileRotating": ""
+"ProjectileRotating": "",
+"RandomGen": "",
+"Run": "",
+"Shooting": "",
+"Shop": "",
+"ShopCoinUI": "",
+"ShopSlot": "",
+"ShopSlotButton": "",
+"Staggered": "",
+"Stat": "",
+"StatFilter": "",
+"State": "",
+"Walk": "",
+"WalkTowards": ""
 }
 
 [application]
@@ -67,7 +253,12 @@ GameHandler="*res://Scripts/GameHandler.gd"
 
 [display]
 
+window/size/width=640
+window/size/height=480
+window/size/resizable=false
 mouse_cursor/custom_image="res://Textures/cursor1.png"
+window/stretch/mode="viewport"
+window/stretch/aspect="keep"
 
 [importer_defaults]
 
@@ -93,6 +284,14 @@ texture={
 "svg/scale": 1.0
 }
 
+[input]
+
+exit_game={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777217,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
+
 [layer_names]
 
 2d_physics/layer_1="World"
@@ -108,4 +307,6 @@ common/enable_pause_aware_picking=true
 
 [rendering]
 
+2d/snapping/use_gpu_pixel_snap=true
+environment/default_clear_color=Color( 0.0784314, 0.0431373, 0.156863, 1 )
 environment/default_environment="res://default_env.tres"
