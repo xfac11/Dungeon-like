@@ -16,6 +16,7 @@ func InreaseEnemiesAmount(level) -> float:
 
 func PlayerInit(player:Player):
 	player.experienceSystem.connect("leveledup",self,"IncreaseEnemies")
+	player.inventory.AddItem("Spear", 1)
 
 func IncreaseEnemies(_maxExp,level):
 	maximumEnemies+= InreaseEnemiesAmount(level)

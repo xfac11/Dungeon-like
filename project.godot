@@ -130,6 +130,11 @@ _global_script_classes=[ {
 "path": "res://Scripts/ProjectileOnHit.gd"
 }, {
 "base": "Projectile",
+"class": "ProjectilePierce",
+"language": "GDScript",
+"path": "res://Scripts/ProjectilePierce.gd"
+}, {
+"base": "Projectile",
 "class": "ProjectileRotating",
 "language": "GDScript",
 "path": "res://Scripts/ProjectileRotating.gd"
@@ -224,6 +229,7 @@ _global_script_class_icons={
 "Player": "",
 "Projectile": "",
 "ProjectileOnHit": "",
+"ProjectilePierce": "",
 "ProjectileRotating": "",
 "RandomGen": "",
 "Run": "",

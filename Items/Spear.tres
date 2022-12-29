@@ -1,0 +1,23 @@
+[gd_resource type="Resource" load_steps=4 format=2]
+
+[ext_resource path="res://Scripts/Item.gd" type="Script" id=1]
+[ext_resource path="res://Textures/bar_04.png" type="Texture" id=2]
+[ext_resource path="res://Scenes/ProjectilePierce.tscn" type="PackedScene" id=3]
+
+[resource]
+script = ExtResource( 1 )
+name = "Spear"
+description = "Bullet can go through multiple enemies"
+stackable = true
+maxStackSize = 10
+frequency = 5
+damage = 10
+lifetime = 0
+health = 0
+speed = 0.0
+projectileSpeed = 300.0
+texture = ExtResource( 2 )
+projectilePS = ExtResource( 3 )
+damageType = 1
+shootingType = 4
+itemType = 0
