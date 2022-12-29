@@ -30,6 +30,8 @@ func _ready():
 	secondsBetweenSpawn = spawnTimer.wait_time
 	secondsBetweenWaves = waveTimer.wait_time
 	currentSecondsBetweenSpawn = secondsBetweenSpawn
+	DefferedSpawnCoin(self, 1)
+	DefferedSpawnChest(self)
 func _on_Timer_timeout():
 #	if get_node(pathToRoot).maximumEnemies <= get_tree().get_nodes_in_group("ENEMIES").size():
 #		return
@@ -44,10 +46,14 @@ func _on_Timer_timeout():
 	else:
 		var enemy = SpawnEnemy(1, 1)
 		var healthEnemy:Health = enemy.get_node("Health")
-		healthEnemy.connect("healthDepleted",self,"DefferedSpawnCoin")
-		healthEnemy.connect("healthDepleted",self,"DefferedSpawnExpOrb")
+		healthEnemy.connect("healthDepleted",self,"OnDeathEnemy")
 		currentEnemies+= 1
-
+func OnDeathEnemy(parent):
+	DefferedSpawnCoin(parent, coinDropChance)
+	DefferedSpawnExpOrb(parent)
+func OnDeathEnemyPack(parent):
+	DecreaseCurrentEnemies(parent)
+	DefferedSpawnCoin(parent, coinDropChance)
 func SpawnEnemy(speed,damage):
 	var newEnemy = enemyToSpawn.instance()
 	get_node(pathToRoot).add_child(newEnemy)
@@ -59,16 +65,20 @@ func SpawnEnemy(speed,damage):
 	return newEnemy
 	
 func DiceRoll(chance):
+	if chance == 0 || chance == 1:
+		return bool(chance)
 	return randf() < chance
 
-func DefferedSpawnCoin(parent):
-	call_deferred("SpawnCoin", parent)
+func DefferedSpawnCoin(parent, chance, push = 0):
+	call_deferred("SpawnCoin", parent, chance, push)
 
-func SpawnCoin(parent):
-	if DiceRoll(coinDropChance):
+func SpawnCoin(parent, chance, push = 0):
+	if DiceRoll(chance):
 		var newCoin = coinPS.instance()
 		get_node(pathToRoot).add_child(newCoin)
 		newCoin.position = parent.global_position
+		newCoin.position+= Vector2(randf()+1,randf()+1).normalized()* 5
+		newCoin.Push(push)
 
 func DefferedSpawnExpOrb(parent):
 	call_deferred("SpawnExpOrb", parent, ExpOrb)
@@ -86,31 +96,42 @@ func SpawnChest(parent):
 	newOrb.transform = parent.global_transform
 	newOrb.position+= Vector2(randf(),randf())*5
 	newOrb.connect("ChestPickedUp",self,"RollChestUI")
-func RollChestUI():
+func RollChestUI(chest):
 	var count = 1
 	if DiceRoll(0.3):
 		count = 3
 	if DiceRoll(0.1):
 		count = 5
-	var itemsToAdd = RandomItemsFromInventory(count)
+	
 	var player:Player = get_tree().get_nodes_in_group("PLAYER")[0]
 	var inventory:Inventory = player.inventory
-	var possibleItems = inventory.items
+	var itemsInInventory = inventory.GetItems()
+	var possibleItems = Array()
+	for item in itemsInInventory:
+		var inventoryItemStack = item.nrOfStacks
+		var actualItem:Item = item.item
+		if actualItem.maxStackSize > inventoryItemStack:
+			possibleItems.append(item)
+	##No items to give then spawn a coin for the player to pick up
+	if possibleItems.size() == 0:
+		for i in count:
+			DefferedSpawnCoin(chest, 1, -5)
+		return
+	var itemsToAdd = RandomItemsFromInventory(count, possibleItems)
 	inventory.AddItems(itemsToAdd)
 	ShowChestUI(itemsToAdd, possibleItems)
 
 func ShowChestUI(itemsToAdd, possibleItems):
 	pass
 
-func RandomItemsFromInventory(count):
-	var player:Player = get_tree().get_nodes_in_group("PLAYER")[0]
-	var itemsInInventory = player.inventory.GetItems()
-	if itemsInInventory.size() == 0:
+func RandomItemsFromInventory(count:int, items:Array):
+	var itemsInInventory = items
+	var numberOfItems = items.size()
+	if numberOfItems == 0:
 		return
 	var itemsToAdd = Array()
 	for i in count:
-		var randomIndex = randi() % itemsInInventory.size()
-		var inventory:Inventory = player.inventory
+		var randomIndex = randi() % numberOfItems
 		var itemName = itemsInInventory[randomIndex].item.name
 		itemsToAdd.append(itemName)
 	return itemsToAdd
@@ -142,8 +163,7 @@ func SpawnEnemyPack(speed, damage):
 		enemy.damageArea.damage = enemy.damageArea.damage * damage
 		enemy.fsm.get_node("WalkTowards").direction = direction.normalized()
 		var healthEnemy:Health = enemy.get_node("Health")
-		healthEnemy.connect("healthDepleted",self,"DefferedSpawnCoin")
-		healthEnemy.connect("healthDepleted",self,"DecreaseCurrentEnemies")
+		healthEnemy.connect("healthDepleted",self,"OnDeathEnemyPack")
 func DecreaseCurrentEnemies(parent):
 	currentEnemies-= 1
 func drawRect(pos, width, height, color):

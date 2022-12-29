@@ -9,7 +9,8 @@ func PickUp(character):
 	var coin = value
 	character.GiveCoin(coin)
 	emit_signal("PickedUpCoin", coin)
-
+func Push(force):
+	acc+= force
 func Traveling(area, delta):
 	var areaPos = area.global_position
 	var direction = areaPos - global_position
