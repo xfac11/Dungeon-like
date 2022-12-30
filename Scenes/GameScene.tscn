@@ -52,6 +52,7 @@ position = Vector2( -214, 0 )
 
 [node name="AnimatedSprite" parent="Player" index="1"]
 material = SubResource( 1 )
+frame = 1
 
 [node name="Items" type="Node2D" parent="Player"]
 position = Vector2( 55, 55 )
@@ -75,6 +76,8 @@ mRadius = 50
 mWidth = 507
 mHeight = 309
 decreaseSpawnTime = 0.5
+secondsBetweenWaves = 90.0
+secondsBetweenSpawn = 5.0
 pathToRoot = NodePath("..")
 
 [node name="SpawnTimer" parent="Spawner" index="0"]
@@ -90,6 +93,7 @@ script = ExtResource( 3 )
 
 [node name="AnimatedSprite" parent="EnemyTreant" index="0"]
 material = SubResource( 2 )
+frame = 0
 
 [connection signal="gainedExperience" from="Player/ExperienceSystem" to="UICanvasLayer/UI/LevelNumber/ExpBar" method="_on_ExperienceSystem_gainedExperience"]
 [connection signal="gainedExperience" from="Player/ExperienceSystem" to="UICanvasLayer/UI/LevelNumber/Label2" method="_on_ExperienceSystem_gainedExperience"]

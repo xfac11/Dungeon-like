@@ -66,10 +66,7 @@ func _process(_delta:float) -> void:
 		animatedSprite.play("up_walk")
 	else:
 		animatedSprite.stop()
-	
-	
-	
-	
+
 func ProcessItems() -> void:
 	var itemSlots:Array = inventory.GetItems()
 	for slot in itemSlots:

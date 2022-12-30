@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Scripts/ProjectileAxe.gd" type="Script" id=1]
+[ext_resource path="res://Textures/cursor1.png" type="Texture" id=2]
+[ext_resource path="res://Scenes/Projectile.tscn" type="PackedScene" id=3]
+
+[sub_resource type="CapsuleShape2D" id=1]
+radius = 4.52273
+height = 9.4246
+
+[node name="ProjectileAxe" instance=ExtResource( 3 )]
+script = ExtResource( 1 )
+speed = 100.0
+lifeTime = 10.0
+
+[node name="Sprite" parent="." index="0"]
+position = Vector2( 0.865228, 0.794597 )
+rotation = 0.740775
+scale = Vector2( 0.841081, 1.1236 )
+texture = ExtResource( 2 )
+
+[node name="CollisionShape2D" parent="." index="1"]
+rotation = 0.452269
+shape = SubResource( 1 )
