@@ -3,7 +3,7 @@ class_name Health
 
 signal healthDepleted(parent)
 signal damageTaken(currentHealth, maximumHealth)
-
+var armor = 0
 export var maximumHealth = 100
 var currentHealth = maximumHealth
 var dead:bool = false
@@ -12,7 +12,7 @@ func _ready():
 func TakeDamage(damage:int):
 	if dead:
 		return
-	currentHealth -= damage
+	currentHealth -= max(damage-armor, 0)
 	if currentHealth <= 0:
 		currentHealth = 0
 		emit_signal("healthDepleted", get_parent())

@@ -14,6 +14,7 @@ frequency = 5
 damage = 8
 lifetime = 0
 health = 0
+armor = 0
 speed = 0.0
 projectileSpeed = 100.0
 texture = ExtResource( 2 )

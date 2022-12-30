@@ -16,16 +16,12 @@ func InreaseEnemiesAmount(level) -> float:
 
 func PlayerInit(player:Player):
 	player.experienceSystem.connect("leveledup",self,"IncreaseEnemies")
-	player.inventory.AddItem("Axe", 1)
+	player.inventory.AddItem("BreastPlate", 1)
 
 func IncreaseEnemies(_maxExp,level):
 	maximumEnemies+= InreaseEnemiesAmount(level)
 
-
-	
-
-
 func _on_Health_healthDepleted(parent):
 	gameOverMenu.ShowGameOver(parent.coins,
-	GameHandler.CoinsFromLevel(parent.get_node("ExperienceSystem").level),
-	get_node("Spawner").wave,OS.get_ticks_msec()*0.001)
+		GameHandler.CoinsFromLevel(parent.get_node("ExperienceSystem").level),
+		get_node("Spawner").wave,OS.get_ticks_msec()*0.001)

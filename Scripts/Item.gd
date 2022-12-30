@@ -9,6 +9,7 @@ export var frequency:int = 0
 export var damage:int = 0
 export var lifetime: int = 0
 export var health:int = 0
+export var armor:int = 0
 export var speed:float = 0.0
 export var projectileSpeed:float = 1.0
 export var texture : Texture

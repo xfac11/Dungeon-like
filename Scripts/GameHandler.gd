@@ -1,10 +1,10 @@
 extends Node
-var discoveredItems:Array = ["Red Ring", "Knife", "Fire Book"]
+var discoveredItems:Array = ["Red Ring", "Knife", "Shotgun"]
 var defaultDiscoveredSize = discoveredItems.size()
 var player
 var shopPlayerStat:Stat = Stat.new()
 var shopSwordStat:Stat = Stat.new()
-var level = 0
+var _level = 0
 var coins = 0
 func AddDiscoveredItem() -> Item:
 	var newItem:Item = GetRandomHidenItem()
@@ -13,7 +13,6 @@ func AddDiscoveredItem() -> Item:
 
 func GetRandomHidenItem() -> Item:
 	var items = ItemDatabase.items
-	var newItem:Item
 	var itemIndexArray = Array()
 	var index = 0
 	for item in items:

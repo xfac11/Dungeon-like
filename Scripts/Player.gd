@@ -82,6 +82,7 @@ func ApplyStat(_items:Array, newItemName:String, stacks:int) -> void:
 	var item:Item = ItemDatabase.GetItem(newItemName)
 	currentStat.health += item.health*stacks
 	currentStat.speed += item.speed*stacks
+	currentStat.armor += item.armor*stacks
 	health.SetHealth(currentStat.health)
 
 func SetBaseStat() -> void:
