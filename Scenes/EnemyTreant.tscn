@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://EnemyTreant.tres" type="SpriteFrames" id=1]
 [ext_resource path="res://Monsters/MovementAI.gd" type="Script" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://StateMachine/FiniteStateMachine.gd" type="Script" id=8]
 [ext_resource path="res://Scripts/DefaultEnemyStates/IdleAI.gd" type="Script" id=9]
 [ext_resource path="res://Scripts/DefaultEnemyStates/Staggered.gd" type="Script" id=10]
+[ext_resource path="res://Scenes/Particles2D.tscn" type="PackedScene" id=11]
 
 [sub_resource type="RectangleShape2D" id=16]
 extents = Vector2( 32.5, 50 )
@@ -24,6 +25,7 @@ collision_layer = 8
 collision_mask = 10
 script = ExtResource( 2 )
 DamageEffect = ExtResource( 6 )
+DeathEffect = ExtResource( 11 )
 startStatePath = NodePath("FiniteStateMachine/IdleAI")
 speed = 10
 
@@ -31,7 +33,6 @@ speed = 10
 material = ExtResource( 7 )
 frames = ExtResource( 1 )
 animation = "right_walk"
-frame = 1
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

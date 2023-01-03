@@ -3,6 +3,7 @@ class_name MovementAI
 onready var fsm:FiniteStateMachine = $FiniteStateMachine
 onready var _animated_sprite = $AnimatedSprite
 export(PackedScene) var DamageEffect
+export(PackedScene) var DeathEffect
 export(NodePath) var startStatePath
 onready var damageArea = $DamageArea
 var right = Vector2(1,0)
@@ -90,16 +91,22 @@ func _on_Health_healthDepleted(parent):
 		Tween.TRANS_LINEAR, Tween.EASE_IN)
 	tween.start()
 	tween.connect("tween_completed",self,"QueueSelf")
+	SpawnObject(DeathEffect).emitting = true
 
 func QueueSelf(object, key):
 	queue_free()
 
 func _on_Health_damageTaken(currentHealth, maximumHealth):
-	var damageEffect = DamageEffect.instance()
-	get_parent().add_child(damageEffect)
+	var damageEffect = SpawnObject(DamageEffect)
 	var tween = get_node("Tween")
 	tween.interpolate_property($AnimatedSprite.material, "shader_param/blinkValue",
 		1, 0, 0.25,
 		Tween.TRANS_LINEAR, Tween.EASE_IN)
 	tween.start()
-	damageEffect.transform = global_transform
+
+
+func SpawnObject(packedScene):
+	var object = packedScene.instance()
+	get_parent().add_child(object)
+	object.transform = global_transform
+	return object
