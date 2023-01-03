@@ -9,6 +9,8 @@ func Enter(object:MovementAI):
 func Exit(object:MovementAI):
 	pass
 func InputUpdate(event, object:MovementAI, _delta):
+	if object.death:
+		return stateDictionary["Death"]
 	if staggeredSeconds < seconds:
 		return stateDictionary["IdleAI"]
 func Update(object:MovementAI, delta):

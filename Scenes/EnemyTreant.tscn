@@ -1,7 +1,8 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://EnemyTreant.tres" type="SpriteFrames" id=1]
 [ext_resource path="res://Monsters/MovementAI.gd" type="Script" id=2]
+[ext_resource path="res://Scripts/Death.gd" type="Script" id=3]
 [ext_resource path="res://Scripts/Health.gd" type="Script" id=4]
 [ext_resource path="res://Scripts/DamageArea.gd" type="Script" id=5]
 [ext_resource path="res://Scenes/BloodEffect.tscn" type="PackedScene" id=6]
@@ -30,7 +31,7 @@ speed = 10
 material = ExtResource( 7 )
 frames = ExtResource( 1 )
 animation = "right_walk"
-frame = 2
+frame = 1
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -62,6 +63,11 @@ script = ExtResource( 9 )
 
 [node name="Staggered" type="Node" parent="FiniteStateMachine"]
 script = ExtResource( 10 )
+
+[node name="Death" type="Node" parent="FiniteStateMachine"]
+script = ExtResource( 3 )
+
+[node name="DeathTween" type="Tween" parent="."]
 
 [connection signal="damageTaken" from="Health" to="." method="_on_Health_damageTaken"]
 [connection signal="healthDepleted" from="Health" to="." method="_on_Health_healthDepleted"]

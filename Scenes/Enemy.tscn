@@ -1,7 +1,8 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Enemy.tres" type="SpriteFrames" id=1]
 [ext_resource path="res://Monsters/MovementAI.gd" type="Script" id=2]
+[ext_resource path="res://Scripts/Death.gd" type="Script" id=3]
 [ext_resource path="res://Scripts/Health.gd" type="Script" id=4]
 [ext_resource path="res://Scripts/DamageArea.gd" type="Script" id=5]
 [ext_resource path="res://Scenes/BloodEffect.tscn" type="PackedScene" id=6]
@@ -14,7 +15,7 @@
 extents = Vector2( 13.3333, 9.16667 )
 
 [sub_resource type="CircleShape2D" id=2]
-radius = 23.3928
+radius = 16.6667
 
 [node name="Enemy" type="KinematicBody2D" groups=["ENEMIES"]]
 scale = Vector2( 0.6, 0.6 )
@@ -27,11 +28,9 @@ speed = 15
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 material = ExtResource( 7 )
-position = Vector2( 5, -1.66667 )
+scale = Vector2( 0.820513, 1.16162 )
 frames = ExtResource( 1 )
 animation = "down_walk"
-frame = 1
-playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
@@ -66,6 +65,11 @@ direction = Vector2( 0, -1 )
 [node name="Staggered" type="Node" parent="FiniteStateMachine"]
 script = ExtResource( 10 )
 staggeredSeconds = 0.25
+
+[node name="Death" type="Node" parent="FiniteStateMachine"]
+script = ExtResource( 3 )
+
+[node name="DeathTween" type="Tween" parent="."]
 
 [connection signal="damageTaken" from="Health" to="." method="_on_Health_damageTaken"]
 [connection signal="damageTaken" from="Health" to="FiniteStateMachine/IdleAI" method="_on_Health_damageTaken"]

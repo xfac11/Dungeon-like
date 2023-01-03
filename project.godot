@@ -24,6 +24,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Looting/Coin.gd"
 }, {
+"base": "State",
+"class": "Death",
+"language": "GDScript",
+"path": "res://Scripts/Death.gd"
+}, {
 "base": "Node2D",
 "class": "EnemyPack",
 "language": "GDScript",
@@ -213,6 +218,7 @@ _global_script_class_icons={
 "Charge": "",
 "Chest": "",
 "Coin": "",
+"Death": "",
 "EnemyPack": "",
 "ExpDrop": "",
 "ExperienceSystem": "",

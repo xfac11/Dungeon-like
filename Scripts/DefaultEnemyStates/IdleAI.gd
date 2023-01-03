@@ -8,6 +8,8 @@ func Enter(_object:MovementAI):
 func Exit(_object:MovementAI):
 	pass
 func InputUpdate(event, object:MovementAI, _delta):
+	if object.death:
+		return stateDictionary["Death"]
 	if damageTaken:
 		damageTaken = false
 		return stateDictionary["Staggered"]

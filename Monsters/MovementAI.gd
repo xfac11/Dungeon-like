@@ -13,6 +13,7 @@ var velocity = Vector2(0,0)
 export var speed = 50
 var player:Node2D
 var expOrbCount = 1
+var death = false
 func _ready():
 	player = get_tree().get_nodes_in_group("PLAYER")[0]
 	fsm.Initiate(get_node(startStatePath), self)
@@ -61,7 +62,8 @@ func UpdateAnimation(var movementDirection):
 			_animated_sprite.play("right_walk")
 		elif movementDirection.x < 0:
 			_animated_sprite.play("left_walk")
-
+func StopAnimation():
+	$AnimatedSprite.stop()
 func _physics_process(delta):
 	fsm.Update(self, delta)
 
@@ -69,6 +71,27 @@ func _process(delta):
 	fsm.ProcessEvent(self, self, delta)
 
 func _on_Health_healthDepleted(parent):
+	death = true
+	var tween = get_node("DeathTween")
+	$AnimatedSprite.material.set_shader_param("hor_index", $AnimatedSprite.frame)
+	var verIndex = 0.0
+	match $AnimatedSprite.animation:
+		"down_walk":
+			verIndex = 0
+		"left_walk":
+			verIndex = 1
+		"right_walk":
+			verIndex = 2
+		"up_walk":
+			verIndex = 3
+	$AnimatedSprite.material.set_shader_param("ver_index", verIndex);
+	tween.interpolate_property($AnimatedSprite.material, "shader_param/noiseEffectivenes",
+		0, 0.6, 0.8,
+		Tween.TRANS_LINEAR, Tween.EASE_IN)
+	tween.start()
+	tween.connect("tween_completed",self,"QueueSelf")
+
+func QueueSelf(object, key):
 	queue_free()
 
 func _on_Health_damageTaken(currentHealth, maximumHealth):

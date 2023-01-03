@@ -65,7 +65,7 @@ func SpawnEnemy(speed,damage):
 	return newEnemy
 	
 func DiceRoll(chance):
-	if chance == 0 || chance == 1:
+	if chance <= 0 || chance >= 1:
 		return bool(chance)
 	return randf() < chance
 
@@ -74,7 +74,7 @@ func DefferedSpawnCoin(parent, chance, push = 0):
 
 func SpawnCoin(parent, chance, push = 0):
 	if DiceRoll(chance):
-		var newCoin = coinPS.instance()
+		var newCoin:Coin = coinPS.instance()
 		get_node(pathToRoot).add_child(newCoin)
 		newCoin.position = parent.global_position
 		newCoin.position+= Vector2(randf()+1,randf()+1).normalized()* 5

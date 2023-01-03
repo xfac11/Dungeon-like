@@ -20,6 +20,11 @@ shader_param/blinkcolor = Vector3( 1, 1, 1 )
 shader_param/edgeShading = false
 shader_param/edgeColor = Color( 1, 1, 1, 1 )
 shader_param/lineThickness = 1.0
+shader_param/noiseEffectivenes = 0.0
+shader_param/num_hor_frames = 3.0
+shader_param/hor_index = 0.0
+shader_param/num_ver_frames = 4.0
+shader_param/ver_index = 0.0
 
 [sub_resource type="ShaderMaterial" id=2]
 resource_local_to_scene = true
@@ -29,6 +34,11 @@ shader_param/blinkcolor = Vector3( 1, 1, 1 )
 shader_param/edgeShading = false
 shader_param/edgeColor = Color( 1, 1, 1, 1 )
 shader_param/lineThickness = 1.0
+shader_param/noiseEffectivenes = 0.0
+shader_param/num_hor_frames = 3.0
+shader_param/hor_index = 0.0
+shader_param/num_ver_frames = 4.0
+shader_param/ver_index = 0.0
 
 [node name="GameScene" type="Node2D"]
 script = ExtResource( 5 )
@@ -52,7 +62,6 @@ position = Vector2( -214, 0 )
 
 [node name="AnimatedSprite" parent="Player" index="1"]
 material = SubResource( 1 )
-frame = 1
 
 [node name="Items" type="Node2D" parent="Player"]
 position = Vector2( 55, 55 )
@@ -94,6 +103,9 @@ script = ExtResource( 3 )
 [node name="AnimatedSprite" parent="EnemyTreant" index="0"]
 material = SubResource( 2 )
 frame = 0
+
+[node name="Health" parent="EnemyTreant" index="2"]
+maximumHealth = 50
 
 [connection signal="gainedExperience" from="Player/ExperienceSystem" to="UICanvasLayer/UI/LevelNumber/ExpBar" method="_on_ExperienceSystem_gainedExperience"]
 [connection signal="gainedExperience" from="Player/ExperienceSystem" to="UICanvasLayer/UI/LevelNumber/Label2" method="_on_ExperienceSystem_gainedExperience"]

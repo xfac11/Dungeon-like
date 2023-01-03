@@ -8,7 +8,7 @@
 [ext_resource path="res://Enemy.tres" type="SpriteFrames" id=6]
 [ext_resource path="res://Scripts/EnemyPackStates/WalkTowards.gd" type="Script" id=7]
 [ext_resource path="res://Scenes/BloodEffect.tscn" type="PackedScene" id=8]
-[ext_resource path="res://Looting/ExpDrop.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Scripts/Death.gd" type="Script" id=9]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 13.3333, 9.16667 )
@@ -21,17 +21,16 @@ scale = Vector2( 0.6, 0.6 )
 collision_layer = 8
 collision_mask = 11
 script = ExtResource( 3 )
-ExpOrb = ExtResource( 9 )
 DamageEffect = ExtResource( 8 )
 startStatePath = NodePath("FiniteStateMachine/WalkTowards")
 speed = 15
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 material = ExtResource( 1 )
-position = Vector2( 3, -18 )
+position = Vector2( 3.33333, -1.66667 )
 frames = ExtResource( 6 )
 animation = "left_walk"
-frame = 2
+frame = 1
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -60,6 +59,11 @@ script = ExtResource( 2 )
 
 [node name="WalkTowards" type="Node" parent="FiniteStateMachine"]
 script = ExtResource( 7 )
+
+[node name="Death" type="Node" parent="FiniteStateMachine"]
+script = ExtResource( 9 )
+
+[node name="DeathTween" type="Tween" parent="."]
 
 [connection signal="damageTaken" from="Health" to="." method="_on_Health_damageTaken"]
 [connection signal="healthDepleted" from="Health" to="." method="_on_Health_healthDepleted"]
