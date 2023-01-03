@@ -12,7 +12,7 @@ _global_script_classes=[ {
 "base": "State",
 "class": "Charge",
 "language": "GDScript",
-"path": "res://Scripts/ChargerEnemyStates/Charge.gd"
+"path": "res://Enemy/ChargerEnemyStates/Charge.gd"
 }, {
 "base": "Lootable",
 "class": "Chest",
@@ -29,11 +29,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scripts/Death.gd"
 }, {
-"base": "Node2D",
-"class": "EnemyPack",
-"language": "GDScript",
-"path": "res://Scripts/EnemyChargePack.gd"
-}, {
 "base": "Lootable",
 "class": "ExpDrop",
 "language": "GDScript",
@@ -42,7 +37,7 @@ _global_script_classes=[ {
 "base": "Node",
 "class": "ExperienceSystem",
 "language": "GDScript",
-"path": "res://Scripts/ExperienceSystem.gd"
+"path": "res://Player/ExperienceSystem.gd"
 }, {
 "base": "Node",
 "class": "FiniteStateMachine",
@@ -62,7 +57,7 @@ _global_script_classes=[ {
 "base": "Reference",
 "class": "HandleItems",
 "language": "GDScript",
-"path": "res://Scripts/HandleItems.gd"
+"path": "res://Player/HandleItems.gd"
 }, {
 "base": "Node",
 "class": "Health",
@@ -77,12 +72,12 @@ _global_script_classes=[ {
 "base": "State",
 "class": "IdleAI",
 "language": "GDScript",
-"path": "res://Scripts/DefaultEnemyStates/IdleAI.gd"
+"path": "res://Enemy/DefaultEnemyStates/IdleAI.gd"
 }, {
 "base": "Resource",
 "class": "Inventory",
 "language": "GDScript",
-"path": "res://Inventory.gd"
+"path": "res://Player/Inventory.gd"
 }, {
 "base": "Resource",
 "class": "Item",
@@ -112,7 +107,7 @@ _global_script_classes=[ {
 "base": "KinematicBody2D",
 "class": "MovementAI",
 "language": "GDScript",
-"path": "res://Monsters/MovementAI.gd"
+"path": "res://Enemy/MovementAI.gd"
 }, {
 "base": "Node2D",
 "class": "PickupArea",
@@ -122,7 +117,7 @@ _global_script_classes=[ {
 "base": "KinematicBody2D",
 "class": "Player",
 "language": "GDScript",
-"path": "res://Scripts/Player.gd"
+"path": "res://Player/Player.gd"
 }, {
 "base": "Node2D",
 "class": "Projectile",
@@ -187,7 +182,7 @@ _global_script_classes=[ {
 "base": "State",
 "class": "Staggered",
 "language": "GDScript",
-"path": "res://Scripts/DefaultEnemyStates/Staggered.gd"
+"path": "res://Enemy/DefaultEnemyStates/Staggered.gd"
 }, {
 "base": "Resource",
 "class": "Stat",
@@ -207,19 +202,18 @@ _global_script_classes=[ {
 "base": "State",
 "class": "Walk",
 "language": "GDScript",
-"path": "res://Scripts/ChargerEnemyStates/Walk.gd"
+"path": "res://Enemy/ChargerEnemyStates/Walk.gd"
 }, {
 "base": "State",
 "class": "WalkTowards",
 "language": "GDScript",
-"path": "res://Scripts/EnemyPackStates/WalkTowards.gd"
+"path": "res://Enemy/EnemyPackStates/WalkTowards.gd"
 } ]
 _global_script_class_icons={
 "Charge": "",
 "Chest": "",
 "Coin": "",
 "Death": "",
-"EnemyPack": "",
 "ExpDrop": "",
 "ExperienceSystem": "",
 "FiniteStateMachine": "",

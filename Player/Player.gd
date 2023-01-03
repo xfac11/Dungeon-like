@@ -8,8 +8,8 @@ onready var timer = $Timer
 onready var health:Health = $Health
 onready var pickUpArea:PickupArea = $PickupArea
 
-const ItemTypeResource = preload("res://ItemType.gd")
-var inventoryResource = load("res://Inventory.gd")
+const ItemTypeResource = preload("res://Scripts/ItemType.gd")
+var inventoryResource = preload("res://Player/Inventory.gd")
 var inventory:Inventory = inventoryResource.new()
 var playerStatResource = load("res://Stats/PlayerStat.tres")
 var baseStat:Stat = playerStatResource

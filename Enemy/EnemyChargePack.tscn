@@ -1,10 +1,24 @@
 [gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://Enemy/EnemyCharger.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Scripts/EnemyChargePack.gd" type="Script" id=2]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends Node2D
+class_name EnemyPack
+onready var enemies = get_children()
+var damage setget SetDamage, GetDamage
+
+func SetDamage(new_value):
+	damage = new_value
+	for enemy in enemies:
+		enemy.damageArea.damage = damage
+
+func GetDamage():
+	return  enemies[0].damageArea.damage# Getter must return a value.
+"
 
 [node name="EnemyChargePack" type="Node2D"]
-script = ExtResource( 2 )
+script = SubResource( 1 )
 
 [node name="EnemyCharger" parent="." instance=ExtResource( 1 )]
 position = Vector2( -5, -2 )

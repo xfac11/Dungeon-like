@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/up_walk1.png-6901c6f0c11e0b6edea89b191941a0ce.stex"
+path="res://.import/$monster_treant.png-0efd72bbbd20ee7d9551eb46285f6719.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Textures/up_walk1.png"
-dest_files=[ "res://.import/up_walk1.png-6901c6f0c11e0b6edea89b191941a0ce.stex" ]
+source_file="res://Enemy/$monster_treant.png"
+dest_files=[ "res://.import/$monster_treant.png-0efd72bbbd20ee7d9551eb46285f6719.stex" ]
 
 [params]
 

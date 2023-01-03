@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/right_walk1.png-46613f134d5358325bd351d20df4f8f6.stex"
+path="res://.import/down_walk2.png-a1a3491534106fc7c3d0433cca530f99.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Textures/right_walk1.png"
-dest_files=[ "res://.import/right_walk1.png-46613f134d5358325bd351d20df4f8f6.stex" ]
+source_file="res://Player/down_walk2.png"
+dest_files=[ "res://.import/down_walk2.png-a1a3491534106fc7c3d0433cca530f99.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=false
+flags/filter=true
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2

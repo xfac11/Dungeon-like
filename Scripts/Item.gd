@@ -15,11 +15,11 @@ export var projectileSpeed:float = 1.0
 export var texture : Texture
 export var projectilePS : PackedScene
 var directions = [Vector2(0,1),Vector2(0,-1),Vector2(1,0),Vector2(-1,0),Vector2(0.5,0.5),Vector2(-0.5,0.5),Vector2(0.5,-0.5),Vector2(-0.5,-0.5)]
-const DamageTypeResource = preload("res://DamageType.gd")
+const DamageTypeResource = preload("res://Scripts/DamageType.gd")
 export(DamageTypeResource.DamageType) var damageType
-const ShootingTypeResource = preload("res://ShootingType.gd")
+const ShootingTypeResource = preload("res://Scripts/ShootingType.gd")
 export(ShootingTypeResource.ShootingType) var shootingType
-const ItemTypeResource = preload("res://ItemType.gd")
+const ItemTypeResource = preload("res://Scripts/ItemType.gd")
 export(ItemTypeResource.ItemType) var itemType
 func Use(nrOfStacks:int, owner, global_transform:Transform):
 	var direction:Vector2 = directions[randi()%directions.size()]

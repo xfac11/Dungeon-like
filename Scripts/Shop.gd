@@ -9,7 +9,7 @@ export(PackedScene) var shopSlotButton:PackedScene
 var coin:int = 200
 export var discoverItemCost:int = 100
 export var discoverItemCostIncrease:int = 250
-var saveStatsResource = preload("res://SaveStats.gd")
+var saveStatsResource = preload("res://Scripts/SaveStats.gd")
 var saveStat = saveStatsResource.new()
 var saveName = "res://Saves/new_save1.tres"
 func _ready() -> void:

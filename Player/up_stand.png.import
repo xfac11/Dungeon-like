@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/$tf_template.png-e6f76e4e2a3d1c8c27739de41c3128ab.stex"
+path="res://.import/up_stand.png-d27ffd530ad6a407a3fbc06303545eeb.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Textures/$tf_template.png"
-dest_files=[ "res://.import/$tf_template.png-e6f76e4e2a3d1c8c27739de41c3128ab.stex" ]
+source_file="res://Player/up_stand.png"
+dest_files=[ "res://.import/up_stand.png-d27ffd530ad6a407a3fbc06303545eeb.stex" ]
 
 [params]
 

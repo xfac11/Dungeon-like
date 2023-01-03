@@ -1,6 +1,6 @@
 [gd_resource type="Resource" load_steps=2 format=2]
 
-[ext_resource path="res://SaveStats.gd" type="Script" id=1]
+[ext_resource path="res://Scripts/SaveStats.gd" type="Script" id=1]
 
 [resource]
 script = ExtResource( 1 )
@@ -12,5 +12,5 @@ stacks = {
 "res://ShopSlots/Sword/AddRange.tres": 0,
 "res://ShopSlots/Sword/AddSpeedSS.tres": 2
 }
-coins = 1017
+coins = 1300
 discoveredItems = [ "Red Ring", "Knife", "Fire Book" ]

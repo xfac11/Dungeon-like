@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/right_walk2.png-e17088e3246dbd1c7cf31074ecdfc8de.stex"
+path="res://.import/right_walk1.png-3a942dac80dc84a16f8a57299bf1e8a0.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Textures/right_walk2.png"
-dest_files=[ "res://.import/right_walk2.png-e17088e3246dbd1c7cf31074ecdfc8de.stex" ]
+source_file="res://Player/right_walk1.png"
+dest_files=[ "res://.import/right_walk1.png-3a942dac80dc84a16f8a57299bf1e8a0.stex" ]
 
 [params]
 
@@ -31,5 +31,5 @@ process/invert_color=false
 process/normal_map_invert_y=false
 stream=false
 size_limit=0
-detect_3d=false
+detect_3d=true
 svg/scale=1.0
