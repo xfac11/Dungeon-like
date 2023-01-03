@@ -8,7 +8,7 @@
 [ext_resource path="res://Enemy/Enemy.tres" type="SpriteFrames" id=6]
 [ext_resource path="res://Enemy/EnemyPackStates/WalkTowards.gd" type="Script" id=7]
 [ext_resource path="res://Scenes/BloodEffect.tscn" type="PackedScene" id=8]
-[ext_resource path="res://Scripts/Death.gd" type="Script" id=9]
+[ext_resource path="res://Enemy/Death.gd" type="Script" id=9]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 13.3333, 9.16667 )

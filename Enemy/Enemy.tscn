@@ -2,7 +2,7 @@
 
 [ext_resource path="res://Enemy/Enemy.tres" type="SpriteFrames" id=1]
 [ext_resource path="res://Enemy/MovementAI.gd" type="Script" id=2]
-[ext_resource path="res://Scripts/Death.gd" type="Script" id=3]
+[ext_resource path="res://Enemy/Death.gd" type="Script" id=3]
 [ext_resource path="res://Scripts/Health.gd" type="Script" id=4]
 [ext_resource path="res://Enemy/DamageArea.gd" type="Script" id=5]
 [ext_resource path="res://Scenes/BloodEffect.tscn" type="PackedScene" id=6]

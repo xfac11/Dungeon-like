@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Scenes/Projectile.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Scripts/ProjectilePierce.gd" type="Script" id=2]
+[ext_resource path="res://Items/ProjectilePierce.gd" type="Script" id=2]
 [ext_resource path="res://Textures/bar_04.png" type="Texture" id=3]
 
 [node name="ProjectilePierce" instance=ExtResource( 1 )]

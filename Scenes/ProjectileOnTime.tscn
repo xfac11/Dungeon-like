@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://Scripts/ProjectileOnTime.gd" type="Script" id=1]
+[ext_resource path="res://Items/ProjectileOnTime.gd" type="Script" id=1]
 [ext_resource path="res://VFX/fireV004effect-loop000.png" type="Texture" id=2]
 [ext_resource path="res://Scenes/Projectile.tscn" type="PackedScene" id=3]
 

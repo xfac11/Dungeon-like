@@ -27,7 +27,7 @@ _global_script_classes=[ {
 "base": "State",
 "class": "Death",
 "language": "GDScript",
-"path": "res://Scripts/Death.gd"
+"path": "res://Enemy/Death.gd"
 }, {
 "base": "Lootable",
 "class": "ExpDrop",
@@ -82,7 +82,7 @@ _global_script_classes=[ {
 "base": "Resource",
 "class": "Item",
 "language": "GDScript",
-"path": "res://Scripts/Item.gd"
+"path": "res://Items/Item.gd"
 }, {
 "base": "ColorRect",
 "class": "ItemSelect",
@@ -122,27 +122,27 @@ _global_script_classes=[ {
 "base": "Node2D",
 "class": "Projectile",
 "language": "GDScript",
-"path": "res://Scripts/Projectile.gd"
+"path": "res://Items/Projectile.gd"
 }, {
 "base": "ProjectilePierce",
 "class": "ProjectileAxe",
 "language": "GDScript",
-"path": "res://Scripts/ProjectileAxe.gd"
+"path": "res://Items/ProjectileAxe.gd"
 }, {
 "base": "Projectile",
 "class": "ProjectileOnHit",
 "language": "GDScript",
-"path": "res://Scripts/ProjectileOnHit.gd"
+"path": "res://Items/ProjectileOnHit.gd"
 }, {
 "base": "Projectile",
 "class": "ProjectilePierce",
 "language": "GDScript",
-"path": "res://Scripts/ProjectilePierce.gd"
+"path": "res://Items/ProjectilePierce.gd"
 }, {
 "base": "Projectile",
 "class": "ProjectileRotating",
 "language": "GDScript",
-"path": "res://Scripts/ProjectileRotating.gd"
+"path": "res://Items/ProjectileRotating.gd"
 }, {
 "base": "Object",
 "class": "RandomGen",
@@ -260,7 +260,7 @@ config/icon="res://Textures/icon.png"
 
 [autoload]
 
-ItemDatabase="*res://Scripts/ItemDatabase.gd"
+ItemDatabase="*res://Items/ItemDatabase.gd"
 GameHandler="*res://Scripts/GameHandler.gd"
 
 [display]
