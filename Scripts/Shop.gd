@@ -19,7 +19,7 @@ func _ready() -> void:
 		coin = saveStat.coins
 		if saveStat.discoveredItems.size() > 0:
 			GameHandler.discoveredItems = saveStat.discoveredItems
-	coin+=GameHandler.CoinsFromLevel(GameHandler.level) + GameHandler.coins
+	coin+=GameHandler.CoinsFromLevel(GameHandler._level) + GameHandler.coins
 	var newDiscoverCost = GameHandler.discoveredItems.size()
 	newDiscoverCost-= defaultDiscoveredSize
 	if newDiscoverCost > 0:

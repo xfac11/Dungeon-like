@@ -7,7 +7,7 @@
 [ext_resource path="res://Scripts/GameScene.gd" type="Script" id=5]
 [ext_resource path="res://Scenes/WorldMap.tscn" type="PackedScene" id=6]
 [ext_resource path="res://BlinkingShader.tres" type="Shader" id=7]
-[ext_resource path="res://Scenes/EnemyTreant.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Enemy/EnemyTreant.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Looting/ExpDropRed5.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Looting/ExpDrop.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Looting/Chest.tscn" type="PackedScene" id=11]
@@ -63,6 +63,7 @@ position = Vector2( -214, 0 )
 
 [node name="AnimatedSprite" parent="Player" index="1"]
 material = SubResource( 1 )
+frame = 1
 
 [node name="Items" type="Node2D" parent="Player"]
 position = Vector2( 55, 55 )
@@ -114,6 +115,7 @@ maximumHealth = 50
 [connection signal="leveledup" from="Player/ExperienceSystem" to="UICanvasLayer/UI/LevelNumber/Label" method="_on_ExperienceSystem_leveledup"]
 [connection signal="damageTaken" from="Player/Health" to="UICanvasLayer/UI/HPbar" method="_on_Health_damageTaken"]
 [connection signal="healthDepleted" from="Player/Health" to="." method="_on_Health_healthDepleted"]
+[connection signal="ChestItemsAdded" from="Spawner" to="UICanvasLayer/UI" method="_on_Spawner_ChestItemsAdded"]
 [connection signal="NewWave" from="Spawner" to="UICanvasLayer/UI/Label" method="_on_Spawner_NewWave"]
 
 [editable path="UICanvasLayer/UI"]

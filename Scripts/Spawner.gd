@@ -26,6 +26,7 @@ var wave = 1
 var direction:Array = [Vector2(1,0),Vector2(0,1),Vector2(-1,0),Vector2(0,-1)]
 var randomGen:RandomGen = RandomGen.new()
 signal NewWave(waveNumber)
+signal ChestItemsAdded(itemsAdded)
 func _ready():
 	randomize()
 	secondsBetweenSpawn = spawnTimer.wait_time
@@ -138,7 +139,7 @@ func RollChestUI(chest):
 	ShowChestUI(itemsToAdd, possibleItems)
 
 func ShowChestUI(itemsToAdd, possibleItems):
-	pass
+	emit_signal("ChestItemsAdded", itemsToAdd)
 
 func RandomItemsFromInventory(count:int, items:Array):
 	var itemsInInventory = items

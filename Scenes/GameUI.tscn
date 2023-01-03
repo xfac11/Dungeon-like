@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=2]
+[gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://Textures/bar_398.png" type="Texture" id=1]
 [ext_resource path="res://Textures/bar_400.png" type="Texture" id=2]
@@ -24,6 +24,8 @@
 [ext_resource path="res://Scenes/GameUI.gd" type="Script" id=22]
 [ext_resource path="res://Scenes/PauseMenu.gd" type="Script" id=23]
 [ext_resource path="res://Scripts/SpawnLabel.gd" type="Script" id=24]
+[ext_resource path="res://Scripts/ChestUI.gd" type="Script" id=25]
+[ext_resource path="res://Textures/Book.png" type="Texture" id=26]
 
 [node name="UI" type="Control"]
 anchor_right = 1.0
@@ -80,8 +82,8 @@ script = ExtResource( 20 )
 [node name="HPbar" type="TextureProgress" parent="."]
 margin_left = 20.0
 margin_top = 18.0
-margin_right = 276.0
-margin_bottom = 82.0
+margin_right = 195.0
+margin_bottom = 78.0
 value = 100.0
 texture_under = ExtResource( 9 )
 texture_progress = ExtResource( 8 )
@@ -134,6 +136,10 @@ size_flags_horizontal = 0
 size_flags_vertical = 0
 
 [node name="ItemSelect" parent="." instance=ExtResource( 13 )]
+margin_left = -229.0
+margin_top = -137.0
+margin_right = 231.0
+margin_bottom = 134.0
 
 [node name="StatsLabel" type="Label" parent="."]
 anchor_top = 0.5
@@ -289,7 +295,86 @@ text = "1"
 align = 1
 valign = 1
 
+[node name="ChestUI" type="Panel" parent="."]
+visible = false
+margin_left = 147.0
+margin_top = 112.0
+margin_right = 451.0
+margin_bottom = 355.0
+script = ExtResource( 25 )
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ChestUI"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -139.5
+margin_top = -20.0
+margin_right = 139.5
+margin_bottom = 20.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="ChestUI/HBoxContainer"]
+margin_right = 52.0
+margin_bottom = 40.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource( 26 )
+expand = true
+stretch_mode = 6
+
+[node name="TextureRect2" type="TextureRect" parent="ChestUI/HBoxContainer"]
+margin_left = 56.0
+margin_right = 109.0
+margin_bottom = 40.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource( 26 )
+expand = true
+stretch_mode = 6
+
+[node name="TextureRect3" type="TextureRect" parent="ChestUI/HBoxContainer"]
+margin_left = 113.0
+margin_right = 165.0
+margin_bottom = 40.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource( 26 )
+expand = true
+stretch_mode = 6
+
+[node name="TextureRect4" type="TextureRect" parent="ChestUI/HBoxContainer"]
+margin_left = 169.0
+margin_right = 222.0
+margin_bottom = 40.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource( 26 )
+expand = true
+stretch_mode = 6
+
+[node name="TextureRect5" type="TextureRect" parent="ChestUI/HBoxContainer"]
+margin_left = 226.0
+margin_right = 279.0
+margin_bottom = 40.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource( 26 )
+expand = true
+stretch_mode = 6
+
+[node name="Button" type="Button" parent="ChestUI"]
+margin_left = 128.0
+margin_top = 175.0
+margin_right = 168.0
+margin_bottom = 213.0
+text = "OK"
+
 [connection signal="Pause" from="ItemSelect" to="." method="_on_ItemSelect_Pause"]
 [connection signal="Pause" from="PauseMenu" to="." method="_on_PauseMenu_Pause"]
 [connection signal="pressed" from="PauseMenu/VerticalContainer/TextureButton3" to="PauseMenu" method="onResumeClicked"]
 [connection signal="pressed" from="PauseMenu/VerticalContainer/TextureButton5" to="." method="_on_QuitButton_pressed"]
+[connection signal="Pause" from="ChestUI" to="." method="_on_ChestUI_Pause"]
+[connection signal="pressed" from="ChestUI/Button" to="ChestUI" method="_on_Button_pressed"]

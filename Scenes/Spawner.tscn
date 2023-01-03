@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://Scenes/EnemyPack.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Enemy/EnemyPack.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scripts/Spawner.gd" type="Script" id=2]
-[ext_resource path="res://Scenes/Enemy.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Enemy/Enemy.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Looting/Coin.tscn" type="PackedScene" id=4]
 
 [node name="Spawner" type="Node2D"]
@@ -13,6 +13,8 @@ enemyPack = ExtResource( 1 )
 coinPS = ExtResource( 4 )
 mWidth = 60
 mHeight = 43
+secondsBetweenWaves = 1.0
+secondsBetweenSpawn = 0.464
 
 [node name="SpawnTimer" type="Timer" parent="."]
 wait_time = 0.464

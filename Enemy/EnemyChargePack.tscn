@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://Scenes/EnemyCharger.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Enemy/EnemyCharger.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scripts/EnemyChargePack.gd" type="Script" id=2]
 
 [node name="EnemyChargePack" type="Node2D"]

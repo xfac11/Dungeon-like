@@ -10,7 +10,7 @@ func ShowGameOver(playerCoins, levelCoins, wave, secondsPlayed):
 	get_tree().paused = true
 
 func _on_GameOver_confirmed():
-	GameHandler.level = get_tree().get_nodes_in_group("PLAYER")[0].get_node("ExperienceSystem").level
+	GameHandler._level = get_tree().get_nodes_in_group("PLAYER")[0].get_node("ExperienceSystem").level
 	GameHandler.coins = get_tree().get_nodes_in_group("PLAYER")[0].coins
 	get_tree().paused = false
 	get_tree().change_scene_to(next_scene)

@@ -27,3 +27,13 @@ func _on_PauseMenu_Pause(isPaused):
 
 func _on_QuitButton_pressed():
 	get_tree().change_scene_to(next_scene)
+
+
+func _on_ChestUI_Pause(isPause):
+	Pause(isPause)
+
+
+func _on_Spawner_ChestItemsAdded(itemsAdded):
+	$ChestUI.SetItems(itemsAdded)
+	$ChestUI.visible = true
+	Pause(true)
