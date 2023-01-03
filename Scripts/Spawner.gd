@@ -23,7 +23,6 @@ export var secondsBetweenSpawn = 1
 var currentSecondsBetweenSpawn = 0
 export var pathToRoot:NodePath
 var wave = 1
-var direction:Array = [Vector2(1,0),Vector2(0,1),Vector2(-1,0),Vector2(0,-1)]
 var randomGen:RandomGen = RandomGen.new()
 signal NewWave(waveNumber)
 signal ChestItemsAdded(itemsAdded)
@@ -58,7 +57,7 @@ func _on_Timer_timeout():
 		yield(get_tree().create_timer(1.0), "timeout")
 		var enemy = SpawnEnemy(1, 1, randomPosition)
 		var healthEnemy:Health = enemy.get_node("Health")
-		healthEnemy.connect("healthDepleted",self,"OnDeathEnemy")
+		var _u = healthEnemy.connect("healthDepleted",self,"OnDeathEnemy")
 		currentEnemies+= 1
 func OnDeathEnemy(parent):
 	DefferedSpawnCoin(parent, coinDropChance)
@@ -73,7 +72,7 @@ func SpawnEnemy(speed,damage,newPosition):
 	newEnemy.speed = newEnemy.speed * speed
 	newEnemy.damageArea.damage = newEnemy.damageArea.damage * damage
 	var healthEnemy:Health = newEnemy.get_node("Health")
-	healthEnemy.connect("healthDepleted",self,"DecreaseCurrentEnemies")
+	var _u = healthEnemy.connect("healthDepleted",self,"DecreaseCurrentEnemies")
 	return newEnemy
 
 func SpawnObject(packedScene):
@@ -91,7 +90,7 @@ func DefferedSpawnCoin(parent, chance, push = 0):
 
 func SpawnCoin(parent, chance, push = 0):
 	if DiceRoll(chance):
-		var newCoin:Coin = coinPS.instance()
+		var newCoin = coinPS.instance()
 		get_node(pathToRoot).add_child(newCoin)
 		newCoin.position = parent.global_position
 		newCoin.position+= Vector2(randf()+1,randf()+1).normalized()* 5
@@ -112,7 +111,7 @@ func SpawnChest(parent):
 	get_parent().add_child(newOrb)
 	newOrb.transform = parent.global_transform
 	newOrb.position+= Vector2(randf(),randf())*5
-	newOrb.connect("ChestPickedUp",self,"RollChestUI")
+	var _u = newOrb.connect("ChestPickedUp",self,"RollChestUI")
 func RollChestUI(chest):
 	var count = 1
 	if DiceRoll(0.3):
@@ -138,7 +137,7 @@ func RollChestUI(chest):
 	inventory.AddItems(itemsToAdd)
 	ShowChestUI(itemsToAdd, possibleItems)
 
-func ShowChestUI(itemsToAdd, possibleItems):
+func ShowChestUI(itemsToAdd, _possibleItems):
 	emit_signal("ChestItemsAdded", itemsToAdd)
 
 func RandomItemsFromInventory(count:int, items:Array):
@@ -160,8 +159,8 @@ func SpawnEnemySpecial(speed, damage, newPosition):
 	newEnemy.scale = newEnemy.scale * 1.1
 	newEnemy.IncreaseMaximumHealth(3)
 	var healthEnemy:Health = newEnemy.get_node("Health")
-	healthEnemy.connect("healthDepleted",self,"DefferedSpawnChest")
-	healthEnemy.connect("healthDepleted",self,"DefferedSpawnExpOrb5")
+	var _u = healthEnemy.connect("healthDepleted",self,"DefferedSpawnChest")
+	var _u2 = healthEnemy.connect("healthDepleted",self,"DefferedSpawnExpOrb5")
 	var enemyMat:ShaderMaterial = newEnemy.get_node("AnimatedSprite").material
 	enemyMat.set_shader_param("edgeShading", true)
 	return newEnemy
@@ -180,8 +179,8 @@ func SpawnEnemyPack(speed, damage):
 		enemy.damageArea.damage = enemy.damageArea.damage * damage
 		enemy.fsm.get_node("WalkTowards").direction = direction.normalized()
 		var healthEnemy:Health = enemy.get_node("Health")
-		healthEnemy.connect("healthDepleted",self,"OnDeathEnemyPack")
-func DecreaseCurrentEnemies(parent):
+		var _u = healthEnemy.connect("healthDepleted",self,"OnDeathEnemyPack")
+func DecreaseCurrentEnemies(_parent):
 	currentEnemies-= 1
 func drawRect(pos, width, height, color):
 	draw_rect(Rect2(pos,Vector2(width,height)),color)
@@ -199,15 +198,12 @@ func draw_circle_arc_poly(center, radius, angle_from, angle_to, color):
 func _draw():
 	if Engine.editor_hint:
 		var center = Vector2(0, 0)
-		var radius = mRadius
 		var width = mWidth
 		var height = mHeight
-		var angle_from = 0
-		var angle_to = 360
 		var color = Color(1.0, 0.0, 0.0, 0.5)
 		drawRect(center, width, height, color)
 	
-func _process(delta):
+func _process(_delta):
 	if Engine.editor_hint:
 		update()
 

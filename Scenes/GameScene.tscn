@@ -103,6 +103,7 @@ script = ExtResource( 3 )
 
 [node name="AnimatedSprite" parent="EnemyTreant" index="0"]
 material = SubResource( 2 )
+frame = 2
 
 [node name="Health" parent="EnemyTreant" index="2"]
 maximumHealth = 50
