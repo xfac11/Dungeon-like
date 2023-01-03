@@ -33,6 +33,7 @@ speed = 10
 material = ExtResource( 7 )
 frames = ExtResource( 1 )
 animation = "right_walk"
+frame = 1
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

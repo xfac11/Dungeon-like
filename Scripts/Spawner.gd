@@ -10,6 +10,7 @@ export(PackedScene)var coinPS
 export(PackedScene)var chestPS
 export(PackedScene)var ExpOrb
 export(PackedScene)var ExpOrb5
+export(PackedScene)var SpawnParticles
 export var specialEnemyChance = 0.1
 export var packChance = 0.01
 export var mRadius = 5
@@ -38,13 +39,23 @@ func _on_Timer_timeout():
 	if currentEnemies >= MAXIMUMENEMIES:
 		return
 	if DiceRoll(specialEnemyChance):
-		var _unused = SpawnEnemySpecial(1.3,1.2)
+		var spawnPartObj = SpawnObject(SpawnParticles)
+		var randomPosition = randomGen.RandomRectangle(mWidth,mHeight) + global_position
+		spawnPartObj.position = randomPosition
+		spawnPartObj.emitting = true
+		yield(get_tree().create_timer(1.0), "timeout")
+		var _unused = SpawnEnemySpecial(1.3,1.2, randomPosition)
 		currentEnemies+= 1
 	elif DiceRoll(packChance):
 		SpawnEnemyPack(10,1)
 		currentEnemies+= 10
 	else:
-		var enemy = SpawnEnemy(1, 1)
+		var spawnPartObj = SpawnObject(SpawnParticles)
+		var randomPosition = randomGen.RandomRectangle(mWidth,mHeight) + global_position
+		spawnPartObj.position = randomPosition
+		spawnPartObj.emitting = true
+		yield(get_tree().create_timer(1.0), "timeout")
+		var enemy = SpawnEnemy(1, 1, randomPosition)
 		var healthEnemy:Health = enemy.get_node("Health")
 		healthEnemy.connect("healthDepleted",self,"OnDeathEnemy")
 		currentEnemies+= 1
@@ -54,16 +65,21 @@ func OnDeathEnemy(parent):
 func OnDeathEnemyPack(parent):
 	DecreaseCurrentEnemies(parent)
 	DefferedSpawnCoin(parent, coinDropChance)
-func SpawnEnemy(speed,damage):
+func SpawnEnemy(speed,damage,newPosition):
 	var newEnemy = enemyToSpawn.instance()
 	get_node(pathToRoot).add_child(newEnemy)
-	newEnemy.position = randomGen.RandomRectangle(mWidth,mHeight) + global_position
+	newEnemy.position = newPosition
 	newEnemy.speed = newEnemy.speed * speed
 	newEnemy.damageArea.damage = newEnemy.damageArea.damage * damage
 	var healthEnemy:Health = newEnemy.get_node("Health")
 	healthEnemy.connect("healthDepleted",self,"DecreaseCurrentEnemies")
 	return newEnemy
-	
+
+func SpawnObject(packedScene):
+	var object = packedScene.instance()
+	get_parent().add_child(object)
+	object.transform = global_transform
+	return object
 func DiceRoll(chance):
 	if chance <= 0 || chance >= 1:
 		return bool(chance)
@@ -138,8 +154,8 @@ func RandomItemsFromInventory(count:int, items:Array):
 func DefferedSpawnChest(parent):
 	call_deferred("SpawnChest", parent)
 
-func SpawnEnemySpecial(speed, damage):
-	var newEnemy:MovementAI = SpawnEnemy(speed,damage)
+func SpawnEnemySpecial(speed, damage, newPosition):
+	var newEnemy:MovementAI = SpawnEnemy(speed,damage, newPosition)
 	newEnemy.scale = newEnemy.scale * 1.1
 	newEnemy.IncreaseMaximumHealth(3)
 	var healthEnemy:Health = newEnemy.get_node("Health")
