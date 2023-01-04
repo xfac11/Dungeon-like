@@ -14,5 +14,5 @@ func _on_Button_pressed():
 	emit_signal("Pause",false)
 
 
-func _on_Spawner_ChestItemsAdded(itemsAdded):
-	SetItems(itemsAdded)
+func _on_ChestDropper_chest_items_added(items):
+	SetItems(items)

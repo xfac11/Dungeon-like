@@ -33,7 +33,7 @@ func _on_ChestUI_Pause(isPause):
 	Pause(isPause)
 
 
-func _on_Spawner_ChestItemsAdded(itemsAdded):
-	$ChestUI.SetItems(itemsAdded)
+func _on_ChestDropper_chest_items_added(items):
+	$ChestUI.SetItems(items)
 	$ChestUI.visible = true
 	Pause(true)
