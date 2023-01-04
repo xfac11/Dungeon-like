@@ -52,10 +52,6 @@ func GiveExp(value):
 func GiveCoin(value):
 	coins += value
 func _process(_delta:float) -> void:
-	#if Input.is_action_pressed("ui_right"):
-	#	animatedSprite.play("right_walk")
-	#else:
-	#	animatedSprite.stop()
 	if Input.is_action_pressed("ui_right"):
 		animatedSprite.play("right_walk")
 	elif Input.is_action_pressed("ui_left"):

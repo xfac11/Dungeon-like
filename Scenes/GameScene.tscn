@@ -114,9 +114,6 @@ wait_time = 5.0
 [node name="WaveTimer" parent="Spawner" index="1"]
 wait_time = 90.0
 
-[node name="Special" parent="Spawner/Enemies" index="0"]
-outlineColor = Color( 0.933333, 0.0588235, 0.282353, 1 )
-
 [node name="Normal" parent="Spawner/Enemies" index="2"]
 enemy_scene = ExtResource( 17 )
 
@@ -124,7 +121,7 @@ enemy_scene = ExtResource( 17 )
 
 [node name="AnimatedSprite" parent="EnemyTreant" index="0"]
 material = SubResource( 2 )
-frame = 2
+frame = 0
 
 [node name="Health" parent="EnemyTreant" index="2"]
 maximumHealth = 50

@@ -17,11 +17,14 @@ export var pathToRoot:NodePath
 var wave = 1
 var randomGen:RandomGen = RandomGen.new()
 signal NewWave(waveNumber)
+
 func _ready():
 	randomize()
 	secondsBetweenSpawn = spawnTimer.wait_time
 	secondsBetweenWaves = waveTimer.wait_time
 	currentSecondsBetweenSpawn = secondsBetweenSpawn
+
+
 func _on_Timer_timeout():
 	if currentEnemies >= MAXIMUMENEMIES:
 		return
@@ -38,7 +41,8 @@ func _on_Timer_timeout():
 		health.connect("healthDepleted", enemySpawnDef, "enemy_died")
 		currentEnemies+= 1
 		break
-		
+
+
 func spawn_particles(randomPosition):
 	var spawnParticles = SpawnObject(SpawnParticlesScene)
 	spawnParticles.position = randomPosition
@@ -60,14 +64,17 @@ func DiceRoll(chance):
 func DecreaseCurrentEnemies(_parent):
 	currentEnemies-= 1
 
+
 func _on_WaveTimer_timeout():
 	wave += 1
 	emit_signal("NewWave",wave)
 	currentSecondsBetweenSpawn = currentSecondsBetweenSpawn * decreaseSpawnTime
 	spawnTimer.wait_time = currentSecondsBetweenSpawn
 
+# Editor drawing
 func drawRect(pos, width, height, color):
 	draw_rect(Rect2(pos,Vector2(width,height)),color)
+
 
 func draw_circle_arc_poly(center, radius, angle_from, angle_to, color):
 	var nb_points = 32
@@ -79,6 +86,7 @@ func draw_circle_arc_poly(center, radius, angle_from, angle_to, color):
 		points_arc.push_back(center + Vector2(cos(angle_point), sin(angle_point)) * radius)
 	draw_polygon(points_arc, colors)
 
+
 func _draw():
 	if Engine.editor_hint:
 		var center = Vector2(0, 0)
@@ -86,7 +94,8 @@ func _draw():
 		var height = mHeight
 		var color = Color(1.0, 0.0, 0.0, 0.5)
 		drawRect(center, width, height, color)
-	
+
+
 func _process(_delta):
 	if Engine.editor_hint:
 		update()
