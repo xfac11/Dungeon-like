@@ -34,13 +34,11 @@ func _ready():
 	DefferedSpawnCoin(self, 1)
 	DefferedSpawnChest(self)
 func _on_Timer_timeout():
-#	if get_node(pathToRoot).maximumEnemies <= get_tree().get_nodes_in_group("ENEMIES").size():
-#		return
 	if currentEnemies >= MAXIMUMENEMIES:
 		return
 	if DiceRoll(specialEnemyChance):
 		var spawnPartObj = SpawnObject(SpawnParticles)
-		var randomPosition = randomGen.RandomRectangle(mWidth,mHeight) + global_position
+		var randomPosition = randomGen.RandomRectangle(mHeight, mWidth) + global_position
 		spawnPartObj.position = randomPosition
 		spawnPartObj.emitting = true
 		yield(get_tree().create_timer(1.0), "timeout")
@@ -51,7 +49,7 @@ func _on_Timer_timeout():
 		currentEnemies+= 10
 	else:
 		var spawnPartObj = SpawnObject(SpawnParticles)
-		var randomPosition = randomGen.RandomRectangle(mWidth,mHeight) + global_position
+		var randomPosition = randomGen.RandomRectangle(mHeight, mWidth) + global_position
 		spawnPartObj.position = randomPosition
 		spawnPartObj.emitting = true
 		yield(get_tree().create_timer(1.0), "timeout")
@@ -65,12 +63,11 @@ func OnDeathEnemy(parent):
 func OnDeathEnemyPack(parent):
 	DecreaseCurrentEnemies(parent)
 	DefferedSpawnCoin(parent, coinDropChance)
-func SpawnEnemy(speed,damage,newPosition):
-	var newEnemy = enemyToSpawn.instance()
-	get_node(pathToRoot).add_child(newEnemy)
+func SpawnEnemy(speed, damage, newPosition):
+	var newEnemy = SpawnObject(enemyToSpawn)
 	newEnemy.position = newPosition
-	newEnemy.speed = newEnemy.speed * speed
-	newEnemy.damageArea.damage = newEnemy.damageArea.damage * damage
+	newEnemy.speed*= speed
+	newEnemy.damageArea.damage*= damage
 	var healthEnemy:Health = newEnemy.get_node("Health")
 	var _u = healthEnemy.connect("healthDepleted",self,"DecreaseCurrentEnemies")
 	return newEnemy
@@ -78,7 +75,7 @@ func SpawnEnemy(speed,damage,newPosition):
 func SpawnObject(packedScene):
 	var object = packedScene.instance()
 	get_parent().add_child(object)
-	object.transform = global_transform
+	object.transform = get_parent().transform
 	return object
 func DiceRoll(chance):
 	if chance <= 0 || chance >= 1:
@@ -171,7 +168,7 @@ func SpawnEnemyPack(speed, damage):
 		enemies.push_back(enemyPack.instance())
 		get_node(pathToRoot).add_child(enemies.back())
 	var packPosition = randomGen.RandomCircleInRect(mWidth, mHeight, mRadius)
-	var direction = get_tree().get_nodes_in_group("PLAYER")[0].position - (packPosition + global_position)
+	var direction = Vector2(0, 0)##get_tree().get_nodes_in_group("PLAYER")[0].position - (packPosition + global_position)
 	for enemy in enemies:
 		var enemyPosition = randomGen.RandomCircle(mRadius, packPosition) + global_position
 		enemy.position = enemyPosition
@@ -196,7 +193,7 @@ func draw_circle_arc_poly(center, radius, angle_from, angle_to, color):
 	draw_polygon(points_arc, colors)
 
 func _draw():
-	if Engine.editor_hint:
+	##if Engine.editor_hint:
 		var center = Vector2(0, 0)
 		var width = mWidth
 		var height = mHeight
@@ -204,7 +201,7 @@ func _draw():
 		drawRect(center, width, height, color)
 	
 func _process(_delta):
-	if Engine.editor_hint:
+	##if Engine.editor_hint:
 		update()
 
 

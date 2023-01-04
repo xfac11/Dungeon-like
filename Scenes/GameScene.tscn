@@ -2,7 +2,7 @@
 
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/GameUI.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Items/ItemGiver.gd" type="Script" id=3]
+[ext_resource path="res://ItemResources/ItemGiver.gd" type="Script" id=3]
 [ext_resource path="res://Scenes/Spawner.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Scripts/GameScene.gd" type="Script" id=5]
 [ext_resource path="res://Scenes/WorldMap.tscn" type="PackedScene" id=6]
@@ -63,6 +63,7 @@ position = Vector2( -214, 0 )
 
 [node name="AnimatedSprite" parent="Player" index="1"]
 material = SubResource( 1 )
+frame = 0
 
 [node name="Items" type="Node2D" parent="Player"]
 position = Vector2( 55, 55 )
@@ -77,11 +78,12 @@ limit_bottom = 10000
 editor_draw_limits = true
 
 [node name="Spawner" parent="." instance=ExtResource( 4 )]
-position = Vector2( -465, -150 )
+position = Vector2( -516, -153 )
 chestPS = ExtResource( 11 )
 ExpOrb = ExtResource( 10 )
 ExpOrb5 = ExtResource( 9 )
 SpawnParticles = ExtResource( 12 )
+specialEnemyChance = 0.5
 mRadius = 50
 mWidth = 589
 mHeight = 312
@@ -91,7 +93,7 @@ secondsBetweenSpawn = 5.0
 pathToRoot = NodePath("..")
 
 [node name="SpawnTimer" parent="Spawner" index="0"]
-wait_time = 5.0
+wait_time = 1.0
 
 [node name="WaveTimer" parent="Spawner" index="1"]
 wait_time = 90.0

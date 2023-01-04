@@ -16,7 +16,7 @@ var player:Node2D
 var expOrbCount = 1
 var death = false
 func _ready():
-	player = get_tree().get_nodes_in_group("PLAYER")[0]
+	##player = get_tree().get_nodes_in_group("PLAYER")[0]
 	fsm.Initiate(get_node(startStatePath), self)
 
 func _init():

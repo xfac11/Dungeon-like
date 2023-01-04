@@ -1,0 +1,19 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Scenes/Spawner.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Looting/Chest.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/SpawnParticles.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Looting/ExpDrop.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Looting/ExpDropRed5.tscn" type="PackedScene" id=5]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Spawner" parent="." instance=ExtResource( 1 )]
+position = Vector2( -508, -272 )
+chestPS = ExtResource( 2 )
+ExpOrb = ExtResource( 4 )
+ExpOrb5 = ExtResource( 5 )
+SpawnParticles = ExtResource( 3 )
+mWidth = 400
+mHeight = 400
+pathToRoot = NodePath("..")

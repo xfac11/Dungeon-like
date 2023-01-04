@@ -1,5 +1,5 @@
 class_name HandleItems
-const ShootingTypeResource = preload("res://Items/ShootingType.gd")
+const ShootingTypeResource = preload("res://ItemResources/ShootingType.gd")
 var directions = [Vector2(0,1),Vector2(0,-1),Vector2(1,0),Vector2(-1,0),Vector2(0.5,0.5),Vector2(-0.5,0.5),Vector2(0.5,-0.5),Vector2(-0.5,-0.5)]
 var bullets = {}
 func Shoot(item:Item, nrOfStacks:int, owner, global_transform):

@@ -82,7 +82,7 @@ _global_script_classes=[ {
 "base": "Resource",
 "class": "Item",
 "language": "GDScript",
-"path": "res://Items/Item.gd"
+"path": "res://ItemResources/Item.gd"
 }, {
 "base": "ColorRect",
 "class": "ItemSelect",
@@ -122,27 +122,27 @@ _global_script_classes=[ {
 "base": "Node2D",
 "class": "Projectile",
 "language": "GDScript",
-"path": "res://Items/Projectile.gd"
+"path": "res://ItemResources/Projectile.gd"
 }, {
 "base": "ProjectilePierce",
 "class": "ProjectileAxe",
 "language": "GDScript",
-"path": "res://Items/ProjectileAxe.gd"
+"path": "res://ItemResources/ProjectileAxe.gd"
 }, {
 "base": "Projectile",
 "class": "ProjectileOnHit",
 "language": "GDScript",
-"path": "res://Items/ProjectileOnHit.gd"
+"path": "res://ItemResources/ProjectileOnHit.gd"
 }, {
 "base": "Projectile",
 "class": "ProjectilePierce",
 "language": "GDScript",
-"path": "res://Items/ProjectilePierce.gd"
+"path": "res://ItemResources/ProjectilePierce.gd"
 }, {
 "base": "Projectile",
 "class": "ProjectileRotating",
 "language": "GDScript",
-"path": "res://Items/ProjectileRotating.gd"
+"path": "res://ItemResources/ProjectileRotating.gd"
 }, {
 "base": "Object",
 "class": "RandomGen",
@@ -260,7 +260,7 @@ config/icon="res://Textures/icon.png"
 
 [autoload]
 
-ItemDatabase="*res://Items/ItemDatabase.gd"
+ItemDatabase="*res://ItemResources/ItemDatabase.gd"
 GameHandler="*res://Scripts/GameHandler.gd"
 
 [display]
