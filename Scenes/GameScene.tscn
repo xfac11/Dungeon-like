@@ -84,6 +84,7 @@ position = Vector2( -214, 0 )
 
 [node name="AnimatedSprite" parent="Player" index="1"]
 material = SubResource( 1 )
+frame = 0
 
 [node name="Items" type="Node2D" parent="Player"]
 position = Vector2( 55, 55 )

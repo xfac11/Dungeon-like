@@ -5,11 +5,11 @@ export var maxStackSize: int = 1
 export var frequency:int = 0
 export var lifetime: int = 0
 export var projectileSpeed:float = 1.0
-const DamageTypeResource = preload("res://Items/DamageType.gd")
+const DamageTypeResource = preload("res://ItemResources/DamageType.gd")
 export(DamageTypeResource.DamageType) var damageType
-const ShootingTypeResource = preload("res://Items/ShootingType.gd")
+const ShootingTypeResource = preload("res://ItemResources/ShootingType.gd")
 export(ShootingTypeResource.ShootingType) var shootingType
-const ItemTypeResource = preload("res://Items/ItemType.gd")
+const ItemTypeResource = preload("res://ItemResources/ItemType.gd")
 export(ItemTypeResource.ItemType) var itemType
 func GetStatsAsJSON() -> String:
 	var baseStats:String = .GetStatsAsString()
