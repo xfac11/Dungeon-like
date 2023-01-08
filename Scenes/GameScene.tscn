@@ -83,9 +83,8 @@ waveTimer = NodePath("../../../Spawner/WaveTimer")
 [node name="Player" parent="." groups=["PLAYER"] instance=ExtResource( 1 )]
 position = Vector2( -214, 0 )
 
-[node name="AnimatedSprite" parent="Player" index="1"]
+[node name="AnimatedSprite" parent="Player" index="2"]
 material = SubResource( 1 )
-frame = 0
 
 [node name="Items" type="Node2D" parent="Player"]
 position = Vector2( 55, 55 )
@@ -123,6 +122,7 @@ enemy_scene = ExtResource( 17 )
 
 [node name="AnimatedSprite" parent="EnemyTreant" index="0"]
 material = SubResource( 2 )
+frame = 2
 
 [node name="Health" parent="EnemyTreant" index="2"]
 maximumHealth = 50

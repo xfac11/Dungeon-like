@@ -56,19 +56,6 @@ func GiveCoin(value):
 	coins += value
 
 
-func _process(_delta:float) -> void:
-	if Input.is_action_pressed("ui_right"):
-		animatedSprite.play("right_walk")
-	elif Input.is_action_pressed("ui_left"):
-		animatedSprite.play("left_walk")
-	elif Input.is_action_pressed("ui_down"):
-		animatedSprite.play("down_walk")
-	elif Input.is_action_pressed("ui_up"):
-		animatedSprite.play("up_walk")
-	else:
-		animatedSprite.stop()
-
-
 func ProcessItems() -> void:
 	var itemSlots:Array = inventory.GetItems()
 	for slot in itemSlots:
