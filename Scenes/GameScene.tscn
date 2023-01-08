@@ -52,6 +52,7 @@ mSeedVariable = 985
 
 [node name="ItemGiver" type="Node" parent="."]
 script = ExtResource( 3 )
+item_select_node_path = NodePath("../UICanvasLayer/UI/ItemSelect")
 
 [node name="ChestDropper" type="Node" parent="."]
 script = ExtResource( 13 )
@@ -122,13 +123,13 @@ enemy_scene = ExtResource( 17 )
 
 [node name="AnimatedSprite" parent="EnemyTreant" index="0"]
 material = SubResource( 2 )
-frame = 0
 
 [node name="Health" parent="EnemyTreant" index="2"]
 maximumHealth = 50
 
 [connection signal="chest_items_added" from="ChestDropper" to="UICanvasLayer/UI" method="_on_ChestDropper_chest_items_added"]
 [connection signal="spawn_coin" from="ChestDropper" to="CoinDropper" method="_on_spawn_coin"]
+[connection signal="pause" from="UICanvasLayer/UI/ItemSelect" to="UICanvasLayer/UI" method="_on_ItemSelect_pause"]
 [connection signal="gainedExperience" from="Player/ExperienceSystem" to="UICanvasLayer/UI/LevelNumber/ExpBar" method="_on_ExperienceSystem_gainedExperience"]
 [connection signal="gainedExperience" from="Player/ExperienceSystem" to="UICanvasLayer/UI/LevelNumber/Label2" method="_on_ExperienceSystem_gainedExperience"]
 [connection signal="leveledup" from="Player/ExperienceSystem" to="UICanvasLayer/UI/LevelNumber/Label" method="_on_ExperienceSystem_leveledup"]

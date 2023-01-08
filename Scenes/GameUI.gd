@@ -17,10 +17,6 @@ func Pause(pause):
 		get_tree().paused = false
 
 
-func _on_ItemSelect_Pause(pause):
-	Pause(pause)
-
-
 func _on_PauseMenu_Pause(isPaused):
 	Pause(isPaused)
 
@@ -37,3 +33,7 @@ func _on_ChestDropper_chest_items_added(items):
 	$ChestUI.SetItems(items)
 	$ChestUI.visible = true
 	Pause(true)
+
+
+func _on_ItemSelect_pause(pause):
+	Pause(pause)

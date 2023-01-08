@@ -99,6 +99,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://ItemResources/Item.gd"
 }, {
+"base": "Node",
+"class": "ItemGiver",
+"language": "GDScript",
+"path": "res://ItemResources/ItemGiver.gd"
+}, {
 "base": "ColorRect",
 "class": "ItemSelect",
 "language": "GDScript",
@@ -258,6 +263,7 @@ _global_script_class_icons={
 "IdleAI": "",
 "Inventory": "",
 "Item": "",
+"ItemGiver": "",
 "ItemSelect": "",
 "ItemShopSlot": "",
 "ItemStat": "",

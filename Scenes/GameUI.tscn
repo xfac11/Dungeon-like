@@ -372,7 +372,6 @@ margin_right = 168.0
 margin_bottom = 213.0
 text = "OK"
 
-[connection signal="Pause" from="ItemSelect" to="." method="_on_ItemSelect_Pause"]
 [connection signal="Pause" from="PauseMenu" to="." method="_on_PauseMenu_Pause"]
 [connection signal="pressed" from="PauseMenu/VerticalContainer/TextureButton3" to="PauseMenu" method="onResumeClicked"]
 [connection signal="pressed" from="PauseMenu/VerticalContainer/TextureButton5" to="." method="_on_QuitButton_pressed"]
