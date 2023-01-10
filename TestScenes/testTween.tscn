@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://TestScenes/TestTween.gd" type="Script" id=1]
-[ext_resource path="res://Enemy/monster_bird2.png" type="Texture" id=2]
+[ext_resource path="res://Textures/monster_bird2.png" type="Texture" id=2]
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource( 1 )

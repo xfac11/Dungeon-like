@@ -298,7 +298,7 @@ _global_script_class_icons={
 
 config/name="Rouge Like Project"
 run/main_scene="res://Scenes/GameScene.tscn"
-config/icon="res://Textures/icon.png"
+config/icon="res://icon.png"
 
 [autoload]
 

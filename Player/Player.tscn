@@ -1,6 +1,6 @@
 [gd_scene load_steps=26 format=2]
 
-[ext_resource path="res://Player/$tf_template.png" type="Texture" id=1]
+[ext_resource path="res://Textures/$tf_template.png" type="Texture" id=1]
 [ext_resource path="res://Player/Player.gd" type="Script" id=2]
 [ext_resource path="res://Looting/PickupArea.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Player/ExperienceSystem.gd" type="Script" id=4]
@@ -9,7 +9,7 @@
 [ext_resource path="res://Player/MeleeWeapon.gd" type="Script" id=7]
 [ext_resource path="res://Curves/CurveLine.tres" type="Curve" id=8]
 [ext_resource path="res://BlinkingMaterial.tres" type="Material" id=9]
-[ext_resource path="res://Textures/BuchOpenGameArt/tiles.png" type="Texture" id=10]
+[ext_resource path="res://BuchOpenGameArt/tiles.png" type="Texture" id=10]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 3.5, 6 )
