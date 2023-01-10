@@ -1,15 +1,13 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=2 format=2]
 
-[ext_resource path="res://Enemy/BloodSpriteFrame.tres" type="SpriteFrames" id=1]
 [ext_resource path="res://Scripts/BloodEffect.gd" type="Script" id=2]
 
-[node name="BloodEffect" type="AnimatedSprite"]
+[node name="BloodEffect" type="CPUParticles2D"]
 z_index = 10
-frames = ExtResource( 1 )
-animation = "Blood"
-frame = 1
+emitting = false
+one_shot = true
 speed_scale = 2.0
-playing = true
+color = Color( 1, 0, 0, 1 )
 script = ExtResource( 2 )
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
@@ -25,4 +23,8 @@ scale_amount = 2.0
 scale_amount_random = 0.5
 color = Color( 0.882353, 0.0941176, 0.0941176, 1 )
 
-[connection signal="animation_finished" from="." to="." method="_on_BloodEffect_animation_finished"]
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.25
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

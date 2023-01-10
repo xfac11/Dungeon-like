@@ -1,22 +1,3 @@
-[gd_resource type="Theme" load_steps=5 format=2]
-
-[sub_resource type="StreamTexture" id=4]
-load_path = "res://.import/window6_149.png-f3f3e648e1486dd9e6e5a6c596021a60.stex"
-
-[sub_resource type="StyleBoxTexture" id=1]
-texture = SubResource( 4 )
-region_rect = Rect2( 0, 0, 16, 16 )
-
-[sub_resource type="StyleBoxTexture" id=2]
-texture = SubResource( 4 )
-region_rect = Rect2( 0, 0, 16, 16 )
-modulate_color = Color( 0.71, 0.71, 0.71, 1 )
-
-[sub_resource type="StyleBoxTexture" id=3]
-texture = SubResource( 4 )
-region_rect = Rect2( 0, 0, 16, 16 )
+[gd_resource type="Theme" format=2]
 
 [resource]
-Button/styles/hover = SubResource( 1 )
-Button/styles/normal = SubResource( 2 )
-Button/styles/pressed = SubResource( 3 )

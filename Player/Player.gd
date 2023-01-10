@@ -17,7 +17,7 @@ var itemHandler:HandleItems = HandleItems.new()
 var coins = 0
 
 onready var experienceSystem:ExperienceSystem = $ExperienceSystem
-onready var animatedSprite = $AnimatedSprite
+onready var sprite = $Sprite
 onready var pivot = $Pivot
 onready var timer = $Timer
 onready var health:Health = $Health
@@ -87,7 +87,7 @@ func SetBaseStat() -> void:
 
 func _on_Health_damageTaken(currentHealth, maximumHealth):
 	var tween = get_node("Tween")
-	tween.interpolate_property($AnimatedSprite.material, "shader_param/blinkValue",
+	tween.interpolate_property(sprite.material, "shader_param/blinkValue",
 		1, 0, 0.25,
 		Tween.TRANS_LINEAR, Tween.EASE_IN)
 	tween.start()

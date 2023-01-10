@@ -1,4 +1,4 @@
-extends TextureProgress
+extends ProgressBar
 onready var hpText = $HPtext
 func UpdateHealthBar(maximumHealth:float, currentHealth:float):
 	var procentExp = currentHealth/maximumHealth

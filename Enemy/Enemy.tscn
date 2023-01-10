@@ -1,6 +1,6 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
-[ext_resource path="res://Enemy/Enemy.tres" type="SpriteFrames" id=1]
+[ext_resource path="res://BuchOpenGameArt/dungeon_sheet.png" type="Texture" id=1]
 [ext_resource path="res://Enemy/MovementAI.gd" type="Script" id=2]
 [ext_resource path="res://Enemy/Death.gd" type="Script" id=3]
 [ext_resource path="res://Scripts/Health.gd" type="Script" id=4]
@@ -12,11 +12,15 @@
 [ext_resource path="res://Enemy/DefaultEnemyStates/Staggered.gd" type="Script" id=10]
 [ext_resource path="res://Scenes/Particles2D.tscn" type="PackedScene" id=11]
 
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 1 )
+region = Rect2( 370, 112, 12, 16 )
+
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 13.3333, 9.16667 )
+extents = Vector2( 6.66667, 8.33333 )
 
 [sub_resource type="CircleShape2D" id=2]
-radius = 16.6667
+radius = 8.33333
 
 [node name="Enemy" type="KinematicBody2D" groups=["ENEMIES"]]
 scale = Vector2( 0.6, 0.6 )
@@ -28,15 +32,12 @@ DeathEffect = ExtResource( 11 )
 startStatePath = NodePath("FiniteStateMachine/IdleAI")
 speed = 15
 
-[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+[node name="Sprite" type="Sprite" parent="."]
 material = ExtResource( 7 )
-scale = Vector2( 0.820513, 1.16162 )
-frames = ExtResource( 1 )
-animation = "down_walk"
+texture = SubResource( 3 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
-position = Vector2( 0, 4.16667 )
+position = Vector2( -1.98682e-07, 1.98682e-07 )
 shape = SubResource( 1 )
 
 [node name="Health" type="Node" parent="."]
@@ -44,7 +45,6 @@ script = ExtResource( 4 )
 maximumHealth = 150
 
 [node name="DamageArea" type="Area2D" parent="."]
-visible = false
 collision_layer = 32
 collision_mask = 2
 script = ExtResource( 5 )

@@ -1,7 +1,7 @@
 extends KinematicBody2D
 class_name MovementAI
 onready var fsm:FiniteStateMachine = $FiniteStateMachine
-onready var _animated_sprite = $AnimatedSprite
+onready var sprite = $Sprite
 export(PackedScene) var DamageEffect
 export(PackedScene) var DeathEffect
 export(NodePath) var startStatePath
@@ -53,18 +53,9 @@ func IsCloseToPlayer(var radius:float) -> bool:
 	return false
 func UpdateAnimation(var movementDirection):
 	var angle:float = movementDirection.angle()
-	if abs(angle) > deg2rad(45) && abs(angle) < deg2rad(135):
-		if movementDirection.y < 0:
-			_animated_sprite.play("up_walk")
-		elif movementDirection.y > 0:
-			_animated_sprite.play("down_walk")
-	else:
-		if movementDirection.x > 0:
-			_animated_sprite.play("right_walk")
-		elif movementDirection.x < 0:
-			_animated_sprite.play("left_walk")
 func StopAnimation():
-	$AnimatedSprite.stop()
+	pass
+	#$AnimatedSprite.stop()
 func _physics_process(delta):
 	fsm.Update(self, delta)
 
@@ -74,19 +65,19 @@ func _process(delta):
 func _on_Health_healthDepleted(parent):
 	death = true
 	var tween = get_node("DeathTween")
-	$AnimatedSprite.material.set_shader_param("hor_index", $AnimatedSprite.frame)
+	sprite.material.set_shader_param("hor_index", 0)
 	var verIndex = 0.0
-	match $AnimatedSprite.animation:
-		"down_walk":
-			verIndex = 0
-		"left_walk":
-			verIndex = 1
-		"right_walk":
-			verIndex = 2
-		"up_walk":
-			verIndex = 3
-	$AnimatedSprite.material.set_shader_param("ver_index", verIndex);
-	tween.interpolate_property($AnimatedSprite.material, "shader_param/noiseEffectivenes",
+	#match $AnimatedSprite.animation:
+	#	"down_walk":
+	#		verIndex = 0
+	#	"left_walk":
+	#		verIndex = 1
+	#	"right_walk":
+	#		verIndex = 2
+	#	"up_walk":
+	#		verIndex = 3
+	sprite.material.set_shader_param("ver_index", verIndex);
+	tween.interpolate_property(sprite.material, "shader_param/noiseEffectivenes",
 		0, 0.6, 0.8,
 		Tween.TRANS_LINEAR, Tween.EASE_IN)
 	tween.start()
@@ -99,7 +90,7 @@ func QueueSelf(object, key):
 func _on_Health_damageTaken(currentHealth, maximumHealth):
 	var damageEffect = SpawnObject(DamageEffect)
 	var tween = get_node("Tween")
-	tween.interpolate_property($AnimatedSprite.material, "shader_param/blinkValue",
+	tween.interpolate_property(sprite.material, "shader_param/blinkValue",
 		1, 0, 0.25,
 		Tween.TRANS_LINEAR, Tween.EASE_IN)
 	tween.start()

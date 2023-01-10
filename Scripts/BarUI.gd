@@ -1,4 +1,4 @@
-extends TextureProgress
+extends ProgressBar
 func _on_ExperienceSystem_gainedExperience(maximumExp, currentExp):
 	if(currentExp >= maximumExp):
 		value = 0

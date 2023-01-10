@@ -1,9 +1,9 @@
 [gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Fonts/FontBetterPixels32.tres" type="DynamicFont" id=1]
-[ext_resource path="res://VFX/explosionV007effect001.png" type="Texture" id=2]
+[ext_resource path="res://Looting/Coin.tres" type="Texture" id=2]
 [ext_resource path="res://Scripts/ShopSlotButtonUI.gd" type="Script" id=3]
-[ext_resource path="res://Textures/Knife.png" type="Texture" id=4]
+[ext_resource path="res://Textures/Knife.tres" type="Texture" id=4]
 
 [node name="ShopSlotButton" type="Button"]
 margin_right = 169.0
@@ -45,6 +45,7 @@ margin_top = -40.0
 margin_right = 55.0
 margin_bottom = -8.0
 texture = ExtResource( 2 )
+expand = true
 
 [node name="Cost" type="Label" parent="."]
 anchor_left = 1.0

@@ -1,9 +1,7 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://Scripts/ItemButton.gd" type="Script" id=1]
-[ext_resource path="res://vboxstyle.tres" type="Theme" id=2]
 [ext_resource path="res://Scripts/ItemSelect.gd" type="Script" id=3]
-[ext_resource path="res://ItemSelectButtonTheme.tres" type="Theme" id=4]
 
 [node name="ItemSelect" type="ColorRect"]
 anchor_left = 0.5
@@ -18,7 +16,6 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
-theme = ExtResource( 2 )
 color = Color( 1, 1, 1, 0.117647 )
 script = ExtResource( 3 )
 
@@ -45,7 +42,6 @@ hint_tooltip = "
 "
 size_flags_horizontal = 2
 size_flags_vertical = 2
-theme = ExtResource( 4 )
 expand_icon = true
 script = ExtResource( 1 )
 
@@ -67,7 +63,6 @@ margin_bottom = 96.0
 rect_min_size = Vector2( 96, 96 )
 size_flags_horizontal = 2
 size_flags_vertical = 2
-theme = ExtResource( 4 )
 expand_icon = true
 script = ExtResource( 1 )
 
@@ -89,7 +84,6 @@ margin_bottom = 96.0
 rect_min_size = Vector2( 96, 96 )
 size_flags_horizontal = 2
 size_flags_vertical = 2
-theme = ExtResource( 4 )
 expand_icon = true
 script = ExtResource( 1 )
 

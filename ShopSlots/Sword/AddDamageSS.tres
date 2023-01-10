@@ -1,6 +1,6 @@
 [gd_resource type="Resource" load_steps=5 format=2]
 
-[ext_resource path="res://Textures/Knife.png" type="Texture" id=1]
+[ext_resource path="res://Textures/Knife.tres" type="Texture" id=1]
 [ext_resource path="res://Scripts/ShopSlot.gd" type="Script" id=2]
 [ext_resource path="res://Scripts/Stat.gd" type="Script" id=3]
 
@@ -9,6 +9,7 @@ script = ExtResource( 3 )
 damage = 5
 speed = 0.0
 health = 0
+armor = 0
 
 [resource]
 script = ExtResource( 2 )

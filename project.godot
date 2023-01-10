@@ -310,9 +310,12 @@ GameHandler="*res://Scripts/GameHandler.gd"
 window/size/width=640
 window/size/height=480
 window/size/resizable=false
-mouse_cursor/custom_image="res://Textures/cursor1.png"
 window/stretch/mode="viewport"
 window/stretch/aspect="keep"
+
+[global]
+
+cursor=false
 
 [importer_defaults]
 

@@ -1,15 +1,24 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://ShopUITheme.tres" type="Theme" id=1]
-[ext_resource path="res://Textures/window2_10.png" type="Texture" id=2]
-[ext_resource path="res://Textures/CoinTexture.png" type="Texture" id=3]
+[ext_resource path="res://Looting/Coin.tres" type="Texture" id=2]
 [ext_resource path="res://vboxstyle.tres" type="Theme" id=4]
-[ext_resource path="res://Textures/Misc_35.png" type="Texture" id=5]
 [ext_resource path="res://Scenes/ShopSlotButton.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Scripts/ShopCoinUI.gd" type="Script" id=8]
 [ext_resource path="res://Scripts/Shop.gd" type="Script" id=9]
 
 [sub_resource type="Theme" id=2]
+
+[sub_resource type="StyleBoxFlat" id=3]
+bg_color = Color( 0.929412, 0.180392, 0.180392, 1 )
+
+[sub_resource type="StyleBoxFlat" id=4]
+draw_center = false
+
+[sub_resource type="Theme" id=5]
+HBoxContainer/constants/separation = 4
+HBoxContainer/styles/Box = SubResource( 3 )
+Label/styles/normal = SubResource( 4 )
 
 [node name="ShopUI" type="Control"]
 margin_right = 1024.0
@@ -54,7 +63,7 @@ anchor_bottom = 0.5
 margin_left = -40.0
 margin_top = -20.0
 margin_bottom = 20.0
-texture = ExtResource( 3 )
+texture = ExtResource( 2 )
 expand = true
 
 [node name="ShopTabContainer" type="TabContainer" parent="."]
@@ -150,6 +159,7 @@ margin_left = -236.0
 margin_top = 16.0
 margin_right = -18.0
 margin_bottom = 56.0
+theme = SubResource( 5 )
 custom_constants/separation = 0
 script = ExtResource( 8 )
 __meta__ = {
@@ -163,7 +173,6 @@ margin_right = 43.0
 margin_bottom = 40.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-texture = ExtResource( 2 )
 
 [node name="Label" type="Label" parent="Coins/fifth"]
 anchor_left = 0.5
@@ -175,7 +184,6 @@ margin_top = -35.0
 margin_right = 29.0
 margin_bottom = 29.0
 rect_scale = Vector2( 1.1, 1.1 )
-theme = ExtResource( 4 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "2"
 align = 1
@@ -187,7 +195,6 @@ margin_right = 87.0
 margin_bottom = 40.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-texture = ExtResource( 2 )
 
 [node name="Label" type="Label" parent="Coins/fourth"]
 anchor_left = 0.5
@@ -214,7 +221,6 @@ margin_right = 130.0
 margin_bottom = 40.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-texture = ExtResource( 2 )
 
 [node name="Label" type="Label" parent="Coins/third"]
 anchor_left = 0.5
@@ -241,7 +247,6 @@ margin_right = 174.0
 margin_bottom = 40.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-texture = ExtResource( 2 )
 
 [node name="Label" type="Label" parent="Coins/second"]
 anchor_left = 0.5
@@ -268,7 +273,6 @@ margin_right = 218.0
 margin_bottom = 40.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-texture = ExtResource( 2 )
 
 [node name="Label" type="Label" parent="Coins/first"]
 anchor_left = 0.5
@@ -307,7 +311,7 @@ margin_left = 744.0
 margin_top = 16.0
 margin_right = 784.0
 margin_bottom = 56.0
-texture = ExtResource( 5 )
+texture = ExtResource( 2 )
 expand = true
 
 [connection signal="pressed" from="StartGameButton" to="." method="_on_Button_pressed"]

@@ -1,4 +1,4 @@
-extends TextureRect
+extends Panel
 
 onready var text = $StacksText
 onready var itemTexture = $ItemTextureRect

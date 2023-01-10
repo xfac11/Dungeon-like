@@ -210,7 +210,6 @@ margin_top = 74.0
 margin_right = 308.0
 margin_bottom = 117.0
 text = "Windowed"
-selected = 0
 
 [node name="Label" type="Label" parent="OptionMenu/WindowModeOptBtn"]
 margin_left = -62.0

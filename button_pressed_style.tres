@@ -1,8 +1,3 @@
-[gd_resource type="StyleBoxTexture" load_steps=2 format=2]
-
-[sub_resource type="StreamTexture" id=1]
-load_path = "res://.import/buttons_85.png-73e7d48c2516636a89981b28deae61a2.stex"
+[gd_resource type="StyleBoxTexture" format=2]
 
 [resource]
-texture = SubResource( 1 )
-region_rect = Rect2( 0, 0, 16, 16 )

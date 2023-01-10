@@ -16,7 +16,7 @@ func setup_Enemy(enemy, position):
 	enemy.damageArea.damage*= damageScale
 	enemy.speed*= speedScale
 	enemy.IncreaseMaximumHealth(maxHealthScale)
-	var enemyMat:ShaderMaterial = enemy.get_node("AnimatedSprite").material
+	var enemyMat:ShaderMaterial = enemy.sprite.material
 	enemyMat.set_shader_param("edgeShading", true)
 	enemyMat.set_shader_param("edgeColor", outlineColor)
 

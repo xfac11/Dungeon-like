@@ -11,6 +11,8 @@ position = Vector2( -307, 66 )
 script = ExtResource( 2 )
 mWidth = 60
 mHeight = 43
+secondsBetweenWaves = 1.0
+secondsBetweenSpawn = 0.464
 
 [node name="SpawnTimer" type="Timer" parent="."]
 wait_time = 0.464
