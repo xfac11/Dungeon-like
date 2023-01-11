@@ -7,6 +7,7 @@ var armor = 0
 export var maximumHealth = 100
 var currentHealth = maximumHealth
 var dead:bool = false
+onready var parent = get_parent()
 func _ready():
 	currentHealth = maximumHealth
 func TakeDamage(damage:int):
@@ -15,7 +16,7 @@ func TakeDamage(damage:int):
 	currentHealth -= max(damage-armor, 0)
 	if currentHealth <= 0:
 		currentHealth = 0
-		emit_signal("healthDepleted", get_parent())
+		emit_signal("healthDepleted", parent)
 		dead = true
 	emit_signal("damageTaken", currentHealth, maximumHealth)
 

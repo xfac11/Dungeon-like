@@ -1,6 +1,6 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=19 format=2]
 
-[ext_resource path="res://StyleboxBakgroundProgressGameUI.tres" type="StyleBox" id=1]
+[ext_resource path="res://ExpUITheme.tres" type="Theme" id=1]
 [ext_resource path="res://HealthUITheme.tres" type="Theme" id=2]
 [ext_resource path="res://Scenes/ItemDisplay.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Scripts/LevelTxtUI.gd" type="Script" id=5]
@@ -18,20 +18,6 @@
 [ext_resource path="res://Scenes/PauseMenu.gd" type="Script" id=23]
 [ext_resource path="res://Scripts/SpawnLabel.gd" type="Script" id=24]
 [ext_resource path="res://Scripts/ChestUI.gd" type="Script" id=25]
-
-[sub_resource type="StyleBoxFlat" id=1]
-bg_color = Color( 0.690196, 0.0823529, 1, 1 )
-corner_radius_top_left = 2
-corner_radius_bottom_right = 2
-corner_radius_bottom_left = 2
-corner_detail = 1
-
-[sub_resource type="Theme" id=2]
-ProgressBar/colors/font_color = Color( 0.94, 0.94, 0.94, 1 )
-ProgressBar/colors/font_color_shadow = Color( 0, 0, 0, 1 )
-ProgressBar/fonts/font = null
-ProgressBar/styles/bg = ExtResource( 1 )
-ProgressBar/styles/fg = SubResource( 1 )
 
 [node name="UI" type="Control"]
 anchor_right = 1.0
@@ -56,8 +42,8 @@ __meta__ = {
 [node name="Label" type="Label" parent="LevelNumber"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_top = 6.0
-margin_bottom = 6.0
+margin_top = 2.0
+margin_bottom = 2.0
 custom_colors/font_color = Color( 0.952941, 0.941176, 0.262745, 1 )
 custom_fonts/font = ExtResource( 7 )
 text = "1"
@@ -72,50 +58,44 @@ margin_left = -150.0
 margin_top = 43.0
 margin_right = 147.0
 margin_bottom = 67.0
-theme = SubResource( 2 )
+theme = ExtResource( 1 )
 value = 30.0
 percent_visible = false
 script = ExtResource( 6 )
 
 [node name="Label2" type="Label" parent="LevelNumber"]
-margin_left = -66.0
-margin_top = 37.0
-margin_right = 115.0
-margin_bottom = 75.0
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -145.5
+margin_top = 9.0
+margin_right = 35.5
+margin_bottom = 47.0
 custom_fonts/font = ExtResource( 10 )
+text = "645"
+valign = 1
 script = ExtResource( 20 )
 
 [node name="HPbar" type="ProgressBar" parent="."]
 margin_left = 20.0
 margin_top = 18.0
 margin_right = 195.0
-margin_bottom = 46.0
+margin_bottom = 36.0
 theme = ExtResource( 2 )
 value = 50.0
 percent_visible = false
 script = ExtResource( 11 )
 
-[node name="Label" type="Label" parent="HPbar"]
-visible = false
-margin_top = -16.0
-margin_right = 70.0
-margin_bottom = 10.0
-custom_fonts/font = ExtResource( 10 )
-text = "Health"
-
 [node name="HPtext" type="Label" parent="HPbar"]
-anchor_left = 0.5
 anchor_top = 0.5
-anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -123.0
-margin_top = -19.0
-margin_right = 123.0
-margin_bottom = 19.0
+margin_top = -13.0
+margin_right = 177.0
+margin_bottom = 13.0
 size_flags_vertical = 1
 custom_fonts/font = ExtResource( 10 )
-text = "100/100"
-align = 1
+text = "612/1000"
 valign = 1
 
 [node name="GameOver" parent="." instance=ExtResource( 12 )]
@@ -141,6 +121,7 @@ size_flags_horizontal = 0
 size_flags_vertical = 0
 
 [node name="ItemSelect" parent="." instance=ExtResource( 13 )]
+visible = false
 margin_left = -229.0
 margin_top = -137.0
 margin_right = 231.0

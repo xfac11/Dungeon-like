@@ -21,8 +21,8 @@ HBoxContainer/styles/Box = SubResource( 3 )
 Label/styles/normal = SubResource( 4 )
 
 [node name="ShopUI" type="Control"]
-margin_right = 1024.0
-margin_bottom = 600.0
+margin_right = 640.0
+margin_bottom = 480.0
 theme = ExtResource( 4 )
 script = ExtResource( 9 )
 shopSlotButton = ExtResource( 7 )
@@ -32,8 +32,8 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -272.0
-margin_top = -200.0
+margin_left = -249.0
+margin_top = -192.0
 margin_right = -18.0
 margin_bottom = -45.0
 theme = ExtResource( 1 )
@@ -70,9 +70,9 @@ expand = true
 anchor_top = 0.5
 anchor_bottom = 0.5
 margin_left = 16.0
-margin_top = -284.0
-margin_right = 551.0
-margin_bottom = 270.0
+margin_top = -232.0
+margin_right = 368.0
+margin_bottom = 195.0
 tab_align = 0
 __meta__ = {
 "_edit_group_": true
@@ -307,9 +307,9 @@ custom_colors/font_color = Color( 0.286275, 1, 0.345098, 1 )
 text = "Start"
 
 [node name="TextureRect" type="TextureRect" parent="."]
-margin_left = 744.0
+margin_left = 368.0
 margin_top = 16.0
-margin_right = 784.0
+margin_right = 408.0
 margin_bottom = 56.0
 texture = ExtResource( 2 )
 expand = true

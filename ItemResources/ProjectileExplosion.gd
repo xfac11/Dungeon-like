@@ -1,10 +1,12 @@
+class_name ProjectileExplosion
 extends Projectile
+onready var particles = $Particles2D
 
 func _ready():
-	sprite.play()
+	particles.emitting = true
 
 func Movement(delta):
 	return##NO movement
 
 func HitBody(body):
-	body.get_node("Health").TakeDamage(damage)
+	body.health.TakeDamage(damage)

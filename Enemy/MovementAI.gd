@@ -2,10 +2,14 @@ extends KinematicBody2D
 class_name MovementAI
 onready var fsm:FiniteStateMachine = $FiniteStateMachine
 onready var sprite = $Sprite
+onready var damageArea = $DamageArea
+onready var health = $Health
+onready var damage_tween = $Tween
+onready var death_tween = $DeathTween
+onready var parent = get_parent()
 export(PackedScene) var DamageEffect
 export(PackedScene) var DeathEffect
 export(NodePath) var startStatePath
-onready var damageArea = $DamageArea
 var right = Vector2(1,0)
 var left = Vector2(-1,0)
 var up = Vector2(0,-1)
@@ -23,7 +27,6 @@ func _init():
 	add_to_group("ENEMIES")
 
 func IncreaseMaximumHealth(var percentIncrease:float):
-	var health = get_node("Health")
 	health.maximumHealth = health.maximumHealth*percentIncrease
 	health.currentHealth = health.maximumHealth
 
@@ -64,7 +67,6 @@ func _process(delta):
 
 func _on_Health_healthDepleted(parent):
 	death = true
-	var tween = get_node("DeathTween")
 	sprite.material.set_shader_param("hor_index", 0)
 	var verIndex = 0.0
 	#match $AnimatedSprite.animation:
@@ -77,11 +79,11 @@ func _on_Health_healthDepleted(parent):
 	#	"up_walk":
 	#		verIndex = 3
 	sprite.material.set_shader_param("ver_index", verIndex);
-	tween.interpolate_property(sprite.material, "shader_param/noiseEffectivenes",
+	death_tween.interpolate_property(sprite.material, "shader_param/noiseEffectivenes",
 		0, 0.6, 0.8,
 		Tween.TRANS_LINEAR, Tween.EASE_IN)
-	tween.start()
-	tween.connect("tween_completed",self,"QueueSelf")
+	death_tween.start()
+	death_tween.connect("tween_completed",self,"QueueSelf")
 	SpawnObject(DeathEffect).emitting = true
 
 func QueueSelf(object, key):
@@ -89,15 +91,14 @@ func QueueSelf(object, key):
 
 func _on_Health_damageTaken(currentHealth, maximumHealth):
 	var damageEffect = SpawnObject(DamageEffect)
-	var tween = get_node("Tween")
-	tween.interpolate_property(sprite.material, "shader_param/blinkValue",
+	damage_tween.interpolate_property(sprite.material, "shader_param/blinkValue",
 		1, 0, 0.25,
 		Tween.TRANS_LINEAR, Tween.EASE_IN)
-	tween.start()
+	damage_tween.start()
 
 
 func SpawnObject(packedScene):
 	var object = packedScene.instance()
-	get_parent().add_child(object)
+	parent.call_deferred("add_child", object)
 	object.transform = global_transform
 	return object

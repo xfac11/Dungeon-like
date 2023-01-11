@@ -4,10 +4,9 @@ class_name Projectile
 export(float) var speed:float = 100.0
 export(float) var lifeTime:float = 10.0
 export(int) var damage:int = 10
-onready var sprite = $Sprite
 var forward:Vector2 = Vector2(0,-1)
 var currentTime = 0
-var theOwner
+var theOwner setget set_theOwner
 var globalTransform
 onready var direction = Vector2(1,0).rotated(randf() * 2.0 * PI)
 func _process(delta):
@@ -25,8 +24,11 @@ func CalcTime(delta):
 func LifetimeEnd():
 	queue_free()
 
+func set_theOwner(obj):
+	theOwner = obj
+
 func HitBody(body):
-	body.get_node("Health").TakeDamage(damage)
+	body.health.TakeDamage(damage)
 	queue_free()
 	
 func Movement(delta):

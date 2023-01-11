@@ -32,6 +32,7 @@ func ShootRandomDirEach(item:Item, nrOfStacks, owner, global_transform):
 	for n in nrOfStacks:
 		var newBullet = item.projectilePS.instance()
 		owner.add_child(newBullet)
+		newBullet.theOwner = owner
 		newBullet.transform = global_transform
 		newBullet.damage = item.damage
 		newBullet.speed = item.projectileSpeed
@@ -55,10 +56,11 @@ func ShootRotating(item:Item, nrOfStacks, owner, global_transform):
 	else:
 		bullets[item] = []
 		bullets[item].append(newBullet)
-	owner.add_child(newBullet)
 	newBullet.transform = global_transform
 	newBullet.damage = item.damage * nrOfStacks
 	newBullet.speed = item.projectileSpeed
+	newBullet.theOwner = owner
+	owner.add_child(newBullet)
 	newBullet.SetDirection(Vector2(0,-1))
 	
 
@@ -66,14 +68,15 @@ func ShootSpray(item:Item, nrOfStacks, owner, global_transform):
 	var direction = directions[randi()% directions.size()]
 	for n in 5:
 		var newBullet = item.projectilePS.instance()
-		owner.add_child(newBullet)
 		newBullet.transform = global_transform
 		newBullet.damage = item.damage * nrOfStacks
 		newBullet.speed = item.projectileSpeed
 		newBullet.lifeTime = item.lifetime
+		newBullet.theOwner = owner
 		newBullet.SetDirection(direction)
 		newBullet.position += Vector2(5*sin(randf()),5*sin(randf()))
 		direction = direction.rotated(0.05)
+		owner.add_child(newBullet)
 
 
 func ShootTowardEnemy(item, nrOfStacks, owner, global_transform):
@@ -97,5 +100,6 @@ func ShootTowardEnemy(item, nrOfStacks, owner, global_transform):
 	newBullet.transform = global_transform * newBullet.transform
 	newBullet.damage = item.damage * nrOfStacks
 	newBullet.speed = item.projectileSpeed
+	newBullet.theOwner = owner
 	newBullet.SetDirection(direction)
 	

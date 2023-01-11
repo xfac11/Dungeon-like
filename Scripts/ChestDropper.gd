@@ -30,7 +30,7 @@ func roll_chest_user_interface(chest):
 	var possibleItems = create_possible_items(player.inventory)
 	##No items to give then spawn a coin for the player to pick up
 	if possibleItems.size() == 0:
-		emit_signal("spawn_coin", 3)
+		emit_signal("spawn_coin", chest.position, 1, 10)
 		return
 	var itemsToAdd = random_items_from_inventory(count, possibleItems)
 	player.inventory.AddItems(itemsToAdd)
