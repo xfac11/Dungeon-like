@@ -4,7 +4,7 @@ class_name Shop
 onready var coinsUI:ShopCoinUI = $Coins
 onready var shopTab:TabContainer = $ShopTabContainer
 onready var discoverItemButton:Button = $DiscoverItemButton
-var next_scene = preload("res://Scenes/GameScene.tscn")
+var next_scene = load("res://Scenes/GameScene.tscn")
 export(PackedScene) var shopSlotButton:PackedScene
 var coin:int = 200
 export var discoverItemCost:int = 100
@@ -59,7 +59,9 @@ func UpdateCoins(cost) -> void:
 	
 func UpdateDiscoverItem() -> void:
 	discoverItemButton.get_node("Label").text = str(discoverItemCost)
-	if discoverItemCost > coin:
+	if !GameHandler.IsDiscoverableItems():
+		discoverItemButton.get_node("Label").text = "Found all"
+	if discoverItemCost > coin || !GameHandler.IsDiscoverableItems():
 		discoverItemButton.disabled = true
 	else:
 		discoverItemButton.disabled = false

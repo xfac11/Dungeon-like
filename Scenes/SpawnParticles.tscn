@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://Scripts/Particles2DTimer.gd" type="Script" id=1]
+[ext_resource path="res://Enemy/Particles2DTimer.gd" type="Script" id=1]
 [ext_resource path="res://SpawnParticlesMaterial.tres" type="Material" id=2]
 
 [node name="SpawnParticles" type="Particles2D"]

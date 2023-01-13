@@ -1,6 +1,6 @@
 extends AcceptDialog
 class_name GameOverUI
-var next_scene = load("res://Scenes/ShopUI.tscn")
+var next_scene = preload("../ShopUI/ShopUI.tscn")
 func ShowGameOver(playerCoins, levelCoins, wave, secondsPlayed):
 	popup()
 	dialog_text = "Collected coins: " + String(playerCoins)

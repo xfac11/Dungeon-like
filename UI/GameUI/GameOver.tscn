@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://Scripts/GameOverUI.gd" type="Script" id=1]
-[ext_resource path="res://Scenes/CoinEffect.tscn" type="PackedScene" id=2]
-[ext_resource path="res://vboxstyle.tres" type="Theme" id=3]
+[ext_resource path="res://UI/GameUI/GameOverUI.gd" type="Script" id=1]
+[ext_resource path="res://UI/GameUI/CoinEffect.tscn" type="PackedScene" id=2]
+[ext_resource path="res://UI/vboxstyle.tres" type="Theme" id=3]
 
 [node name="GameOver" type="AcceptDialog"]
 anchor_left = 0.5

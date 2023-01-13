@@ -1,23 +1,23 @@
 [gd_scene load_steps=19 format=2]
 
-[ext_resource path="res://ExpUITheme.tres" type="Theme" id=1]
-[ext_resource path="res://HealthUITheme.tres" type="Theme" id=2]
-[ext_resource path="res://Scenes/ItemDisplay.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Scripts/LevelTxtUI.gd" type="Script" id=5]
-[ext_resource path="res://Scripts/BarUI.gd" type="Script" id=6]
+[ext_resource path="res://UI/GameUI/ExpUITheme.tres" type="Theme" id=1]
+[ext_resource path="res://UI/GameUI/HealthUITheme.tres" type="Theme" id=2]
+[ext_resource path="res://UI/GameUI/ItemSelect.tscn" type="PackedScene" id=3]
+[ext_resource path="res://UI/GameUI/ItemDisplay.tscn" type="PackedScene" id=4]
+[ext_resource path="res://UI/GameUI/LevelTxtUI.gd" type="Script" id=5]
+[ext_resource path="res://UI/GameUI/BarUI.gd" type="Script" id=6]
 [ext_resource path="res://Fonts/FontBetterPixels42.tres" type="DynamicFont" id=7]
 [ext_resource path="res://Fonts/FontBetterPixels32.tres" type="DynamicFont" id=10]
-[ext_resource path="res://Scripts/HPbar.gd" type="Script" id=11]
-[ext_resource path="res://Scenes/GameOver.tscn" type="PackedScene" id=12]
-[ext_resource path="res://Scenes/ItemSelect.tscn" type="PackedScene" id=13]
-[ext_resource path="res://vboxstyle.tres" type="Theme" id=14]
-[ext_resource path="res://Scripts/InventoryUI.gd" type="Script" id=15]
-[ext_resource path="res://Scripts/LevelTextUI.gd" type="Script" id=20]
+[ext_resource path="res://UI/GameUI/HPbar.gd" type="Script" id=11]
+[ext_resource path="res://UI/GameUI/GameOver.tscn" type="PackedScene" id=12]
+[ext_resource path="res://UI/vboxstyle.tres" type="Theme" id=14]
+[ext_resource path="res://UI/GameUI/InventoryUI.gd" type="Script" id=15]
+[ext_resource path="res://UI/GameUI/LevelTextUI.gd" type="Script" id=20]
 [ext_resource path="res://Scripts/StatsLabel.gd" type="Script" id=21]
-[ext_resource path="res://Scenes/GameUI.gd" type="Script" id=22]
-[ext_resource path="res://Scenes/PauseMenu.gd" type="Script" id=23]
-[ext_resource path="res://Scripts/SpawnLabel.gd" type="Script" id=24]
-[ext_resource path="res://Scripts/ChestUI.gd" type="Script" id=25]
+[ext_resource path="res://UI/GameUI/GameUI.gd" type="Script" id=22]
+[ext_resource path="res://UI/GameUI/PauseMenu.gd" type="Script" id=23]
+[ext_resource path="res://UI/GameUI/SpawnLabel.gd" type="Script" id=24]
+[ext_resource path="res://UI/GameUI/ChestUI.gd" type="Script" id=25]
 
 [node name="UI" type="Control"]
 anchor_right = 1.0
@@ -120,13 +120,6 @@ anchor_bottom = 1.0
 size_flags_horizontal = 0
 size_flags_vertical = 0
 
-[node name="ItemSelect" parent="." instance=ExtResource( 13 )]
-visible = false
-margin_left = -229.0
-margin_top = -137.0
-margin_right = 231.0
-margin_bottom = 134.0
-
 [node name="StatsLabel" type="Label" parent="."]
 anchor_top = 0.5
 anchor_bottom = 0.5
@@ -136,6 +129,12 @@ margin_bottom = 298.0
 custom_fonts/font = ExtResource( 10 )
 autowrap = true
 script = ExtResource( 21 )
+
+[node name="ItemSelect" parent="." instance=ExtResource( 3 )]
+margin_left = -229.0
+margin_top = -137.0
+margin_right = 231.0
+margin_bottom = 134.0
 
 [node name="PauseMenu" type="NinePatchRect" parent="."]
 pause_mode = 2

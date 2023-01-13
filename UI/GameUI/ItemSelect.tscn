@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://Scripts/ItemButton.gd" type="Script" id=1]
-[ext_resource path="res://Scripts/ItemSelect.gd" type="Script" id=3]
+[ext_resource path="res://UI/GameUI/ItemButton.gd" type="Script" id=1]
+[ext_resource path="res://UI/GameUI/ItemSelect.gd" type="Script" id=2]
 
 [node name="ItemSelect" type="ColorRect"]
 anchor_left = 0.5
@@ -17,7 +17,7 @@ grow_vertical = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 color = Color( 1, 1, 1, 0.117647 )
-script = ExtResource( 3 )
+script = ExtResource( 2 )
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 anchor_left = 0.5

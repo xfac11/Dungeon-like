@@ -12,5 +12,5 @@ stacks = {
 "res://ShopSlots/Sword/AddRange.tres": 0,
 "res://ShopSlots/Sword/AddSpeedSS.tres": 2
 }
-coins = 7074
+coins = 7638
 discoveredItems = [ "Red Ring", "Knife", "Fire Book", "White Ring", "Axe", "Spear", "Book" ]

@@ -3,7 +3,7 @@ extends Node2D
 var maximumEnemies = 25
 export var mSeedVariable = 12345
 onready var pauseMenu = $UICanvasLayer/UI/PauseMenu
-onready var gameOverMenu:GameOverUI = $UICanvasLayer/UI/GameOver
+onready var gameOverMenu = $UICanvasLayer/UI/GameOver
 var pauses = 0
 func _ready():
 	get_tree().paused = false

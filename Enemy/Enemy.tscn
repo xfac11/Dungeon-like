@@ -5,12 +5,12 @@
 [ext_resource path="res://Enemy/Death.gd" type="Script" id=3]
 [ext_resource path="res://Scripts/Health.gd" type="Script" id=4]
 [ext_resource path="res://Enemy/DamageArea.gd" type="Script" id=5]
-[ext_resource path="res://Scenes/BloodEffect.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Enemy/BloodEffect.tscn" type="PackedScene" id=6]
 [ext_resource path="res://BlinkingMaterial.tres" type="Material" id=7]
 [ext_resource path="res://Enemy/DefaultEnemyStates/IdleAI.gd" type="Script" id=8]
 [ext_resource path="res://StateMachine/FiniteStateMachine.gd" type="Script" id=9]
 [ext_resource path="res://Enemy/DefaultEnemyStates/Staggered.gd" type="Script" id=10]
-[ext_resource path="res://Scenes/Particles2D.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Enemy/Particles2D.tscn" type="PackedScene" id=11]
 
 [sub_resource type="AtlasTexture" id=3]
 atlas = ExtResource( 1 )

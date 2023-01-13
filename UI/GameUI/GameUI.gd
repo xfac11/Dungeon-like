@@ -1,7 +1,7 @@
 extends Control
 onready var pauseMenu = $PauseMenu
 var pauses = 0
-var next_scene = load("res://Scenes/MainMenuUI.tscn")
+var next_scene = preload("../MainMenu/MainMenuUI.tscn")
 func _input(event):
 	if event.is_action_pressed("exit_game"):
 		pauseMenu.visible = !pauseMenu.visible

@@ -1,11 +1,10 @@
 [gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://DeathParticlesMaterial.tres" type="Material" id=1]
-[ext_resource path="res://Scripts/Particles2DTimer.gd" type="Script" id=2]
+[ext_resource path="res://Enemy/Particles2DTimer.gd" type="Script" id=2]
 
 [node name="Particles2D" type="Particles2D"]
 emitting = false
-amount = 32
 lifetime = 2.0
 one_shot = true
 explosiveness = 0.5

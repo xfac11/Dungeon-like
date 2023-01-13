@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://BloodParticlesMaterial2.tres" type="Material" id=1]
-[ext_resource path="res://Scripts/BloodEffect.gd" type="Script" id=2]
+[ext_resource path="res://Enemy/BloodEffect.gd" type="Script" id=2]
 
 [node name="BloodEffect" type="Particles2D"]
 z_index = 10

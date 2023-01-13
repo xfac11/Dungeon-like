@@ -2,7 +2,7 @@
 
 [ext_resource path="res://Fonts/FontBetterPixels32.tres" type="DynamicFont" id=1]
 [ext_resource path="res://Looting/Coin.tres" type="Texture" id=2]
-[ext_resource path="res://Scripts/ShopSlotButtonUI.gd" type="Script" id=3]
+[ext_resource path="res://UI/ShopUI/ShopSlotButtonUI.gd" type="Script" id=3]
 [ext_resource path="res://Textures/Knife.tres" type="Texture" id=4]
 
 [node name="ShopSlotButton" type="Button"]
