@@ -1,30 +1,18 @@
+class_name GameScene
 extends Node2D
 
-var maximumEnemies = 25
-export var mSeedVariable = 12345
-onready var pauseMenu = $UICanvasLayer/UI/PauseMenu
-onready var gameOverMenu = $UICanvasLayer/UI/GameOver
-var pauses = 0
+export var seed_variable = 1337
+onready var _game_over_menu = $UICanvasLayer/UI/GameOver
+
 func _ready():
 	get_tree().paused = false
 	set_process(true)
-	PlayerInit(get_tree().get_nodes_in_group("PLAYER")[0])
-	seed(mSeedVariable)
+	seed(seed_variable)
 
-func InreaseEnemiesAmount(level) -> float:
-	return 10 + (1.25*level)
 
-func PlayerInit(player:Player):
-	player.experienceSystem.connect("leveledup",self,"IncreaseEnemies")
-	player.inventory.AddItem("BreastPlate", 10)
-	player.inventory.AddItem("Book", 10)
-	player.inventory.AddItem("Fire Book", 10)
-	player.inventory.AddItem("Axe", 10)
-
-func IncreaseEnemies(_maxExp,level):
-	maximumEnemies+= InreaseEnemiesAmount(level)
-
-func _on_Health_healthDepleted(parent):
-	gameOverMenu.ShowGameOver(parent.coins,
-		GameHandler.CoinsFromLevel(parent.get_node("ExperienceSystem").level),
-		get_node("Spawner").wave,OS.get_ticks_msec()*0.001)
+func _on_Health_healthDepleted(parent:Player):
+	GameHandler._level = parent.experienceSystem.level
+	GameHandler.coins = parent.coins
+	_game_over_menu.ShowGameOver(parent.coins,
+			GameHandler.CoinsFromLevel(parent.experienceSystem.level),
+			get_node("Spawner").wave, OS.get_ticks_msec()*0.001)

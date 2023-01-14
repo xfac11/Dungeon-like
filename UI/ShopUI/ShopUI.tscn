@@ -25,7 +25,7 @@ margin_right = 640.0
 margin_bottom = 480.0
 theme = ExtResource( 6 )
 script = ExtResource( 1 )
-shopSlotButton = ExtResource( 4 )
+shop_slot_button = ExtResource( 4 )
 
 [node name="DiscoverItemButton" type="Button" parent="."]
 anchor_left = 1.0
@@ -114,31 +114,6 @@ theme = SubResource( 2 )
 tab_align = 0
 
 [node name="GridContainer" type="GridContainer" parent="ShopTabContainer/Player"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 5.0
-margin_top = 5.0
-margin_right = -5.0
-margin_bottom = -5.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme = ExtResource( 5 )
-custom_constants/vseparation = 10
-custom_constants/hseparation = 10
-columns = 3
-
-[node name="Items" type="Tabs" parent="ShopTabContainer"]
-visible = false
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 4.0
-margin_top = 52.0
-margin_right = -4.0
-margin_bottom = -4.0
-theme = SubResource( 2 )
-tab_align = 0
-
-[node name="GridContainer" type="GridContainer" parent="ShopTabContainer/Items"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 5.0

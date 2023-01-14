@@ -44,3 +44,7 @@ func GetRandomHidenItem() -> Item:
 
 func CoinsFromLevel(level):
 	return (level - 1) * 25
+
+
+func calculate_coins() -> int:
+	return CoinsFromLevel(_level) + coins

@@ -35,7 +35,6 @@ shader_param/noise = ExtResource( 7 )
 
 [node name="GameScene" type="Node2D"]
 script = ExtResource( 5 )
-mSeedVariable = 985
 
 [node name="ItemGiver" type="Node" parent="."]
 script = ExtResource( 3 )

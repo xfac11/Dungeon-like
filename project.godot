@@ -64,6 +64,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://UI/GameUI/GameOverUI.gd"
 }, {
+"base": "Node2D",
+"class": "GameScene",
+"language": "GDScript",
+"path": "res://Scripts/GameScene.gd"
+}, {
 "base": "State",
 "class": "Grounded",
 "language": "GDScript",
@@ -256,6 +261,7 @@ _global_script_class_icons={
 "ExperienceSystem": "",
 "FiniteStateMachine": "",
 "GameOverUI": "",
+"GameScene": "",
 "Grounded": "",
 "HandleItems": "",
 "Health": "",

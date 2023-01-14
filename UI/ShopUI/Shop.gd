@@ -1,81 +1,90 @@
-extends Node
 class_name Shop
+extends Node
 
-onready var coinsUI:ShopCoinUI = $Coins
-onready var shopTab:TabContainer = $ShopTabContainer
-onready var discoverItemButton:Button = $DiscoverItemButton
-var next_scene = load("res://Scenes/GameScene.tscn")
-export(PackedScene) var shopSlotButton:PackedScene
-var coin:int = 200
-export var discoverItemCost:int = 100
-export var discoverItemCostIncrease:int = 250
-var saveStatsResource = preload("res://Scripts/SaveStats.gd")
-var saveStat = saveStatsResource.new()
-var saveName = "res://Saves/new_save1.tres"
+export var discover_item_cost_increase:int = 250
+export(PackedScene) var shop_slot_button:PackedScene
+export var discover_item_cost:int = 100
+var _next_scene = load("res://Scenes/GameScene.tscn")
+var _coin:int = 200
+var _saveStatsResource = preload("res://Scripts/SaveStats.gd")
+var _saveStat = _saveStatsResource.new()
+var _saveName = "res://Saves/new_save1.tres"
+
+onready var _coins_UI:ShopCoinUI = $Coins
+onready var _shop_tab:TabContainer = $ShopTabContainer
+onready var _discover_item_button:Button = $DiscoverItemButton
+
+
 func _ready() -> void:
-	var defaultDiscoveredSize = GameHandler.defaultDiscoveredSize
-	if ResourceLoader.exists(saveName):
-		saveStat = ResourceLoader.load(saveName)
-		coin = saveStat.coins
-		if saveStat.discoveredItems.size() > 0:
-			GameHandler.discoveredItems = saveStat.discoveredItems
-	coin+=GameHandler.CoinsFromLevel(GameHandler._level) + GameHandler.coins
-	var newDiscoverCost = GameHandler.discoveredItems.size()
-	newDiscoverCost-= defaultDiscoveredSize
+	_load_shop()
+	_coin = _saveStat.coins + GameHandler.calculate_coins()
+	var newDiscoverCost = GameHandler.discoveredItems.size() - GameHandler.defaultDiscoveredSize
 	if newDiscoverCost > 0:
-		discoverItemCost+=discoverItemCostIncrease*newDiscoverCost
-	coinsUI.ChangeCoins(coin)
-	AddTab("Sword")
-	AddTab("Player")
-	##AddTab("Items")
-	UpdateSlots("Sword")
-	UpdateSlots("Player")
-	##UpdateSlots("Items")
-	discoverItemButton.connect("pressed",self,"AddNewItem")
-	discoverItemButton.get_node("Label").text = str(discoverItemCost)
-	saveStat.coins = coin
-	ResourceSaver.save(saveName,saveStat)
-func AddUpgrade(cost,slot:ShopSlotButton) -> void:
-	if cost <= coin && slot.stack < slot.maxStack:
-		slot.AddToStack()
-		UpdateCoins(cost)
-
-func AddNewItem() -> void:
-	if discoverItemCost <= coin:
-		UpdateCoins(discoverItemCost)
-		var newItem = GameHandler.AddDiscoveredItem()
-		discoverItemCost += discoverItemCostIncrease
-		UpdateDiscoverItem()
-		##Show the new item with some particles and animations
-		
-
-func UpdateCoins(cost) -> void:
-	coin-=cost
-	coinsUI.ChangeCoins(coin)
-	UpdateSlots("Sword")
-	UpdateSlots("Player")
-	UpdateSlots("Items")
-	UpdateDiscoverItem()
+		discover_item_cost += discover_item_cost_increase * newDiscoverCost
 	
-func UpdateDiscoverItem() -> void:
-	discoverItemButton.get_node("Label").text = str(discoverItemCost)
+	_coins_UI.ChangeCoins(_coin)
+	_add_tab("Sword")
+	_add_tab("Player")
+	_update_slots("Sword")
+	_update_slots("Player")
+	_discover_item_button.connect("pressed", self, "_on_discover_item_pressed")
+	_discover_item_button.get_node("Label").text = str(discover_item_cost)
+	_saveStat.coins = _coin
+	ResourceSaver.save(_saveName, _saveStat)
+
+
+func _load_shop():
+	if ResourceLoader.exists(_saveName):
+		_saveStat = ResourceLoader.load(_saveName)
+		if _saveStat.discoveredItems.size() > 0:
+			GameHandler.discoveredItems = _saveStat.discoveredItems
+
+
+func _pressed_add_upgrade(cost,slot:ShopSlotButton) -> void:
+	if cost <= _coin && slot.stack < slot.maxStack:
+		slot.AddToStack()
+		_update_coins(cost)
+
+
+func _on_discover_item_pressed() -> void:
+	if discover_item_cost <= _coin:
+		_update_coins(discover_item_cost)
+		var newItem = GameHandler.AddDiscoveredItem()
+		discover_item_cost += discover_item_cost_increase
+		_update_discover_item()
+		##Show the new item with some particles and animations
+
+
+func _update_coins(cost) -> void:
+	_coin -= cost
+	_coins_UI.ChangeCoins(_coin)
+	_update_slots("Sword")
+	_update_slots("Player")
+	_update_discover_item()
+
+
+func _update_discover_item() -> void:
+	_discover_item_button.get_node("Label").text = str(discover_item_cost)
 	if !GameHandler.IsDiscoverableItems():
-		discoverItemButton.get_node("Label").text = "Found all"
-	if discoverItemCost > coin || !GameHandler.IsDiscoverableItems():
-		discoverItemButton.disabled = true
+		_discover_item_button.get_node("Label").text = "Found all"
+	if discover_item_cost > _coin || !GameHandler.IsDiscoverableItems():
+		_discover_item_button.disabled = true
 	else:
-		discoverItemButton.disabled = false
-func UpdateSlots(var name:String) -> void:
-	var swordButtons = shopTab.get_node(name+"/GridContainer").get_children()
+		_discover_item_button.disabled = false
+
+
+func _update_slots(var name:String) -> void:
+	var swordButtons = _shop_tab.get_node(name + "/GridContainer").get_children()
 	for button in swordButtons:
 		var slotCost = int(button.costLabel.text)
-		if slotCost > coin:
+		if slotCost > _coin:
 			button.disabled = true
 		else:
 			button.disabled = false
-	
-func AddTab(var name:String) -> void:
-	var swordTabContainer = shopTab.get_node(name+"/GridContainer")
+
+
+func _add_tab(var name:String) -> void:
+	var swordTabContainer = _shop_tab.get_node(name + "/GridContainer")
 	var swordShopSlots = Array()
 	var directory = Directory.new()
 	directory.open("res://ShopSlots/"+name)
@@ -88,45 +97,47 @@ func AddTab(var name:String) -> void:
 			
 		filename = directory.get_next()
 	for slot in swordShopSlots:
-		var newButton:ShopSlotButton = shopSlotButton.instance()
+		var newButton:ShopSlotButton = shop_slot_button.instance()
 		swordTabContainer.add_child(newButton)
 		newButton.SetCostText(slot.cost)
 		newButton.SetDescription(slot.description)
 		newButton.SetMaxStack(slot.numberOfStacks)
 		newButton.texture.texture = slot.texture
 		newButton.costIncrease = slot.costIncrease
-		newButton.connect("TestBuy",self,"AddUpgrade")
+		newButton.connect("TestBuy", self, "_pressed_add_upgrade")
 		newButton.shopSlot = slot
-		if ResourceLoader.exists(saveName):
-			if saveStat.stacks.has(newButton.shopSlot.resource_path):
-				for i in saveStat.stacks[newButton.shopSlot.resource_path]:
+		if ResourceLoader.exists(_saveName):
+			if _saveStat.stacks.has(newButton.shopSlot.resource_path):
+				for i in _saveStat.stacks[newButton.shopSlot.resource_path]:
 					newButton.AddToStack()
-		
 
-func StartGame() -> void:
-	SetPlayerShopStat()
-	SetSwordShopStat()
-	saveStat.coins = coin
-	saveStat.discoveredItems = GameHandler.discoveredItems
-	ResourceSaver.save(saveName,saveStat)
-	StartGameScene()
 
-func SetPlayerShopStat() -> void:
+func _start_game() -> void:
+	_set_player_shop_stat()
+	_set_sword_shop_stat()
+	_saveStat.coins = _coin
+	_saveStat.discoveredItems = GameHandler.discoveredItems
+	ResourceSaver.save(_saveName, _saveStat)
+	_start_game_scene()
+
+
+func _set_player_shop_stat() -> void:
 	var stat:Stat = Stat.new()
-	for slot in shopTab.get_node("Player"+"/GridContainer").get_children():
+	for slot in _shop_tab.get_node("Player"+"/GridContainer").get_children():
 		var shopSlotUI:ShopSlotButton = slot
 		stat.health += shopSlotUI.shopSlot.stat.health * shopSlotUI.stack
 		stat.speed += shopSlotUI.shopSlot.stat.speed * shopSlotUI.stack
 		stat.damage += shopSlotUI.shopSlot.stat.damage * shopSlotUI.stack
-		saveStat.stacks[shopSlotUI.shopSlot.resource_path] = shopSlotUI.stack
+		_saveStat.stacks[shopSlotUI.shopSlot.resource_path] = shopSlotUI.stack
 	GameHandler.shopPlayerStat = stat
 
-func SetSwordShopStat() -> void:
+
+func _set_sword_shop_stat() -> void:
 	var stat:Stat = Stat.new()
-	for slot in shopTab.get_node("Sword"+"/GridContainer").get_children():
+	for slot in _shop_tab.get_node("Sword"+"/GridContainer").get_children():
 		var shopSlotUI:ShopSlotButton = slot
 		var shopSlotStat:Stat = shopSlotUI.shopSlot.stat
-		saveStat.stacks[shopSlotUI.shopSlot.resource_path] = shopSlotUI.stack
+		_saveStat.stacks[shopSlotUI.shopSlot.resource_path] = shopSlotUI.stack
 		if !is_instance_valid(shopSlotStat):
 			continue
 		stat.health += shopSlotStat.health * shopSlotUI.stack
@@ -134,8 +145,10 @@ func SetSwordShopStat() -> void:
 		stat.damage += shopSlotStat.damage * shopSlotUI.stack
 	GameHandler.shopSwordStat = stat
 
-func StartGameScene() -> void:
-	get_tree().change_scene_to(next_scene)
+
+func _start_game_scene() -> void:
+	get_tree().change_scene_to(_next_scene)
+
 
 func _on_Button_pressed() -> void:
-	StartGame()
+	_start_game()
