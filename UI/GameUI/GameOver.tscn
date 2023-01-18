@@ -2,9 +2,10 @@
 
 [ext_resource path="res://UI/GameUI/GameOverUI.gd" type="Script" id=1]
 [ext_resource path="res://UI/GameUI/CoinEffect.tscn" type="PackedScene" id=2]
-[ext_resource path="res://UI/vboxstyle.tres" type="Theme" id=3]
+[ext_resource path="res://UI/ShopUI/ShopUITheme.tres" type="Theme" id=3]
 
 [node name="GameOver" type="AcceptDialog"]
+visible = true
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5

@@ -1,6 +1,6 @@
-extends ColorRect
+extends Panel
 class_name ItemSelect
-onready var buttons:Array = $CenterContainer/HBoxContainer.get_children()
+onready var buttons:Array = $HBoxContainer.get_children()
 onready var player:Player = owner.get_tree().get_nodes_in_group("PLAYER")[0]
 signal pause(pause)
 func _ready() -> void:

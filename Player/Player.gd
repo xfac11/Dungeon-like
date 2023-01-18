@@ -83,6 +83,8 @@ func SetBaseStat() -> void:
 	currentStat.health += GameHandler.shopPlayerStat.health
 	currentStat.damage += GameHandler.shopPlayerStat.damage
 	currentStat.speed += GameHandler.shopPlayerStat.speed
+	health.SetHealth(currentStat.health)
+	health.SetCurrentHealth(currentStat.health)
 
 
 func _on_Health_damageTaken(currentHealth, maximumHealth):

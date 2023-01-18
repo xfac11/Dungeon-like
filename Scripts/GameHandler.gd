@@ -8,6 +8,8 @@ var _level = 0
 var coins = 0
 func AddDiscoveredItem() -> Item:
 	var newItem:Item = GetRandomHidenItem()
+	if !is_instance_valid(newItem):
+		return null
 	discoveredItems.append(newItem.name)
 	return newItem
 

@@ -31,6 +31,7 @@ func _ready() -> void:
 	_discover_item_button.get_node("Label").text = str(discover_item_cost)
 	_saveStat.coins = _coin
 	ResourceSaver.save(_saveName, _saveStat)
+	_update_discover_item()
 
 
 func _load_shop():
@@ -50,6 +51,8 @@ func _on_discover_item_pressed() -> void:
 	if discover_item_cost <= _coin:
 		_update_coins(discover_item_cost)
 		var newItem = GameHandler.AddDiscoveredItem()
+		if !is_instance_valid(newItem):
+			return
 		discover_item_cost += discover_item_cost_increase
 		_update_discover_item()
 		##Show the new item with some particles and animations
