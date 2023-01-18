@@ -1,9 +1,9 @@
 [gd_resource type="Theme" load_steps=12 format=2]
 
 [ext_resource path="res://UI/StyleWindowbox.tres" type="StyleBox" id=1]
-[ext_resource path="res://UI/button_pressed_style.tres" type="StyleBox" id=2]
-[ext_resource path="res://UI/button_normal_style.tres" type="StyleBox" id=3]
-[ext_resource path="res://UI/button_hover_style.tres" type="StyleBox" id=4]
+[ext_resource path="res://UI/ShopUI/ShopSlotButtonPressedFlat.tres" type="StyleBox" id=2]
+[ext_resource path="res://UI/ShopUI/ShopButtonNormalFlat.tres" type="StyleBox" id=3]
+[ext_resource path="res://UI/ShopUI/ShopSlotButtonHoverFlat.tres" type="StyleBox" id=4]
 [ext_resource path="res://Fonts/FontBetterPixels56.tres" type="DynamicFont" id=5]
 [ext_resource path="res://UI/ShopUI/ShopTabPanelStyle.tres" type="StyleBox" id=6]
 [ext_resource path="res://UI/ShopUI/ShopTabFgStyle.tres" type="StyleBox" id=7]

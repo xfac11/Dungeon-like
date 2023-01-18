@@ -19,9 +19,9 @@ func spawn_object(packedScene:PackedScene) -> Node2D:
 
 
 func create_exp_drop(count:int) -> Node2D:
-	if count == 5:
+	if count == 1:
 		return spawn_object(expDrop)
-	elif count == 10:
+	elif count >= 5:
 		return spawn_object(expDrop5)
 	return spawn_object(expDrop)
 

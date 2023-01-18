@@ -9,7 +9,6 @@ func _ready():
 	playerBody = get_parent()
 
 func _on_PickUpArea_body_entered(body):
-	print("Funka")
 	expInRange[body] = body
 
 

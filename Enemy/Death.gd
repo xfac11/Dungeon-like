@@ -1,7 +1,7 @@
 extends State
 class_name Death
 func Enter(object:MovementAI):
-	object.StopAnimation()
+	pass
 func Exit(object:MovementAI):
 	pass
 func InputUpdate(event, object:MovementAI, _delta):

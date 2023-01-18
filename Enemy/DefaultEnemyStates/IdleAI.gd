@@ -18,7 +18,6 @@ func Update(object:MovementAI, delta):
 	var speedMultiple = 1.0
 	if !object.MoveTowardPlayer(speedMultiple):
 		object.Move(direction,speedMultiple)
-	object.UpdateAnimation(object.velocity)
 func DamageTaken():
 	damageTaken = true
 

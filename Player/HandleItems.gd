@@ -42,7 +42,6 @@ func ShootRandomDirEach(item:Item, nrOfStacks, owner, global_transform):
 func ShootRotating(item:Item, nrOfStacks, owner, global_transform):
 	if bullets.has(item):
 		var itemBullets = bullets[item]
-		print(itemBullets.size())
 		for b in itemBullets.size():
 			var bullet = itemBullets[b]
 			if not is_instance_valid(bullet):

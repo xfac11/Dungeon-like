@@ -1,13 +1,10 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=9 format=2]
 
-[ext_resource path="res://BlinkingMaterial.tres" type="Material" id=1]
 [ext_resource path="res://StateMachine/FiniteStateMachine.gd" type="Script" id=2]
 [ext_resource path="res://Enemy/MovementAI.gd" type="Script" id=3]
 [ext_resource path="res://Enemy/DamageArea.gd" type="Script" id=4]
 [ext_resource path="res://Scripts/Health.gd" type="Script" id=5]
-[ext_resource path="res://Enemy/Enemy.tres" type="SpriteFrames" id=6]
 [ext_resource path="res://Enemy/EnemyPackStates/WalkTowards.gd" type="Script" id=7]
-[ext_resource path="res://Enemy/BloodEffect.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Enemy/Death.gd" type="Script" id=9]
 
 [sub_resource type="RectangleShape2D" id=1]
@@ -16,22 +13,14 @@ extents = Vector2( 13.3333, 9.16667 )
 [sub_resource type="CircleShape2D" id=2]
 radius = 23.3928
 
-[node name="EnemyPack" type="KinematicBody2D" groups=["ENEMIES"]]
+[node name="EnemyPack" type="KinematicBody2D" groups=[
+"ENEMIES",
+]]
 scale = Vector2( 0.6, 0.6 )
 collision_layer = 8
 collision_mask = 11
 script = ExtResource( 3 )
-DamageEffect = ExtResource( 8 )
 startStatePath = NodePath("FiniteStateMachine/WalkTowards")
-speed = 15
-
-[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
-material = ExtResource( 1 )
-position = Vector2( 3.33333, -1.66667 )
-frames = ExtResource( 6 )
-animation = "left_walk"
-frame = 1
-playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0, 4.16667 )
@@ -64,7 +53,6 @@ script = ExtResource( 7 )
 script = ExtResource( 9 )
 
 [node name="DeathTween" type="Tween" parent="."]
-
 [connection signal="damageTaken" from="Health" to="." method="_on_Health_damageTaken"]
 [connection signal="healthDepleted" from="Health" to="." method="_on_Health_healthDepleted"]
 [connection signal="body_entered" from="DamageArea" to="DamageArea" method="_on_DamageArea_body_entered"]

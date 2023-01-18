@@ -33,15 +33,16 @@ func _on_Timer_timeout():
 			continue
 		var randomPosition = randomGen.RandomRectangle(mHeight, mWidth) + global_position
 		spawn_particles(randomPosition)
-		yield(get_tree().create_timer(1.0), "timeout")
-		var enemy = SpawnObject(enemySpawnDef.enemy_scene)
-		enemySpawnDef.setup_Enemy(enemy, randomPosition)
-		var health = enemy.get_node("Health")
-		health.connect("healthDepleted", self, "DecreaseCurrentEnemies")
-		health.connect("healthDepleted", enemySpawnDef, "enemy_died")
-		currentEnemies+= 1
+		get_tree().create_timer(1.0).connect("timeout", self, "_create_enemy", [enemySpawnDef, randomPosition])
 		break
 
+func _create_enemy(enemyDefinition:SpawnDefinitons, enemyPosition:Vector2):
+	var enemy = SpawnObject(enemyDefinition.enemy_scene)
+	enemyDefinition.setup_Enemy(enemy, enemyPosition)
+	var health = enemy.get_node("Health")
+	health.connect("healthDepleted", self, "DecreaseCurrentEnemies")
+	health.connect("healthDepleted", enemyDefinition, "enemy_died")
+	currentEnemies+= 1
 
 func spawn_particles(randomPosition):
 	var spawnParticles = SpawnObject(SpawnParticlesScene)

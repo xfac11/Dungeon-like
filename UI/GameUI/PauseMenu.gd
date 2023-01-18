@@ -1,4 +1,4 @@
-extends NinePatchRect
+extends Panel
 
 signal Pause(isPaused)
 func onResumeClicked():

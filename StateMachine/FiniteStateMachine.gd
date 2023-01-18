@@ -18,8 +18,6 @@ func ProcessEvent(event, object, delta):
 		mCurrentState.Exit(object)
 		mCurrentState = state
 		mCurrentState.Enter(object)
-		if printNewState:
-			print(mCurrentState.get_name())
 
 func Update(object, delta):
 	mCurrentState.Update(object, delta)
