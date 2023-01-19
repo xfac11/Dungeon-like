@@ -1,9 +1,15 @@
 extends Control
 
 var next_scene = load("res://Scenes/GameScene.tscn")
+var startPos = Vector2.ZERO
+var endPos
+onready var tween = $Tween
 onready var options = $OptionMenu
+onready var playerTexture = $PlayerTexture
 func _ready():
 	get_tree().paused = false
+	startPos = playerTexture.rect_position
+	endPos = playerTexture.rect_position - Vector2(0.0, 50.0)
 
 func StartGame():
 	get_tree().change_scene_to(next_scene)
@@ -25,3 +31,19 @@ func _on_OptionButton_pressed():
 	DisplayOptions()
 func DisplayOptions():
 	options.visible = true
+
+
+func _on_Button_mouse_entered():
+	tween.stop_all()
+	tween.interpolate_property(
+			playerTexture, "rect_position", null, endPos,
+			0.5, Tween.TRANS_EXPO, Tween.EASE_OUT)
+	tween.start()
+
+
+func _on_Button_mouse_exited():
+	tween.stop_all()
+	tween.interpolate_property(
+			playerTexture, "rect_position", null, startPos,
+			1.0, Tween.TRANS_LINEAR, Tween.EASE_OUT)
+	tween.start()

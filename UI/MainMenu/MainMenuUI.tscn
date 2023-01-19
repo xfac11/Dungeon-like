@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://UI/ShopUI/ShopUITheme.tres" type="Theme" id=1]
 [ext_resource path="res://Fonts/BetterPixels.ttf" type="DynamicFontData" id=2]
@@ -6,21 +6,24 @@
 [ext_resource path="res://UI/MainMenu/MainMenuUI.gd" type="Script" id=4]
 [ext_resource path="res://Fonts/FontBetterPixels56.tres" type="DynamicFont" id=5]
 [ext_resource path="res://UI/OptionsMenu/OptionMenu.gd" type="Script" id=6]
+[ext_resource path="res://Enemy/EnemyKnightTexture.tres" type="Texture" id=7]
+[ext_resource path="res://Player/PlayerHoodRed.tres" type="Texture" id=8]
+[ext_resource path="res://Player/Sword.tres" type="Texture" id=9]
 
-[sub_resource type="ShaderMaterial" id=6]
+[sub_resource type="ShaderMaterial" id=1]
 
-[sub_resource type="Gradient" id=7]
+[sub_resource type="Gradient" id=2]
 offsets = PoolRealArray( 0, 0.00546448, 1 )
 colors = PoolColorArray( 0, 0, 0, 1, 0.185792, 0.185792, 0.185792, 1, 1, 1, 1, 1 )
 
-[sub_resource type="GradientTexture" id=8]
-gradient = SubResource( 7 )
+[sub_resource type="GradientTexture" id=3]
+gradient = SubResource( 2 )
 width = 512
 
-[sub_resource type="StyleBoxFlat" id=1]
+[sub_resource type="StyleBoxFlat" id=4]
 bg_color = Color( 0.6, 0.6, 0.6, 0 )
 
-[sub_resource type="DynamicFont" id=2]
+[sub_resource type="DynamicFont" id=5]
 size = 128
 outline_size = 2
 font_data = ExtResource( 2 )
@@ -30,21 +33,47 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 theme = ExtResource( 1 )
 script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="TextureRect" type="TextureRect" parent="."]
 modulate = Color( 0.243137, 0.819608, 0.752941, 1 )
-material = SubResource( 6 )
+material = SubResource( 1 )
 anchor_left = 0.5
-anchor_top = 0.5
+anchor_top = 0.7625
 anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -1018.0
-margin_top = 115.0
-margin_right = 263.0
-margin_bottom = 1680.0
-rect_rotation = -59.9999
-texture = SubResource( 8 )
+anchor_bottom = 0.7625
+margin_left = -320.0
+margin_top = 134.0
+margin_right = 180.0
+margin_bottom = 834.0
+rect_rotation = -90.0
+texture = SubResource( 3 )
 expand = true
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+anchor_left = 0.471875
+anchor_top = 0.187833
+anchor_right = 0.531875
+anchor_bottom = 0.278833
+margin_right = 26.0
+margin_bottom = 40.0
+texture = ExtResource( 7 )
+expand = true
+stretch_mode = 5
+
+[node name="PlayerTexture" type="TextureRect" parent="."]
+anchor_left = 0.865625
+anchor_top = 0.40625
+anchor_right = 0.865625
+anchor_bottom = 0.40625
+margin_right = 60.0
+margin_bottom = 60.0
+texture = ExtResource( 8 )
+expand = true
+stretch_mode = 5
+flip_h = true
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 anchor_left = 0.5
@@ -55,7 +84,7 @@ margin_left = -358.5
 margin_top = -105.0
 margin_right = 358.5
 margin_bottom = 287.0
-custom_styles/panel = SubResource( 1 )
+custom_styles/panel = SubResource( 4 )
 
 [node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
 margin_right = 717.0
@@ -96,8 +125,8 @@ margin_right = 589.0
 margin_bottom = 112.0
 size_flags_horizontal = 3
 size_flags_vertical = 7
-custom_colors/font_color = Color( 0.172549, 1, 0, 1 )
 custom_fonts/font = ExtResource( 3 )
+custom_colors/font_color = Color( 0.172549, 1, 0, 1 )
 text = "Play"
 align = 1
 valign = 1
@@ -173,8 +202,8 @@ margin_right = 620.0
 margin_bottom = 119.0
 size_flags_horizontal = 7
 size_flags_vertical = 7
+custom_fonts/font = SubResource( 5 )
 custom_colors/font_color = Color( 1, 0.6, 0, 1 )
-custom_fonts/font = SubResource( 2 )
 text = "Dungeon Like"
 align = 1
 valign = 1
@@ -235,6 +264,32 @@ text = "Options"
 align = 1
 valign = 1
 
+[node name="TextureRect3" type="TextureRect" parent="."]
+anchor_left = 0.0265625
+anchor_top = 0.127083
+anchor_right = 0.0265625
+anchor_bottom = 0.127083
+margin_right = 40.0
+margin_bottom = 40.0
+texture = ExtResource( 9 )
+expand = true
+stretch_mode = 5
+
+[node name="TextureRect4" type="TextureRect" parent="."]
+anchor_left = 0.914063
+anchor_top = 0.127083
+anchor_right = 0.914063
+anchor_bottom = 0.127083
+margin_right = 40.0
+margin_bottom = 40.0
+texture = ExtResource( 9 )
+expand = true
+stretch_mode = 5
+flip_h = true
+
+[node name="Tween" type="Tween" parent="."]
+[connection signal="mouse_entered" from="PanelContainer/MarginContainer/VBoxContainer2/MarginContainer2/Button" to="." method="_on_Button_mouse_entered"]
+[connection signal="mouse_exited" from="PanelContainer/MarginContainer/VBoxContainer2/MarginContainer2/Button" to="." method="_on_Button_mouse_exited"]
 [connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer2/MarginContainer2/Button" to="." method="_on_PlayButton_pressed"]
 [connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer2/MarginContainer3/Button" to="." method="_on_OptionButton_pressed"]
 [connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer2/MarginContainer4/Button" to="." method="_on_QuitButton_pressed"]
