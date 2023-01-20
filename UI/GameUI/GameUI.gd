@@ -1,5 +1,6 @@
 extends Control
 onready var pauseMenu = $PauseMenu
+onready var healthBar = $HPbar
 var pauses = 0
 var next_scene = preload("../MainMenu/MainMenuUI.tscn")
 func _input(event):
@@ -37,3 +38,19 @@ func _on_ChestDropper_chest_items_added(items):
 
 func _on_ItemSelect_pause(pause):
 	Pause(pause)
+
+
+func _set_health_UI(currentHealth, maximumHealth, changeAmount):
+	healthBar.update_health_UI(maximumHealth, currentHealth)
+
+
+func _on_Health_healthSet(currentHealth, maximumHealth):
+	healthBar.update_health_UI(maximumHealth, currentHealth)
+
+
+func _on_Health_healed(currentHealth, maximumHealth, healedAmount):
+	healthBar.update_health_UI(maximumHealth, currentHealth)
+
+
+func _on_Health_damageTaken(currentHealth, maximumHealth, damageAmount):
+	healthBar.update_health_UI(maximumHealth, currentHealth)

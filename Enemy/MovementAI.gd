@@ -81,7 +81,7 @@ func QueueSelf(object, key):
 	queue_free()
 
 
-func _on_Health_damageTaken(currentHealth, maximumHealth):
+func _on_Health_damageTaken(currentHealth, maximumHealth, damageAmount):
 	damage_tween.interpolate_property(sprite.material, "shader_param/blinkValue",
 		1, 0, 0.25,
 		Tween.TRANS_LINEAR, Tween.EASE_IN)

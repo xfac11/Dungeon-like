@@ -22,5 +22,5 @@ func DamageTaken():
 	damageTaken = true
 
 
-func _on_Health_damageTaken(currentHealth, maximumHealth):
+func _on_Health_damageTaken(currentHealth, maximumHealth, damageAmount):
 	DamageTaken()

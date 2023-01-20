@@ -8,6 +8,6 @@ func UpdateHealthBar(maximumHealth:float, currentHealth:float):
 func UpdateHealthText(maximumHealth:float, currentHealth:float):
 	hpText.text = String(currentHealth) + " / " + String(maximumHealth)
 
-func _on_Health_damageTaken(currentHealth, maximumHealth):
+func update_health_UI(maximumHealth:float, currentHealth:float):
 	UpdateHealthBar(maximumHealth, currentHealth)
 	UpdateHealthText(maximumHealth, currentHealth)
