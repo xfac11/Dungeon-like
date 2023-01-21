@@ -9,9 +9,9 @@ export(PackedScene)var SpawnParticlesScene
 export var mRadius = 5
 export var mWidth = 10
 export var mHeight = 10
-export var decreaseSpawnTime = 0.9
-export var secondsBetweenWaves = 30
-export var secondsBetweenSpawn = 1
+export(float, 0.0, 1.0) var decreaseSpawnTime = 0.9
+var secondsBetweenWaves = 30
+var secondsBetweenSpawn = 1
 var currentSecondsBetweenSpawn = 0
 export var pathToRoot:NodePath
 var wave = 1
@@ -71,6 +71,7 @@ func _on_WaveTimer_timeout():
 	emit_signal("NewWave",wave)
 	currentSecondsBetweenSpawn = currentSecondsBetweenSpawn * decreaseSpawnTime
 	spawnTimer.wait_time = currentSecondsBetweenSpawn
+	spawnTimer.start()
 
 # Editor drawing
 func drawRect(pos, width, height, color):

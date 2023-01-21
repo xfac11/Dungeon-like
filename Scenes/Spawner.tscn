@@ -11,8 +11,6 @@ position = Vector2( -307, 66 )
 script = ExtResource( 2 )
 mWidth = 60
 mHeight = 43
-secondsBetweenWaves = 1.0
-secondsBetweenSpawn = 0.464
 
 [node name="SpawnTimer" type="Timer" parent="."]
 wait_time = 0.464
@@ -22,6 +20,13 @@ autostart = true
 autostart = true
 
 [node name="Enemies" type="Node" parent="."]
+
+[node name="TreantNormal" type="Node" parent="Enemies"]
+script = ExtResource( 1 )
+chance = 0.01
+enemy_scene = ExtResource( 4 )
+expCount = 15
+coinCount = 5
 
 [node name="Special" type="Node" parent="Enemies"]
 script = ExtResource( 5 )
@@ -33,14 +38,8 @@ maxHealthScale = 3.0
 size = 1.3
 expCount = 5
 
-[node name="TreantNormal" type="Node" parent="Enemies"]
-script = ExtResource( 1 )
-chance = 0.1
-enemy_scene = ExtResource( 4 )
-expCount = 5
-coinCount = 5
-
 [node name="Normal" type="Node" parent="Enemies"]
 script = ExtResource( 1 )
+enemy_scene = ExtResource( 3 )
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_Timer_timeout"]
 [connection signal="timeout" from="WaveTimer" to="." method="_on_WaveTimer_timeout"]
