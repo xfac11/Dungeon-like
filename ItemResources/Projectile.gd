@@ -8,7 +8,7 @@ var forward:Vector2 = Vector2(0,-1)
 var currentTime = 0
 var theOwner setget set_theOwner
 var globalTransform
-onready var direction = Vector2(1,0).rotated(randf() * 2.0 * PI)
+var direction
 func _process(delta):
 	CalcTime(delta)
 func _physics_process(delta):
@@ -32,7 +32,7 @@ func HitBody(body):
 	queue_free()
 	
 func Movement(delta):
-	position += delta*speed*direction
+	position += delta*speed*direction.normalized()
 	
 	var angle = direction.normalized().angle_to(forward)
 	rotation = -angle
