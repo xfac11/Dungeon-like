@@ -29,6 +29,7 @@ func _ready() -> void:
 	inventory.connect("inventoryChanged",self,"ApplyStat")
 	timer.connect("timeout",self,"ProcessItems")
 	pickUpArea.SetCharacter(self)
+	inventory.AddItem("Fire Book", 1)
 
 
 func _physics_process(_delta:float) -> void:
