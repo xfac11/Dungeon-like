@@ -7,18 +7,18 @@
 [ext_resource path="res://UI/ShopUI/ShopUITheme.tres" type="Theme" id=5]
 [ext_resource path="res://UI/vboxstyle.tres" type="Theme" id=6]
 
-[sub_resource type="Theme" id=2]
+[sub_resource type="Theme" id=1]
 
-[sub_resource type="StyleBoxFlat" id=3]
+[sub_resource type="StyleBoxFlat" id=2]
 bg_color = Color( 0.929412, 0.180392, 0.180392, 1 )
 
-[sub_resource type="StyleBoxFlat" id=4]
+[sub_resource type="StyleBoxFlat" id=3]
 draw_center = false
 
-[sub_resource type="Theme" id=5]
+[sub_resource type="Theme" id=4]
 HBoxContainer/constants/separation = 4
-HBoxContainer/styles/Box = SubResource( 3 )
-Label/styles/normal = SubResource( 4 )
+HBoxContainer/styles/Box = SubResource( 2 )
+Label/styles/normal = SubResource( 3 )
 
 [node name="ShopUI" type="Control"]
 margin_right = 640.0
@@ -87,7 +87,7 @@ margin_left = 4.0
 margin_top = 52.0
 margin_right = -4.0
 margin_bottom = -4.0
-theme = SubResource( 2 )
+theme = SubResource( 1 )
 tab_align = 0
 
 [node name="GridContainer" type="GridContainer" parent="ShopTabContainer/Sword"]
@@ -112,7 +112,7 @@ margin_left = 4.0
 margin_top = 52.0
 margin_right = -4.0
 margin_bottom = -4.0
-theme = SubResource( 2 )
+theme = SubResource( 1 )
 tab_align = 0
 
 [node name="GridContainer" type="GridContainer" parent="ShopTabContainer/Player"]
@@ -136,7 +136,7 @@ margin_left = -236.0
 margin_top = 16.0
 margin_right = -18.0
 margin_bottom = 56.0
-theme = SubResource( 5 )
+theme = SubResource( 4 )
 custom_constants/separation = 0
 script = ExtResource( 3 )
 __meta__ = {
@@ -290,5 +290,4 @@ margin_right = 408.0
 margin_bottom = 56.0
 texture = ExtResource( 2 )
 expand = true
-
 [connection signal="pressed" from="StartGameButton" to="." method="_on_Button_pressed"]
