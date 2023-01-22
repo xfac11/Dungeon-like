@@ -37,7 +37,6 @@ shape = SubResource( 1 )
 
 [node name="Health" type="Node" parent="."]
 script = ExtResource( 4 )
-maximumHealth = 150
 
 [node name="DamageArea" type="Area2D" parent="."]
 collision_layer = 32

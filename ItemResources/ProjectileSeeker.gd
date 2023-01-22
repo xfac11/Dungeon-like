@@ -1,14 +1,12 @@
 extends Projectile
 
 var theTarget
-var percent:float = 0.0
-export var percentIncrease:float = 0.1
-onready var player = theOwner.get_tree().get_nodes_in_group("PLAYER")[0]
+export var turningRate:float = 0.1
 func FindNearestEnemy(var distance:float):
 	var enemies = theOwner.get_tree().get_nodes_in_group("ENEMIES")
 	var nearestEnemy
 	for enemy in enemies:
-		var enemyToPlayer:Vector2 = player.position - enemy.position
+		var enemyToPlayer:Vector2 = position - enemy.position
 		var length = enemyToPlayer.length()
 		if length < distance:
 			distance = length
@@ -22,10 +20,11 @@ func Movement(delta):
 	if not is_instance_valid(theTarget):
 		theTarget = FindNearestEnemy(100)
 	else:
-		direction += (theTarget.position - position).normalized()*percent
-		if percent < 1.0:
-			percent = percent+percentIncrease*delta
+		var toTarget = (theTarget.position - position).normalized()
+		direction += toTarget * turningRate
+		direction = direction.normalized()
 	position += delta * speed * direction
+	
+	var angle = direction.normalized().angle_to(forward)
+	rotation = -angle
 
-func CalcTime(delta):
-	return
