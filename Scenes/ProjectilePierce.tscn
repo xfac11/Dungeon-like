@@ -10,4 +10,5 @@ speed = 1000.0
 lifeTime = 4.0
 
 [node name="Sprite" parent="." index="0"]
+rotation = -0.785398
 texture = ExtResource( 3 )

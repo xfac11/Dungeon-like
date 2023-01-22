@@ -165,6 +165,9 @@ custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "2"
 align = 1
 valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="fourth" type="NinePatchRect" parent="Coins"]
 margin_left = 43.0
