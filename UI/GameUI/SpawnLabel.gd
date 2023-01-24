@@ -1,13 +1,27 @@
 extends Label
-export var waveTimer:NodePath
-onready var waveText = $Label
+var _total_seconds = 0.0
+var _total_minutes = 0.0
 func OnTick(seconds):
-	text = String(int(seconds))
-func OnNewWave(waveNumber):
-	waveText.text = String(waveNumber)
-func _process(delta):
-	OnTick(get_node(waveTimer).time_left)
+	_total_seconds+= seconds
+	if _total_seconds > 59:
+		_total_seconds -= 60
+		_total_minutes += 1
+	
+	var textString = _generate_time_text(_total_minutes, _total_seconds)
+	text = textString
 
 
-func _on_Spawner_NewWave(waveNumber):
-	OnNewWave(waveNumber)
+func _generate_time_text(minutes, seconds):
+	var text = ""
+	if minutes < 10:
+		text += "0"
+	text += String(minutes)
+	text += ":"
+	if seconds < 10:
+		text += "0"
+	text += String(seconds)
+	return text
+
+
+func _on_Timer_timeout():
+	OnTick(1)

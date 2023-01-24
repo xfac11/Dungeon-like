@@ -14,8 +14,9 @@ func init_buttons(itemNames:Array) -> void:
 	for i in range(itemNames.size()):
 		var item:Item = ItemDatabase.GetItem(itemNames[i])
 		buttons[i].itemName = item.name
+		buttons[i].itemNameLabel.text = item.name
 		buttons[i].itemTexture.texture = item.texture
-		buttons[i].hint_tooltip = item.description
+		buttons[i].itemDescription.text = item.description
 
 
 func add_item_to_inventory(name:String) -> void:

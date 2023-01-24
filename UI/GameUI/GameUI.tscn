@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://UI/GameUI/ExpUITheme.tres" type="Theme" id=1]
 [ext_resource path="res://UI/GameUI/HealthUITheme.tres" type="Theme" id=2]
@@ -6,7 +6,8 @@
 [ext_resource path="res://UI/GameUI/ItemDisplay.tscn" type="PackedScene" id=4]
 [ext_resource path="res://UI/GameUI/LevelTxtUI.gd" type="Script" id=5]
 [ext_resource path="res://UI/GameUI/BarUI.gd" type="Script" id=6]
-[ext_resource path="res://Fonts/FontBetterPixels42.tres" type="DynamicFont" id=7]
+[ext_resource path="res://Fonts/BetterPixels.ttf" type="DynamicFontData" id=7]
+[ext_resource path="res://Fonts/FontBetterPixels24.tres" type="DynamicFont" id=8]
 [ext_resource path="res://Fonts/FontBetterPixels32.tres" type="DynamicFont" id=10]
 [ext_resource path="res://UI/GameUI/HPbar.gd" type="Script" id=11]
 [ext_resource path="res://UI/GameUI/GameOver.tscn" type="PackedScene" id=12]
@@ -18,36 +19,43 @@
 [ext_resource path="res://UI/GameUI/SpawnLabel.gd" type="Script" id=24]
 [ext_resource path="res://UI/GameUI/ChestUI.gd" type="Script" id=25]
 
+[sub_resource type="DynamicFont" id=1]
+size = 42
+outline_size = 2
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 7 )
+
 [node name="UI" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+margin_left = -0.589508
+margin_top = -0.297302
+margin_right = -0.589478
+margin_bottom = -0.297302
 theme = ExtResource( 14 )
 script = ExtResource( 22 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="LevelNumber" type="ColorRect" parent="."]
+[node name="LevelNumber" type="Panel" parent="."]
 anchor_left = 0.5
 anchor_right = 0.5
-margin_left = -27.0
-margin_top = 8.0
-margin_right = 27.0
-margin_bottom = 61.0
+margin_left = -13.5
+margin_top = 6.7027
+margin_right = 13.5
+margin_bottom = 41.7027
 grow_horizontal = 2
 grow_vertical = 2
-color = Color( 0, 0, 0, 1 )
 __meta__ = {
-"_edit_group_": true
+"_edit_group_": true,
+"_edit_use_anchors_": false
 }
 
 [node name="LevelLabel" type="Label" parent="LevelNumber"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_top = 2.0
-margin_bottom = 2.0
-custom_fonts/font = ExtResource( 7 )
-custom_colors/font_color = Color( 0.952941, 0.941176, 0.262745, 1 )
+custom_fonts/font = SubResource( 1 )
 text = "1"
 align = 1
 valign = 1
@@ -56,23 +64,25 @@ script = ExtResource( 5 )
 [node name="ExpBar" type="ProgressBar" parent="LevelNumber"]
 anchor_left = 0.5
 anchor_right = 0.5
-margin_left = -150.0
-margin_top = 43.0
-margin_right = 147.0
-margin_bottom = 67.0
+margin_left = -149.5
+margin_top = 35.0
+margin_right = 147.5
+margin_bottom = 47.0
 theme = ExtResource( 1 )
+value = 8.38
 percent_visible = false
 script = ExtResource( 6 )
 
 [node name="ExpLabel" type="Label" parent="LevelNumber"]
+visible = false
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = -145.5
-margin_top = 9.0
+margin_top = 21.5
 margin_right = 35.5
-margin_bottom = 47.0
+margin_bottom = 47.5
 custom_fonts/font = ExtResource( 10 )
 text = "0"
 valign = 1
@@ -81,21 +91,25 @@ script = ExtResource( 20 )
 [node name="HPbar" type="ProgressBar" parent="."]
 margin_left = 20.0
 margin_top = 18.0
-margin_right = 195.0
-margin_bottom = 36.0
+margin_right = 161.0
+margin_bottom = 31.0
 theme = ExtResource( 2 )
 value = 100.0
 percent_visible = false
 script = ExtResource( 11 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="HPtext" type="Label" parent="HPbar"]
-anchor_top = 0.5
-anchor_bottom = 0.5
-margin_top = -13.0
-margin_right = 177.0
-margin_bottom = 13.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 3.50769
+margin_top = -0.140308
+margin_right = 3.50769
+margin_bottom = -0.140308
 size_flags_vertical = 1
-custom_fonts/font = ExtResource( 10 )
+custom_fonts/font = ExtResource( 8 )
 text = "100/100"
 valign = 1
 
@@ -103,97 +117,27 @@ valign = 1
 visible = false
 
 [node name="InventoryUI" type="NinePatchRect" parent="."]
-anchor_left = 1.0
-anchor_right = 1.0
-margin_left = -279.0
-margin_top = 18.0
-margin_right = -30.0
-margin_bottom = 50.0
+margin_left = 18.0
+margin_top = 41.0
+margin_right = 162.0
+margin_bottom = 112.0
 patch_margin_left = 2
 patch_margin_top = 2
 patch_margin_right = 2
 patch_margin_bottom = 2
 script = ExtResource( 15 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 itemDisplay = ExtResource( 4 )
 
-[node name="HBoxContainer" type="HBoxContainer" parent="InventoryUI"]
+[node name="HBoxContainer" type="GridContainer" parent="InventoryUI"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 size_flags_horizontal = 0
 size_flags_vertical = 0
-
-[node name="ItemSelect" parent="." instance=ExtResource( 3 )]
-visible = false
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-
-[node name="PauseMenu" type="Panel" parent="."]
-pause_mode = 2
-visible = false
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -144.5
-margin_top = -216.0
-margin_right = 144.5
-margin_bottom = 216.0
-script = ExtResource( 23 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="VerticalContainer" type="VBoxContainer" parent="PauseMenu"]
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-margin_left = -105.0
-margin_top = -338.0
-margin_right = 107.0
-margin_bottom = -8.0
-size_flags_vertical = 3
-theme = ExtResource( 14 )
-custom_constants/separation = -54
-
-[node name="ResumeButton" type="Button" parent="PauseMenu/VerticalContainer"]
-margin_right = 212.0
-margin_bottom = 70.0
-rect_min_size = Vector2( 0, 70 )
-size_flags_horizontal = 3
-size_flags_vertical = 2
-text = "Resume"
-
-[node name="OptionsButton" type="Button" parent="PauseMenu/VerticalContainer"]
-margin_top = 92.0
-margin_right = 212.0
-margin_bottom = 162.0
-rect_min_size = Vector2( 0, 70 )
-size_flags_horizontal = 3
-size_flags_vertical = 2
-text = "Options"
-
-[node name="QuitButton" type="Button" parent="PauseMenu/VerticalContainer"]
-margin_top = 184.0
-margin_right = 212.0
-margin_bottom = 254.0
-rect_min_size = Vector2( 0, 70 )
-size_flags_horizontal = 3
-size_flags_vertical = 2
-text = "Quit"
-
-[node name="Label" type="Label" parent="PauseMenu"]
-modulate = Color( 1, 1, 1, 0.513726 )
-margin_right = 290.0
-margin_bottom = 94.0
-theme = ExtResource( 14 )
-custom_colors/font_color = Color( 0, 0.811765, 1, 1 )
-custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
-text = "Paused"
-align = 1
-valign = 1
+custom_constants/vseparation = 11
+columns = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -201,28 +145,27 @@ __meta__ = {
 [node name="Label" type="Label" parent="."]
 anchor_left = 1.0
 anchor_right = 1.0
-margin_left = -63.0
-margin_top = 5.0
-margin_right = -21.0
-margin_bottom = 84.0
-text = "30"
+margin_left = -133.0
+margin_bottom = 85.0
+text = "00:00"
 align = 1
 valign = 1
 script = ExtResource( 24 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="Label" type="Label" parent="Label"]
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
+[node name="Timer" type="Timer" parent="Label"]
+pause_mode = 1
+autostart = true
+
+[node name="ItemSelect" parent="." instance=ExtResource( 3 )]
+visible = false
+self_modulate = Color( 1, 1, 1, 0 )
+anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -20.0
-margin_top = -32.0
-margin_right = 20.0
-margin_bottom = 6.0
-custom_colors/font_color = Color( 0.0352941, 0.976471, 0.0705882, 1 )
-text = "1"
-align = 1
-valign = 1
+margin_right = 0.0
+margin_bottom = 0.0
 
 [node name="ChestUI" type="Panel" parent="."]
 visible = false
@@ -295,8 +238,78 @@ margin_top = 175.0
 margin_right = 168.0
 margin_bottom = 213.0
 text = "OK"
+
+[node name="PauseMenu" type="Panel" parent="."]
+pause_mode = 2
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -144.5
+margin_top = -216.0
+margin_right = 144.5
+margin_bottom = 216.0
+script = ExtResource( 23 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VerticalContainer" type="VBoxContainer" parent="PauseMenu"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -105.0
+margin_top = -338.0
+margin_right = 107.0
+margin_bottom = -8.0
+size_flags_vertical = 3
+theme = ExtResource( 14 )
+custom_constants/separation = -54
+
+[node name="ResumeButton" type="Button" parent="PauseMenu/VerticalContainer"]
+margin_right = 212.0
+margin_bottom = 70.0
+rect_min_size = Vector2( 0, 70 )
+size_flags_horizontal = 3
+size_flags_vertical = 2
+text = "Resume"
+
+[node name="OptionsButton" type="Button" parent="PauseMenu/VerticalContainer"]
+margin_top = 92.0
+margin_right = 212.0
+margin_bottom = 162.0
+rect_min_size = Vector2( 0, 70 )
+size_flags_horizontal = 3
+size_flags_vertical = 2
+text = "Options"
+
+[node name="QuitButton" type="Button" parent="PauseMenu/VerticalContainer"]
+margin_top = 184.0
+margin_right = 212.0
+margin_bottom = 254.0
+rect_min_size = Vector2( 0, 70 )
+size_flags_horizontal = 3
+size_flags_vertical = 2
+text = "Quit"
+
+[node name="Label" type="Label" parent="PauseMenu"]
+modulate = Color( 1, 1, 1, 0.513726 )
+margin_right = 290.0
+margin_bottom = 94.0
+theme = ExtResource( 14 )
+custom_colors/font_color = Color( 0, 0.811765, 1, 1 )
+custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
+text = "Paused"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="timeout" from="Label/Timer" to="Label" method="_on_Timer_timeout"]
+[connection signal="Pause" from="ChestUI" to="." method="_on_ChestUI_Pause"]
+[connection signal="pressed" from="ChestUI/Button" to="ChestUI" method="_on_Button_pressed"]
 [connection signal="Pause" from="PauseMenu" to="." method="_on_PauseMenu_Pause"]
 [connection signal="pressed" from="PauseMenu/VerticalContainer/ResumeButton" to="PauseMenu" method="onResumeClicked"]
 [connection signal="pressed" from="PauseMenu/VerticalContainer/QuitButton" to="." method="_on_QuitButton_pressed"]
-[connection signal="Pause" from="ChestUI" to="." method="_on_ChestUI_Pause"]
-[connection signal="pressed" from="ChestUI/Button" to="ChestUI" method="_on_Button_pressed"]

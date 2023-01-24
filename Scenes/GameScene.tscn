@@ -57,9 +57,6 @@ pause_mode = 2
 
 [node name="UI" parent="UICanvasLayer" instance=ExtResource( 2 )]
 
-[node name="Label" parent="UICanvasLayer/UI" index="6"]
-waveTimer = NodePath("../../../Spawner/WaveTimer")
-
 [node name="WorldMap" parent="." instance=ExtResource( 6 )]
 position = Vector2( -503, -232 )
 
@@ -103,13 +100,12 @@ wait_time = 30.0
 [connection signal="gainedExperience" from="Player/ExperienceSystem" to="UICanvasLayer/UI/LevelNumber/ExpBar" method="_on_ExperienceSystem_gainedExperience"]
 [connection signal="gainedExperience" from="Player/ExperienceSystem" to="UICanvasLayer/UI/LevelNumber/ExpLabel" method="_on_ExperienceSystem_gainedExperience"]
 [connection signal="leveledup" from="Player/ExperienceSystem" to="UICanvasLayer/UI/LevelNumber/ExpBar" method="_on_ExperienceSystem_leveledup"]
-[connection signal="leveledup" from="Player/ExperienceSystem" to="UICanvasLayer/UI/LevelNumber/LevelLabel" method="_on_ExperienceSystem_leveledup"]
 [connection signal="leveledup" from="Player/ExperienceSystem" to="UICanvasLayer/UI/LevelNumber/ExpLabel" method="_on_ExperienceSystem_leveledup"]
+[connection signal="leveledup" from="Player/ExperienceSystem" to="UICanvasLayer/UI/LevelNumber/LevelLabel" method="_on_ExperienceSystem_leveledup"]
 [connection signal="damageTaken" from="Player/Health" to="UICanvasLayer/UI" method="_on_Health_damageTaken"]
 [connection signal="healed" from="Player/Health" to="UICanvasLayer/UI" method="_on_Health_healed"]
 [connection signal="healthDepleted" from="Player/Health" to="." method="_on_Health_healthDepleted"]
 [connection signal="healthSet" from="Player/Health" to="UICanvasLayer/UI" method="_on_Health_healthSet"]
-[connection signal="NewWave" from="Spawner" to="UICanvasLayer/UI/Label" method="_on_Spawner_NewWave"]
 [connection signal="spawn_coin" from="Spawner/Enemies/TreantNormal" to="CoinDropper" method="_on_spawn_coin"]
 [connection signal="spawn_exp" from="Spawner/Enemies/TreantNormal" to="ExpDropper" method="_on_Special_spawn_exp"]
 [connection signal="spawn_chest" from="Spawner/Enemies/Special" to="ChestDropper" method="_on_Special_spawn_chest"]
