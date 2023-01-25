@@ -6,7 +6,16 @@ var next_scene = preload("../MainMenu/MainMenuUI.tscn")
 func _input(event):
 	if event.is_action_pressed("exit_game"):
 		pauseMenu.visible = !pauseMenu.visible
+		pauseMenu.statsLabel.text = _generate_stats_text(get_tree().get_nodes_in_group("PLAYER")[0])
 		Pause(pauseMenu.visible)
+
+
+func _generate_stats_text(player:Player):
+	var statsText = ""
+	statsText += player.currentStat.GetStatAsString()
+	return statsText
+
+
 func Pause(pause):
 	if pause:
 		pauses+= 1

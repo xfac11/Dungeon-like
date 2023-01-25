@@ -17,3 +17,12 @@ func GetStatsAsJSON() -> String:
 	statsStr += JSON.print(itemStatDictionary, "\t")
 	
 	return statsStr
+
+
+func GetStatAsString() -> String:
+	var statStr = ""
+	statStr += "Damage: " + String(damage) + "\n"
+	statStr += "Speed: " + String(speed) + "\n"
+	statStr += "Health: " + String(health) + "\n"
+	statStr += "Armor: " + String(armor) + "\n"
+	return statStr

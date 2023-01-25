@@ -2,8 +2,9 @@ extends Button
 
 var itemName
 onready var itemTexture = $ItemTexture
-onready var itemDescription = $Panel/Label
-onready var itemNameLabel = $Panel/Label2
+onready var itemDescription = $Panel/VBoxContainer/Label
+onready var itemNameLabel = $Panel/VBoxContainer/Label2
+onready var itemStatsLabel = $Panel/VBoxContainer/Label3
 signal ItemPressed(name)
 func _ready():
 	var _unused = connect("pressed",self,"SendItem")

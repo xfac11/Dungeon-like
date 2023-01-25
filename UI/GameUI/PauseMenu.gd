@@ -1,5 +1,5 @@
 extends Panel
-
+onready var statsLabel = $StatsPanel/VBoxContainer/StatsLabel
 signal Pause(isPaused)
 func onResumeClicked():
 	visible = false
