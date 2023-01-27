@@ -15,7 +15,18 @@ func _ready() -> void:
 
 func show_items(_maxExp, _level) -> void:
 	var random_items = Array()
+	var itemsIndex = Array()
+	for i in GameHandler.discoveredItems.size():
+		var itemName = GameHandler.discoveredItems[i]
+		var itemSlot= player.inventory.GetItemByName(itemName)
+		var maxStacks = ItemDatabase.GetItem(itemName).maxStackSize
+		if itemSlot == null || itemSlot.nrOfStacks < maxStacks:
+			itemsIndex.append(i)
 	for i in 3:
-		var random_index = randi()%GameHandler.discoveredItems.size()
-		random_items.append(GameHandler.discoveredItems[random_index])
+		if itemsIndex.size() == 0:
+			random_items.append("Coins")
+		else:
+			var random_index = randi()%itemsIndex.size()
+			random_items.append(GameHandler.discoveredItems[itemsIndex[random_index]])
+			itemsIndex.remove(random_index)
 	_item_select.init_buttons(random_items)

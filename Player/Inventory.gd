@@ -44,3 +44,10 @@ func SetItems(newItems) -> void:
 func GetItem(index) -> ItemSlot:
 	return items[index]
 
+func GetItemByName(name:String) -> ItemSlot:
+	var foundItem
+	for item in items:
+		if name == item.item.name:
+			foundItem = item
+			break
+	return foundItem
