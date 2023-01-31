@@ -5,6 +5,7 @@ export var damage:int = 0
 export var speed:float = 0
 export var health:int = 0
 export var armor:int = 0
+export var healthRegen:int = 0
 func GetStatsAsJSON() -> String:
 	var statsStr:String = ""
 	
@@ -12,7 +13,8 @@ func GetStatsAsJSON() -> String:
 	"damage" : damage,
 	"speed" : speed,
 	"health" : health,
-	"armor" : armor}
+	"armor" : armor,
+	"healthRegen" : healthRegen}
 	
 	statsStr += JSON.print(itemStatDictionary, "\t")
 	
@@ -25,4 +27,13 @@ func GetStatAsString() -> String:
 	statStr += "Speed: " + String(speed) + "\n"
 	statStr += "Health: " + String(health) + "\n"
 	statStr += "Armor: " + String(armor) + "\n"
+	statStr += "Health Regeneration" + String(healthRegen) + "\n"
 	return statStr
+
+
+func AddStat(stat:Stat, stack:int = 1):
+	damage += stat.damage * stack
+	speed += stat.speed * stack
+	health += stat.health * stack
+	armor += stat.armor * stack
+	healthRegen += stat.healthRegen * stack

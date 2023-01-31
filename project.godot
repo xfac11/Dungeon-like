@@ -34,6 +34,16 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scripts/CoinDropper.gd"
 }, {
+"base": "Resource",
+"class": "DamageSource",
+"language": "GDScript",
+"path": "res://DamageSource.gd"
+}, {
+"base": "Node",
+"class": "DamageTaker",
+"language": "GDScript",
+"path": "res://DamageTaker.gd"
+}, {
 "base": "State",
 "class": "Death",
 "language": "GDScript",
@@ -255,6 +265,8 @@ _global_script_class_icons={
 "ChestDropper": "",
 "Coin": "",
 "CoinDropper": "",
+"DamageSource": "",
+"DamageTaker": "",
 "Death": "",
 "ExpDrop": "",
 "ExpDropper": "",

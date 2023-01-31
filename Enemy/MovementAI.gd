@@ -3,9 +3,13 @@ class_name MovementAI
 onready var fsm:FiniteStateMachine = $FiniteStateMachine
 onready var sprite = $Sprite
 onready var damageArea = $DamageArea
-onready var health:Health = $Health
+onready var health:Health = $DamageTaker/Health
+onready var damageTaker = $DamageTaker
 onready var damage_tween = $Tween
 onready var death_tween = $DeathTween
+onready var bleedParticles = $BleedParticles
+onready var poisonParticles = $PoisonParticles
+onready var firePartcles = $FireParticles
 onready var parent = get_parent()
 export(PackedScene) var DeathEffect
 export(NodePath) var startStatePath
@@ -15,6 +19,8 @@ var up = Vector2(0,-1)
 var down =  Vector2(0,1)
 var velocity:Vector2 = Vector2(0,0)
 export var speed:float = 50.0
+var slowedSpeed = 0.25
+var normalSpeed
 var player:Node2D
 var expOrbCount = 1
 var death = false
@@ -93,3 +99,36 @@ func SpawnObject(packedScene):
 	parent.call_deferred("add_child", object)
 	object.transform = global_transform
 	return object
+
+func _on_DamageTaker_bleedStarted():
+	bleedParticles.emitting = true
+
+
+func _on_DoTBleed_timeout():
+	bleedParticles.emitting = false
+
+
+func _on_DoTPoison_timeout():
+	poisonParticles.emitting = false
+
+
+func _on_DamageTaker_fireStarted():
+	firePartcles.emitting = true
+
+
+func _on_DamageTaker_poisonStarted():
+	poisonParticles.emitting = true
+
+
+func _on_DoTFire_timeout():
+	firePartcles.emitting = false
+
+
+func _on_DamageTaker_OnSlowed():
+	normalSpeed = speed
+	speed = slowedSpeed * speed
+	sprite.modulate = Color.blue
+
+func _on_DamageTaker_OnSlowedStop():
+	speed = normalSpeed
+	sprite.modulate = Color.white

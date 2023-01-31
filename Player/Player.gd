@@ -20,8 +20,9 @@ onready var experienceSystem:ExperienceSystem = $ExperienceSystem
 onready var sprite = $Sprite
 onready var pivot = $Pivot
 onready var timer = $Timer
-onready var health:Health = $Health
+onready var health:Health = $DamageTaker/Health
 onready var pickUpArea:PickupArea = $PickupArea
+onready var damageTaker:DamageTaker = $DamageTaker
 
 func _ready() -> void:
 	inventory.Clear()
@@ -29,7 +30,7 @@ func _ready() -> void:
 	inventory.connect("inventoryChanged",self,"ApplyStat")
 	timer.connect("timeout",self,"ProcessItems")
 	pickUpArea.SetCharacter(self)
-	inventory.AddItem("Knife", 10)
+	inventory.AddItem("Fire Book", 1)
 
 
 func _physics_process(_delta:float) -> void:
@@ -80,10 +81,12 @@ func SetBaseStat() -> void:
 	currentStat.health = baseStat.health
 	currentStat.damage = baseStat.damage
 	currentStat.speed = baseStat.speed
+	currentStat.healthRegen = baseStat.healthRegen
 	
 	currentStat.health += GameHandler.shopPlayerStat.health
 	currentStat.damage += GameHandler.shopPlayerStat.damage
 	currentStat.speed += GameHandler.shopPlayerStat.speed
+	currentStat.healthRegen += GameHandler.shopPlayerStat.healthRegen
 	health.SetHealth(currentStat.health)
 	health.SetCurrentHealth(currentStat.health)
 
@@ -94,3 +97,15 @@ func _on_Health_damageTaken(currentHealth, maximumHealth, damageAmount):
 		1, 0, 0.25,
 		Tween.TRANS_LINEAR, Tween.EASE_IN)
 	tween.start()
+	$DamageTimer.start()
+	$HPRegTimer.stop()
+
+
+func _on_HPRegTimer_timeout():
+	health.Heal(currentStat.healthRegen)
+	if health.currentHealth == health.maximumHealth:
+		$HPRegTimer.stop()
+
+
+func _on_DamageTimer_timeout():
+	$HPRegTimer.start()

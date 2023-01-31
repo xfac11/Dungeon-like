@@ -39,7 +39,7 @@ func _on_Timer_timeout():
 func _create_enemy(enemyDefinition:SpawnDefinitons, enemyPosition:Vector2):
 	var enemy = SpawnObject(enemyDefinition.enemy_scene)
 	enemyDefinition.setup_Enemy(enemy, enemyPosition)
-	var health = enemy.get_node("Health")
+	var health = enemy.health
 	health.connect("healthDepleted", self, "DecreaseCurrentEnemies")
 	health.connect("healthDepleted", enemyDefinition, "enemy_died")
 	currentEnemies+= 1

@@ -128,9 +128,7 @@ func _set_player_shop_stat() -> void:
 	var stat:Stat = Stat.new()
 	for slot in _shop_tab.get_node("Player"+"/GridContainer").get_children():
 		var shopSlotUI:ShopSlotButton = slot
-		stat.health += shopSlotUI.shopSlot.stat.health * shopSlotUI.stack
-		stat.speed += shopSlotUI.shopSlot.stat.speed * shopSlotUI.stack
-		stat.damage += shopSlotUI.shopSlot.stat.damage * shopSlotUI.stack
+		stat.AddStat(shopSlotUI.shopSlot.stat, shopSlotUI.stack)
 		_saveStat.stacks[shopSlotUI.shopSlot.resource_path] = shopSlotUI.stack
 	GameHandler.shopPlayerStat = stat
 
@@ -143,9 +141,7 @@ func _set_sword_shop_stat() -> void:
 		_saveStat.stacks[shopSlotUI.shopSlot.resource_path] = shopSlotUI.stack
 		if !is_instance_valid(shopSlotStat):
 			continue
-		stat.health += shopSlotStat.health * shopSlotUI.stack
-		stat.speed += shopSlotStat.speed * shopSlotUI.stack
-		stat.damage += shopSlotStat.damage * shopSlotUI.stack
+		stat.AddStat(shopSlotStat, shopSlotUI.stack)
 	GameHandler.shopSwordStat = stat
 
 

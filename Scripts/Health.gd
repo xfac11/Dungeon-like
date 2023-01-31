@@ -9,10 +9,19 @@ var armor = 0
 export var maximumHealth = 100
 var currentHealth = maximumHealth
 var dead:bool = false
-onready var parent = get_parent()
+onready var parent = get_parent().get_parent()
 func _ready():
 	currentHealth = maximumHealth
 
+
+func TakeDotDamage(damage:int):
+	if dead:
+		return
+	currentHealth -= max(damage-armor, 0)
+	if currentHealth <= 0:
+		currentHealth = 0
+		emit_signal("healthDepleted", parent)
+		dead = true
 
 func TakeDamage(damage:int):
 	if dead:

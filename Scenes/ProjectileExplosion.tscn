@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://ItemResources/ProjectileExplosion.gd" type="Script" id=1]
 [ext_resource path="res://ExplosionParticlesMaterial.tres" type="Material" id=2]
 [ext_resource path="res://RectangleBlurred.png" type="Texture" id=3]
+[ext_resource path="res://ProjectileExplosionDamageSrc.tres" type="Resource" id=4]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 14.6818
@@ -16,6 +17,7 @@ script = ExtResource( 1 )
 speed = 0.0
 lifeTime = 1.0
 damage = 50
+damageSrc = ExtResource( 4 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )

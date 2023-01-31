@@ -63,3 +63,7 @@ func _on_Health_healed(currentHealth, maximumHealth, healedAmount):
 
 func _on_Health_damageTaken(currentHealth, maximumHealth, damageAmount):
 	healthBar.update_health_UI(maximumHealth, currentHealth)
+
+
+func _on_Health_healthDepleted(parent):
+	pass # Replace with function body.

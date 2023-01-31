@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=2]
+
+[sub_resource type="Gradient" id=9]
+offsets = PoolRealArray( 0, 0.303704, 0.592593, 1 )
+colors = PoolColorArray( 1, 1, 1, 1, 1, 0.961548, 0.015625, 1, 0.658824, 0.0117647, 0.0117647, 1, 0, 0, 0, 0 )
+
+[sub_resource type="GradientTexture" id=10]
+gradient = SubResource( 9 )
+
+[sub_resource type="ParticlesMaterial" id=11]
+emission_shape = 1
+emission_sphere_radius = 4.0
+flag_disable_z = true
+direction = Vector3( 0, -1, 0 )
+spread = 25.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 15.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+scale = 3.0
+scale_random = 0.5
+color_ramp = SubResource( 10 )
+
+[node name="FireParticles" type="Particles2D"]
+position = Vector2( 0.397293, 0.529728 )
+emitting = false
+amount = 16
+local_coords = false
+process_material = SubResource( 11 )

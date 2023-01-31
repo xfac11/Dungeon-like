@@ -25,6 +25,9 @@ margin_right = 640.0
 margin_bottom = 480.0
 theme = ExtResource( 6 )
 script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 shop_slot_button = ExtResource( 4 )
 
 [node name="DiscoverItemButton" type="Button" parent="."]
@@ -72,12 +75,13 @@ expand = true
 anchor_top = 0.5
 anchor_bottom = 0.5
 margin_left = 16.0
-margin_top = -232.0
-margin_right = 368.0
-margin_bottom = 195.0
+margin_top = -225.0
+margin_right = 347.0
+margin_bottom = 221.0
 tab_align = 0
 __meta__ = {
-"_edit_group_": true
+"_edit_group_": true,
+"_edit_use_anchors_": false
 }
 
 [node name="Sword" type="Tabs" parent="ShopTabContainer"]
@@ -91,18 +95,23 @@ theme = SubResource( 1 )
 tab_align = 0
 
 [node name="GridContainer" type="GridContainer" parent="ShopTabContainer/Sword"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 5.0
-margin_top = 5.0
-margin_right = -5.0
-margin_bottom = -5.0
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -156.5
+margin_top = -184.0
+margin_right = 156.5
+margin_bottom = 184.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme = ExtResource( 5 )
 custom_constants/vseparation = 10
 custom_constants/hseparation = 10
 columns = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Player" type="Tabs" parent="ShopTabContainer"]
 visible = false
@@ -285,6 +294,9 @@ margin_bottom = 22.0
 theme = ExtResource( 5 )
 custom_colors/font_color = Color( 0.286275, 1, 0.345098, 1 )
 text = "Start"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="TextureRect" type="TextureRect" parent="."]
 margin_left = 368.0

@@ -2,13 +2,13 @@ class_name ProjectileExplosion
 extends Projectile
 onready var particles = $Particles2D
 onready var sprite = $Sprite
-
+export var damageSrc:Resource
 func Movement(delta):
 	return##NO movement
 
 
 func HitBody(body):
-	body.health.TakeDamage(damage)
+	body.damageTaker.ResolveHit(damageSrc)
 
 
 func _on_SpriteTimer_timeout():

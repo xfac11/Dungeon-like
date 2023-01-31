@@ -6,6 +6,7 @@ onready var line2D = $Node/Line2D
 var swordStatResource = load("res://Stats/SwordStat.tres")
 var baseStat:Stat = swordStatResource
 var currentStat:Stat = Stat.new()
+var dmgSrc = DamageSource.new()
 var switchAnim = 0
 func _ready() -> void:
 	SetBaseStat()
@@ -19,6 +20,7 @@ func SetBaseStat() -> void:
 	currentStat.damage += GameHandler.shopSwordStat.damage
 	currentStat.speed += GameHandler.shopSwordStat.speed
 	
+	dmgSrc.physical = currentStat.damage
 	timer.wait_time = 1.0/currentStat.speed
 	
 
@@ -33,9 +35,9 @@ func _on_Timer_timeout() -> void:
 		switchAnim = 1
 
 func _on_MeleeWeapon_body_entered(body) -> void:
-	var health = body.get_node("Health")
+	var health = body.damageTaker
 	if health:
-		health.TakeDamage(currentStat.damage)
+		health.ResolveHit(dmgSrc)
 
 func AddLine():
 	var pos = $CPUParticles2D.global_position

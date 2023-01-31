@@ -1,17 +1,21 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://Enemy/EnemyKnightTexture.tres" type="Texture" id=1]
 [ext_resource path="res://Enemy/MovementAI.gd" type="Script" id=2]
 [ext_resource path="res://Enemy/Death.gd" type="Script" id=3]
 [ext_resource path="res://Scripts/Health.gd" type="Script" id=4]
 [ext_resource path="res://Enemy/DamageArea.gd" type="Script" id=5]
+[ext_resource path="res://DamageTaker.tscn" type="PackedScene" id=6]
 [ext_resource path="res://BlinkingMaterial.tres" type="Material" id=7]
 [ext_resource path="res://Enemy/DefaultEnemyStates/IdleAI.gd" type="Script" id=8]
 [ext_resource path="res://StateMachine/FiniteStateMachine.gd" type="Script" id=9]
 [ext_resource path="res://Enemy/DefaultEnemyStates/Staggered.gd" type="Script" id=10]
 [ext_resource path="res://Enemy/Particles2D.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Enemy/BleedParticles.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Enemy/FireParticles.tscn" type="PackedScene" id=13]
+[ext_resource path="res://Enemy/PoisonParticles.tscn" type="PackedScene" id=14]
 
-[sub_resource type="RectangleShape2D" id=1]
+[sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 6.10052, 8.12974 )
 
 [sub_resource type="RectangleShape2D" id=2]
@@ -31,14 +35,24 @@ speed = 20.0
 material = ExtResource( 7 )
 texture = ExtResource( 1 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( -1.98682e-07, 1.98682e-07 )
-shape = SubResource( 1 )
+[node name="FireParticles" parent="." instance=ExtResource( 13 )]
 
-[node name="Health" type="Node" parent="."]
+[node name="BleedParticles" parent="." instance=ExtResource( 12 )]
+
+[node name="PoisonParticles" parent="." instance=ExtResource( 14 )]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2( -1.98682e-07, 1.98682e-07 )
+shape = SubResource( 3 )
+
+[node name="DamageTaker" parent="." instance=ExtResource( 6 )]
+
+[node name="Health" type="Node" parent="DamageTaker"]
 script = ExtResource( 4 )
 
 [node name="DamageArea" type="Area2D" parent="."]
+visible = false
 collision_layer = 32
 collision_mask = 2
 script = ExtResource( 5 )
@@ -66,9 +80,19 @@ staggeredSeconds = 0.25
 script = ExtResource( 3 )
 
 [node name="DeathTween" type="Tween" parent="."]
-[connection signal="damageTaken" from="Health" to="." method="_on_Health_damageTaken"]
-[connection signal="damageTaken" from="Health" to="FiniteStateMachine/IdleAI" method="_on_Health_damageTaken"]
-[connection signal="healthDepleted" from="Health" to="." method="_on_Health_healthDepleted"]
+[connection signal="OnSlowed" from="DamageTaker" to="." method="_on_DamageTaker_OnSlowed"]
+[connection signal="OnSlowedStop" from="DamageTaker" to="." method="_on_DamageTaker_OnSlowedStop"]
+[connection signal="bleedStarted" from="DamageTaker" to="." method="_on_DamageTaker_bleedStarted"]
+[connection signal="fireStarted" from="DamageTaker" to="." method="_on_DamageTaker_fireStarted"]
+[connection signal="poisonStarted" from="DamageTaker" to="." method="_on_DamageTaker_poisonStarted"]
+[connection signal="timeout" from="DamageTaker/DoTFire" to="." method="_on_DoTFire_timeout"]
+[connection signal="timeout" from="DamageTaker/DoTPoison" to="." method="_on_DoTPoison_timeout"]
+[connection signal="timeout" from="DamageTaker/DoTBleed" to="." method="_on_DoTBleed_timeout"]
+[connection signal="damageTaken" from="DamageTaker/Health" to="FiniteStateMachine/IdleAI" method="_on_Health_damageTaken"]
+[connection signal="damageTaken" from="DamageTaker/Health" to="." method="_on_Health_damageTaken"]
+[connection signal="healthDepleted" from="DamageTaker/Health" to="." method="_on_Health_healthDepleted"]
 [connection signal="body_entered" from="DamageArea" to="DamageArea" method="_on_DamageArea_body_entered"]
 [connection signal="body_exited" from="DamageArea" to="DamageArea" method="_on_DamageArea_body_exited"]
 [connection signal="timeout" from="DamageArea/Timer" to="DamageArea" method="_on_Timer_timeout"]
+
+[editable path="DamageTaker"]

@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=2]
+
+[sub_resource type="Gradient" id=4]
+colors = PoolColorArray( 1, 0.0666667, 0, 1, 0, 0, 0, 0 )
+
+[sub_resource type="GradientTexture" id=5]
+gradient = SubResource( 4 )
+
+[sub_resource type="ParticlesMaterial" id=1]
+flag_disable_z = true
+spread = 35.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 120.46
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+scale = 3.0
+scale_random = 0.5
+color_ramp = SubResource( 5 )
+
+[node name="BleedParticles" type="Particles2D"]
+emitting = false
+lifetime = 0.3
+local_coords = false
+process_material = SubResource( 1 )

@@ -7,3 +7,5 @@ script = ExtResource( 1 )
 damage = 25
 speed = 40.0
 health = 100
+armor = 0
+healthRegen = 0
