@@ -45,20 +45,8 @@ func _create_enemy(enemyDefinition:SpawnDefinitons, enemyPosition:Vector2):
 	var health:Health = enemy.health
 	health.connect("healthDepleted", self, "DecreaseCurrentEnemies")
 	health.connect("healthDepleted", enemyDefinition, "enemy_died")
-	enemy.damageTaker.connect("damageTaken", self, "text_popup")
+	enemy.damageTaker.connect("damageTaken", enemyDefinition, "enemy_damaged")
 	currentEnemies+= 1
-
-
-func text_popup(damageAmount, isCrit, parent):
-	var text2DTimer:Text2DTimer = SpawnObject(text2DScene, get_node(vfxOverAllPath))
-	text2DTimer.position = parent.global_position
-	var text2D:Text2D = text2DTimer.text2D
-	text2DTimer.animation = "PopupFadeOut"
-	if isCrit:
-		text2D.font_color = Color.yellow
-		text2DTimer.animation = "PopupFadeOutCrit"
-	text2D.text = damageAmount
-	text2DTimer.start_animation()
 
 
 func spawn_particles(randomPosition):

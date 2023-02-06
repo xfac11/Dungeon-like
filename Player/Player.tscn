@@ -159,6 +159,7 @@ speed = 10.0
 script = ExtResource( 4 )
 
 [node name="DamageTaker" parent="." instance=ExtResource( 10 )]
+dodge = 0.75
 
 [node name="Health" type="Node" parent="DamageTaker"]
 script = ExtResource( 5 )

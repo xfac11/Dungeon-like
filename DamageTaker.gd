@@ -6,8 +6,8 @@ signal poisonStarted()
 signal fireStarted()
 signal OnSlowed()
 signal OnSlowedStop()
-signal dodged()
-signal blocked()
+signal dodged(parent)
+signal blocked(parent)
 signal damageTaken(damage, isCrit, parent)
 
 onready var dotFire:Timer = $DoTFire
@@ -72,10 +72,10 @@ func DoIgniteDamage():
 func ResolveHit(damageSrc:DamageSource) -> void:
 	var damage:float = 0.0
 	if Roll(min(dodge, DODGECAP)):
-		emit_signal("dodged")
+		emit_signal("dodged", get_parent())
 		return
 	if Roll(min(block, BLOCKCAP)):
-		emit_signal("blocked")
+		emit_signal("blocked", get_parent())
 		return##stun animation
 	var crit = Roll(damageSrc.criticalChance)
 	var critAsFloat = float(crit)
