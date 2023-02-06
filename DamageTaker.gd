@@ -8,6 +8,8 @@ signal OnSlowed()
 signal OnSlowedStop()
 signal dodged()
 signal blocked()
+signal damageTaken(damage, isCrit, parent)
+
 onready var dotFire:Timer = $DoTFire
 onready var dotPoison:Timer = $DoTPoison
 onready var dotBleed:Timer = $DoTBleed
@@ -105,7 +107,7 @@ func ResolveHit(damageSrc:DamageSource) -> void:
 			if slowTimer.is_stopped():
 				Slow()
 		damage+= coldDamage
-	
+	emit_signal("damageTaken", damage, crit, get_parent())
 	health.TakeDamage(damage)
 func Slow():
 	slowTimer.start()

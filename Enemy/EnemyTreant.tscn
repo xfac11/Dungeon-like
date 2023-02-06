@@ -1,6 +1,6 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=23 format=2]
 
-[ext_resource path="res://BuchOpenGameArt/tiles_packed.png" type="Texture" id=1]
+[ext_resource path="res://Enemy/EnemyTreantTexture1.tres" type="Texture" id=1]
 [ext_resource path="res://Enemy/MovementAI.gd" type="Script" id=2]
 [ext_resource path="res://Enemy/Death.gd" type="Script" id=3]
 [ext_resource path="res://Scripts/Health.gd" type="Script" id=4]
@@ -14,6 +14,7 @@
 [ext_resource path="res://Enemy/BleedParticles.tscn" type="PackedScene" id=12]
 [ext_resource path="res://Enemy/FireParticles.tscn" type="PackedScene" id=13]
 [ext_resource path="res://Enemy/PoisonParticles.tscn" type="PackedScene" id=14]
+[ext_resource path="res://Enemy/EnemyTreantTexture2.tres" type="Texture" id=15]
 
 [sub_resource type="Gradient" id=1]
 offsets = PoolRealArray( 0, 0.846154, 1 )
@@ -34,8 +35,11 @@ trail_size_modifier = SubResource( 4 )
 trail_color_modifier = SubResource( 2 )
 emission_shape = 1
 emission_sphere_radius = 15.0
+flag_rotate_y = true
 flag_disable_z = true
 gravity = Vector3( 0, 98, 0 )
+angular_velocity = 15.0
+angular_velocity_random = 1.0
 orbit_velocity = 0.0
 orbit_velocity_random = 0.0
 damping = 90.0
@@ -43,25 +47,16 @@ scale = 2.0
 scale_random = 1.0
 color = Color( 0.470588, 0.705882, 0.32549, 1 )
 
-[sub_resource type="AtlasTexture" id=6]
-atlas = ExtResource( 1 )
-region = Rect2( 192, 0, 64, 48 )
-
-[sub_resource type="AtlasTexture" id=7]
-atlas = ExtResource( 1 )
-region = Rect2( 208, 48, 32, 16 )
-
-[sub_resource type="RectangleShape2D" id=8]
+[sub_resource type="RectangleShape2D" id=6]
 extents = Vector2( 10, 5.83334 )
 
-[sub_resource type="CircleShape2D" id=9]
+[sub_resource type="CircleShape2D" id=7]
 radius = 15.0
 
 [node name="EnemyTreant" type="KinematicBody2D" groups=[
 "ENEMIES",
 ]]
 scale = Vector2( 0.6, 0.6 )
-z_index = 5
 collision_layer = 8
 collision_mask = 10
 script = ExtResource( 2 )
@@ -77,11 +72,11 @@ process_material = SubResource( 5 )
 
 [node name="Sprite" type="Sprite" parent="."]
 material = ExtResource( 7 )
-texture = SubResource( 6 )
+texture = ExtResource( 1 )
 
 [node name="Sprite2" type="Sprite" parent="Sprite"]
-position = Vector2( 0, 31.6666 )
-texture = SubResource( 7 )
+position = Vector2( 0, 29.9999 )
+texture = ExtResource( 15 )
 
 [node name="FireParticles" parent="." instance=ExtResource( 13 )]
 
@@ -91,7 +86,7 @@ texture = SubResource( 7 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 7.94729e-07, 29.1667 )
-shape = SubResource( 8 )
+shape = SubResource( 6 )
 
 [node name="DamageTaker" parent="." instance=ExtResource( 6 )]
 
@@ -107,7 +102,7 @@ damage = 50
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DamageArea"]
 position = Vector2( 0, 21.6667 )
-shape = SubResource( 9 )
+shape = SubResource( 7 )
 
 [node name="Timer" type="Timer" parent="DamageArea"]
 wait_time = 2.0

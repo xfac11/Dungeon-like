@@ -2,7 +2,6 @@ class_name ProjectileExplosion
 extends Projectile
 onready var particles = $Particles2D
 onready var sprite = $Sprite
-export var damageSrc:Resource
 func Movement(delta):
 	return##NO movement
 

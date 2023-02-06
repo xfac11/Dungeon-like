@@ -6,6 +6,9 @@ onready var spawnTimer = $SpawnTimer
 onready var waveTimer = $WaveTimer
 onready var enemyDefs = $Enemies.get_children()
 export(PackedScene)var SpawnParticlesScene
+export(PackedScene)var text2DScene
+export(NodePath)var vfxOverAllPath
+export(NodePath)var enemiesPath
 export var mRadius = 5
 export var mWidth = 10
 export var mHeight = 10
@@ -37,23 +40,37 @@ func _on_Timer_timeout():
 		break
 
 func _create_enemy(enemyDefinition:SpawnDefinitons, enemyPosition:Vector2):
-	var enemy = SpawnObject(enemyDefinition.enemy_scene)
+	var enemy = SpawnObject(enemyDefinition.enemy_scene, get_node(enemiesPath))
 	enemyDefinition.setup_Enemy(enemy, enemyPosition)
-	var health = enemy.health
+	var health:Health = enemy.health
 	health.connect("healthDepleted", self, "DecreaseCurrentEnemies")
 	health.connect("healthDepleted", enemyDefinition, "enemy_died")
+	enemy.damageTaker.connect("damageTaken", self, "text_popup")
 	currentEnemies+= 1
 
+
+func text_popup(damageAmount, isCrit, parent):
+	var text2DTimer:Text2DTimer = SpawnObject(text2DScene, get_node(vfxOverAllPath))
+	text2DTimer.position = parent.global_position
+	var text2D:Text2D = text2DTimer.text2D
+	text2DTimer.animation = "PopupFadeOut"
+	if isCrit:
+		text2D.font_color = Color.yellow
+		text2DTimer.animation = "PopupFadeOutCrit"
+	text2D.text = damageAmount
+	text2DTimer.start_animation()
+
+
 func spawn_particles(randomPosition):
-	var spawnParticles = SpawnObject(SpawnParticlesScene)
+	var spawnParticles = SpawnObject(SpawnParticlesScene, get_parent())
 	spawnParticles.position = randomPosition
 	spawnParticles.emitting = true
 
 
-func SpawnObject(packedScene):
+func SpawnObject(packedScene, parent):
 	var object = packedScene.instance()
-	get_parent().add_child(object)
-	object.transform = get_parent().transform
+	parent.add_child(object)
+	object.transform = parent.transform
 	return object
 
 

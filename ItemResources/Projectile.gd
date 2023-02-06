@@ -4,6 +4,7 @@ class_name Projectile
 export(float) var speed:float = 100.0
 export(float) var lifeTime:float = 10.0
 export(int) var damage:int = 10
+export var damageSrc:Resource
 var forward:Vector2 = Vector2(0,-1)
 var currentTime = 0
 var theOwner setget set_theOwner

@@ -249,6 +249,16 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://StateMachine/States/State.gd"
 }, {
+"base": "Node2D",
+"class": "Text2D",
+"language": "GDScript",
+"path": "res://UI/Text2D.gd"
+}, {
+"base": "Node2D",
+"class": "Text2DTimer",
+"language": "GDScript",
+"path": "res://UI/Text2DTimer.gd"
+}, {
 "base": "State",
 "class": "Walk",
 "language": "GDScript",
@@ -308,6 +318,8 @@ _global_script_class_icons={
 "Staggered": "",
 "Stat": "",
 "State": "",
+"Text2D": "",
+"Text2DTimer": "",
 "Walk": "",
 "WalkTowards": ""
 }

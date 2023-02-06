@@ -72,15 +72,15 @@ func _process(delta):
 
 func _on_Health_healthDepleted(parent):
 	death = true
-	sprite.material.set_shader_param("hor_index", 0)
+	#sprite.material.set_shader_param("hor_index", 0)
 	var verIndex = 0.0
-	sprite.material.set_shader_param("ver_index", verIndex);
+	#sprite.material.set_shader_param("ver_index", verIndex);
 	death_tween.interpolate_property(sprite.material, "shader_param/noiseEffectivenes",
-		0, 0.6, 0.8,
+		0, 0.6, 0.5,
 		Tween.TRANS_LINEAR, Tween.EASE_IN)
 	death_tween.start()
 	death_tween.connect("tween_completed",self,"QueueSelf")
-	SpawnObject(DeathEffect).emitting = true
+	#SpawnObject(DeathEffect).emitting = true
 
 
 func QueueSelf(object, key):
