@@ -21,6 +21,7 @@ func SetBaseStat() -> void:
 	currentStat.speed += GameHandler.shopSwordStat.speed
 	
 	dmgSrc.physical = currentStat.damage
+	dmgSrc.item = baseStat
 	timer.wait_time = 1.0/currentStat.speed
 	
 

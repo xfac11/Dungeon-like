@@ -1,8 +1,27 @@
-[gd_resource type="Resource" load_steps=4 format=2]
+[gd_resource type="Resource" load_steps=6 format=2]
 
 [ext_resource path="res://ItemResources/Item.gd" type="Script" id=1]
 [ext_resource path="res://Textures/Axe.tres" type="Texture" id=2]
 [ext_resource path="res://Scenes/ProjectileAxe.tscn" type="PackedScene" id=3]
+[ext_resource path="res://ItemResources/ItemStat.gd" type="Script" id=4]
+
+[sub_resource type="Resource" id=1]
+script = ExtResource( 4 )
+damage = 25
+speed = 0.0
+health = 0
+armor = 0
+healthRegen = 0
+criticalChance = 0.0
+criticalDamage = 0.0
+stackable = true
+maxStackSize = 10
+frequency = 0
+lifetime = 0
+projectileSpeed = 100.0
+damageType = 1
+shootingType = 0
+itemType = 0
 
 [resource]
 script = ExtResource( 1 )
@@ -19,6 +38,7 @@ speed = 0.0
 projectileSpeed = 100.0
 texture = ExtResource( 2 )
 projectilePS = ExtResource( 3 )
+itemStat = SubResource( 1 )
 damageType = 1
 shootingType = 0
 itemType = 0

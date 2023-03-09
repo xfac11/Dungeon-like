@@ -20,7 +20,7 @@ func create_text(fontColor, position, animation, text):
 	text2D_timer.start_animation()
 
 
-func damage_popup(damageAmount, isCrit, parent):
+func damage_popup(damageAmount, isCrit, parent, damageSrc):
 	if isCrit:
 		create_text(Color.yellow, parent.global_position, "PopupFadeOutCrit", damageAmount)
 	else:

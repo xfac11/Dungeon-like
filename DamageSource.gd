@@ -1,6 +1,6 @@
 extends Resource
 class_name DamageSource
-
+var item
 export var cold:float = 0
 
 export var fire:float = 0

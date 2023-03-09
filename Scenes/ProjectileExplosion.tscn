@@ -45,6 +45,7 @@ autostart = true
 wait_time = 0.025
 one_shot = true
 autostart = true
+
 [connection signal="body_entered" from="." to="." method="_on_Projectile_body_entered"]
 [connection signal="timeout" from="SpriteTimer" to="." method="_on_SpriteTimer_timeout"]
 [connection signal="timeout" from="ParticleTimer" to="." method="_on_ParticleTimer_timeout"]

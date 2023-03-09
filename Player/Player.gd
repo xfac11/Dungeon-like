@@ -1,11 +1,6 @@
 class_name Player
 extends KinematicBody2D
 
-
-const right = Vector2(1,0)
-const left = Vector2(-1,0)
-const up = Vector2(0,-1)
-const down =  Vector2(0,1)
 const ItemTypeResource = preload("res://ItemResources/ItemType.gd")
 
 var inventoryResource = preload("res://Player/Inventory.gd")
@@ -30,7 +25,6 @@ func _ready() -> void:
 	inventory.connect("inventoryChanged",self,"ApplyStat")
 	timer.connect("timeout",self,"ProcessItems")
 	pickUpArea.SetCharacter(self)
-	inventory.AddItem("Fire Book", 1)
 
 
 func _physics_process(_delta:float) -> void:
@@ -71,10 +65,9 @@ func ProcessItems() -> void:
 
 func ApplyStat(_items:Array, newItemName:String, stacks:int) -> void:
 	var item:Item = ItemDatabase.GetItem(newItemName)
-	currentStat.health += item.health*stacks
-	currentStat.speed += item.speed*stacks
-	currentStat.armor += item.armor*stacks
-	health.SetHealth(currentStat.health)
+	if item.itemType == ItemTypeResource.ItemType.PASSIVE:
+		currentStat.AddStat(item.itemStat, stacks)
+		health.SetHealth(currentStat.health)
 
 
 func SetBaseStat() -> void:
@@ -83,10 +76,7 @@ func SetBaseStat() -> void:
 	currentStat.speed = baseStat.speed
 	currentStat.healthRegen = baseStat.healthRegen
 	
-	currentStat.health += GameHandler.shopPlayerStat.health
-	currentStat.damage += GameHandler.shopPlayerStat.damage
-	currentStat.speed += GameHandler.shopPlayerStat.speed
-	currentStat.healthRegen += GameHandler.shopPlayerStat.healthRegen
+	currentStat.AddStat(GameHandler.shopPlayerStat, 1)
 	health.SetHealth(currentStat.health)
 	health.SetCurrentHealth(currentStat.health)
 

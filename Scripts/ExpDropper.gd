@@ -21,7 +21,6 @@ func spawn_object(packedScene:PackedScene) -> Node2D:
 func create_exp_drop(count:int) -> Node2D:
 	var newExpDrop:ExpDrop = spawn_object(expDrop)
 	var scale:float = 0.5 + 0.1 * count
-	print(scale)
 	newExpDrop.scale = Vector2(scale, scale)
 	newExpDrop.value = count
 	return newExpDrop

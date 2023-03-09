@@ -16,30 +16,33 @@ func Shoot(item:Item, nrOfStacks:int, owner, global_transform):
 			ShootTowardEnemy(item, nrOfStacks, owner, global_transform)
 		
 func ShootRandomDir(item:Item, nrOfStacks, owner, global_transform):
+	var player = owner.get_tree().get_nodes_in_group("PLAYER")[0]
 	var direction = directions[randi()% directions.size()]
 	for n in nrOfStacks:
 		var newBullet = item.projectilePS.instance()
 		owner.add_child(newBullet)
 		newBullet.transform = global_transform
-		newBullet.damage = item.damage
+		newBullet.damageSrc = create_damage_source(newBullet, item, player, nrOfStacks)
 		newBullet.SetDirection(direction)
 		newBullet.theOwner = owner
 		newBullet.globalTransform = global_transform
 		direction = directions[randi()% directions.size()]
 
 func ShootRandomDirEach(item:Item, nrOfStacks, owner, global_transform):
+	var player = owner.get_tree().get_nodes_in_group("PLAYER")[0]
 	var direction = directions[randi()% directions.size()]
 	for n in nrOfStacks:
 		var newBullet = item.projectilePS.instance()
 		owner.add_child(newBullet)
 		newBullet.theOwner = owner
 		newBullet.transform = global_transform
-		newBullet.damage = item.damage
-		newBullet.speed = item.projectileSpeed
+		newBullet.damageSrc = create_damage_source(newBullet, item, player, nrOfStacks)
+		newBullet.speed = item.itemStat.projectileSpeed
 		newBullet.SetDirection(direction)
 		direction = direction.rotated(0.3)
 
 func ShootRotating(item:Item, nrOfStacks, owner, global_transform):
+	var player = owner.get_tree().get_nodes_in_group("PLAYER")[0]
 	if bullets.has(item):
 		var itemBullets = bullets[item]
 		for b in itemBullets.size():
@@ -56,8 +59,8 @@ func ShootRotating(item:Item, nrOfStacks, owner, global_transform):
 		bullets[item] = []
 		bullets[item].append(newBullet)
 	newBullet.transform = global_transform
-	newBullet.damage = item.damage * nrOfStacks
-	newBullet.speed = item.projectileSpeed
+	newBullet.damageSrc = create_damage_source(newBullet, item, player, nrOfStacks)
+	newBullet.speed = item.itemStat.projectileSpeed
 	newBullet.theOwner = owner
 	owner.add_child(newBullet)
 	newBullet.SetDirection(Vector2(0,-1))
@@ -65,12 +68,13 @@ func ShootRotating(item:Item, nrOfStacks, owner, global_transform):
 
 func ShootSpray(item:Item, nrOfStacks, owner, global_transform):
 	var direction = directions[randi()% directions.size()]
+	var player = owner.get_tree().get_nodes_in_group("PLAYER")[0]
 	for n in 2*nrOfStacks:
 		var newBullet = item.projectilePS.instance()
 		newBullet.transform = global_transform
-		newBullet.damage = item.damage * nrOfStacks
-		newBullet.speed = item.projectileSpeed
-		newBullet.lifeTime = item.lifetime
+		newBullet.damageSrc = create_damage_source(newBullet, item, player, nrOfStacks)
+		newBullet.speed = item.itemStat.projectileSpeed
+		newBullet.lifeTime = item.itemStat.lifetime
 		newBullet.theOwner = owner
 		newBullet.SetDirection(direction)
 		var randomF = randf()
@@ -82,7 +86,8 @@ func ShootSpray(item:Item, nrOfStacks, owner, global_transform):
 func ShootTowardEnemy(item, nrOfStacks, owner, global_transform):
 	var enemies = owner.get_tree().get_nodes_in_group("ENEMIES")
 	var distance:float = 100.0
-	var playerPos:Vector2 = owner.get_tree().get_nodes_in_group("PLAYER")[0].position
+	var player = owner.get_tree().get_nodes_in_group("PLAYER")[0]
+	var playerPos:Vector2 = player.position
 	var nearestEnemy
 	for enemy in enemies:
 		var enemyToPlayer:Vector2 = playerPos - enemy.position
@@ -98,8 +103,18 @@ func ShootTowardEnemy(item, nrOfStacks, owner, global_transform):
 	var newBullet = item.projectilePS.instance()
 	owner.add_child(newBullet)
 	newBullet.transform = global_transform * newBullet.transform
-	newBullet.damage = item.damage * nrOfStacks
-	newBullet.speed = item.projectileSpeed
+	
+	newBullet.damageSrc = create_damage_source(newBullet, item, player, nrOfStacks)
+	newBullet.speed = item.itemStat.projectileSpeed
 	newBullet.theOwner = owner
 	newBullet.SetDirection(direction)
 	
+func create_damage_source(newBullet, item, player, nrOfStacks):
+	var dmgSource = DamageSource.new()
+	dmgSource.physical = clamp(newBullet.damageSrc.physical, 0.0, 1.0) * ((item.itemStat.damage * nrOfStacks) + player.currentStat.damage)
+	dmgSource.fire = clamp(newBullet.damageSrc.fire, 0.0, 1.0) *  ((item.itemStat.damage * nrOfStacks) + player.currentStat.damage)
+	dmgSource.cold = clamp(newBullet.damageSrc.cold, 0.0, 1.0) *  ((item.itemStat.damage * nrOfStacks) + player.currentStat.damage)
+	dmgSource.criticalChance = item.itemStat.criticalChance + player.currentStat.criticalChance
+	dmgSource.criticalDamage = item.itemStat.criticalDamage + player.currentStat.criticalDamage
+	dmgSource.item = item
+	return dmgSource

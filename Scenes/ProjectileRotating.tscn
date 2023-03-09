@@ -1,9 +1,21 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://ItemResources/ProjectileRotating.gd" type="Script" id=1]
 [ext_resource path="res://Textures/Book.tres" type="Texture" id=2]
+[ext_resource path="res://DamageSource.gd" type="Script" id=3]
 
-[sub_resource type="CircleShape2D" id=1]
+[sub_resource type="Resource" id=1]
+script = ExtResource( 3 )
+cold = 0.0
+fire = 0.0
+igniteChance = 0.0
+physical = 10.0
+bleedChance = 0.0
+poisonChance = 0.0
+criticalDamage = 1.0
+criticalChance = 0.0
+
+[sub_resource type="CircleShape2D" id=2]
 radius = 5.0
 
 [node name="ProjectileRotating" type="Area2D"]
@@ -11,6 +23,7 @@ scale = Vector2( 1.5, 1.5 )
 collision_layer = 16
 collision_mask = 8
 script = ExtResource( 1 )
+damageSrc = SubResource( 1 )
 angle = 5
 
 [node name="Sprite" type="Sprite" parent="."]
@@ -18,6 +31,6 @@ scale = Vector2( 0.8, 0.8 )
 texture = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource( 1 )
+shape = SubResource( 2 )
 [connection signal="area_entered" from="." to="." method="_on_Projectile_area_entered"]
 [connection signal="body_entered" from="." to="." method="_on_Projectile_body_entered"]
