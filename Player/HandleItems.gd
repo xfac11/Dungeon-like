@@ -3,7 +3,7 @@ const ShootingTypeResource = preload("res://ItemResources/ShootingType.gd")
 var directions = [Vector2(0,1),Vector2(0,-1),Vector2(1,0),Vector2(-1,0),Vector2(0.5,0.5),Vector2(-0.5,0.5),Vector2(0.5,-0.5),Vector2(-0.5,-0.5)]
 var bullets = {}
 func Shoot(item:Item, nrOfStacks:int, owner, global_transform):
-	match(item.shootingType):
+	match(item.itemStat.shootingType):
 		ShootingTypeResource.ShootingType.RANDOMDIR:
 			ShootRandomDir(item, nrOfStacks, owner, global_transform)
 		ShootingTypeResource.ShootingType.RANDOMDIREACH:
@@ -14,6 +14,8 @@ func Shoot(item:Item, nrOfStacks:int, owner, global_transform):
 			ShootSpray(item, nrOfStacks, owner, global_transform)
 		ShootingTypeResource.ShootingType.TOWARDENEMY:
 			ShootTowardEnemy(item, nrOfStacks, owner, global_transform)
+		ShootingTypeResource.ShootingType.ONPLAYER:
+			ShootOnPlayer(item, nrOfStacks, owner, global_transform)
 		
 func ShootRandomDir(item:Item, nrOfStacks, owner, global_transform):
 	var player = owner.get_tree().get_nodes_in_group("PLAYER")[0]
@@ -108,7 +110,25 @@ func ShootTowardEnemy(item, nrOfStacks, owner, global_transform):
 	newBullet.speed = item.itemStat.projectileSpeed
 	newBullet.theOwner = owner
 	newBullet.SetDirection(direction)
+
+
+func ShootOnPlayer(item, nrOfStacks, owner, global_transform):
+	var player = owner.get_tree().get_nodes_in_group("PLAYER")[0]
+	if bullets.has(item):
+		bullets[item].damageSrc = create_damage_source(bullets[item], item, player, nrOfStacks)
+		bullets[item].size = nrOfStacks
+		return
+	var newBullet = item.projectilePS.instance()
+	owner.add_child(newBullet)
+	newBullet.theOwner = owner
+	newBullet.transform = global_transform
+	newBullet.damageSrc = create_damage_source(newBullet, item, player, nrOfStacks)
+	newBullet.speed = 0.0
+	newBullet.SetDirection(Vector2(0, 0))
+	bullets[item] = newBullet
 	
+
+
 func create_damage_source(newBullet, item, player, nrOfStacks):
 	var dmgSource = DamageSource.new()
 	dmgSource.physical = clamp(newBullet.damageSrc.physical, 0.0, 1.0) * ((item.itemStat.damage * nrOfStacks) + player.currentStat.damage)
@@ -116,5 +136,6 @@ func create_damage_source(newBullet, item, player, nrOfStacks):
 	dmgSource.cold = clamp(newBullet.damageSrc.cold, 0.0, 1.0) *  ((item.itemStat.damage * nrOfStacks) + player.currentStat.damage)
 	dmgSource.criticalChance = item.itemStat.criticalChance + player.currentStat.criticalChance
 	dmgSource.criticalDamage = item.itemStat.criticalDamage + player.currentStat.criticalDamage
+	dmgSource.poisonChance = newBullet.damageSrc.poisonChance
 	dmgSource.item = item
 	return dmgSource

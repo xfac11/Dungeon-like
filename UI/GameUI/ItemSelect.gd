@@ -34,9 +34,9 @@ func _coin_button(index):
 
 func _generate_stats_text(item:Item):
 	var statStr = ""
-	if item.itemType == Item.ItemTypeResource.ItemType.WEAPON:
+	if item.itemType == ItemStat.ItemTypeResource.ItemType.WEAPON:
 		statStr += "Damage: " + String(item.damage) + "\n"
-	elif item.itemType == Item.ItemTypeResource.ItemType.PASSIVE:
+	elif item.itemType == ItemStat.ItemTypeResource.ItemType.PASSIVE:
 		if item.health > 0 || item.health < 0:
 			statStr += "Health: " + String(item.health) + "\n"
 		if item.speed > 0 || item.speed < 0:

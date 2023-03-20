@@ -31,6 +31,6 @@ func get_damage_info():
 	for weapon in dps:
 		var dpsInfo = dps[weapon]
 		var damageTotalInfo = weapons[weapon]
-		var itemName = weapon.name if "name" in weapon else weapon
+		var itemName = weapon.name if "name" in weapon else "Sword"
 		info+= str(itemName) + " " + str(dpsInfo) + " " + str(damageTotalInfo) + "\n"
 	return info

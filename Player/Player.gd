@@ -25,6 +25,7 @@ func _ready() -> void:
 	inventory.connect("inventoryChanged",self,"ApplyStat")
 	timer.connect("timeout",self,"ProcessItems")
 	pickUpArea.SetCharacter(self)
+	inventory.AddItem("Garlic", 4)
 
 
 func _physics_process(_delta:float) -> void:
@@ -59,13 +60,13 @@ func ProcessItems() -> void:
 		var item:Item = itemSlot.item
 		var nrOfStacks:int = itemSlot.nrOfStacks
 		
-		if item.itemType == ItemTypeResource.ItemType.WEAPON:
+		if item.itemStat.itemType == ItemTypeResource.ItemType.WEAPON:
 			itemHandler.Shoot(item, nrOfStacks, owner, global_transform)
 
 
 func ApplyStat(_items:Array, newItemName:String, stacks:int) -> void:
 	var item:Item = ItemDatabase.GetItem(newItemName)
-	if item.itemType == ItemTypeResource.ItemType.PASSIVE:
+	if item.itemStat.itemType == ItemTypeResource.ItemType.PASSIVE:
 		currentStat.AddStat(item.itemStat, stacks)
 		health.SetHealth(currentStat.health)
 

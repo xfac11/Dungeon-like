@@ -12,6 +12,7 @@ height = 9.4246
 script = ExtResource( 1 )
 speed = 100.0
 lifeTime = 10.0
+pierceHits = 2
 
 [node name="Sprite" parent="." index="0"]
 position = Vector2( -1.19209e-07, -0.666667 )

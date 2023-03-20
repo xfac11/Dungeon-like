@@ -3,22 +3,31 @@ class_name Item
 
 export var name:String
 export var description:String
-export var stackable : bool = false
-export var maxStackSize: int = 1
-export var frequency:int = 0
-export var damage:int = 0
-export var lifetime: int = 0
-export var health:int = 0
-export var armor:int = 0
-export var speed:float = 0.0
-export var projectileSpeed:float = 1.0
 export var texture : Texture
 export var projectilePS : PackedScene
 export var itemStat : Resource
 var directions = [Vector2(0,1),Vector2(0,-1),Vector2(1,0),Vector2(-1,0),Vector2(0.5,0.5),Vector2(-0.5,0.5),Vector2(0.5,-0.5),Vector2(-0.5,-0.5)]
-const DamageTypeResource = preload("res://ItemResources/DamageType.gd")
-export(DamageTypeResource.DamageType) var damageType
-const ShootingTypeResource = preload("res://ItemResources/ShootingType.gd")
-export(ShootingTypeResource.ShootingType) var shootingType
-const ItemTypeResource = preload("res://ItemResources/ItemType.gd")
-export(ItemTypeResource.ItemType) var itemType
+var health setget ,get_health
+var speed setget ,get_speed
+var armor setget ,get_armor
+var damage setget ,get_damage
+var itemType setget ,get_itemType
+
+func get_health():
+	return itemStat.health
+
+
+func get_speed():
+	return itemStat.speed
+
+
+func get_armor():
+	return itemStat.armor
+
+
+func get_damage():
+	return itemStat.damage
+
+
+func get_itemType():
+	return itemStat.itemType

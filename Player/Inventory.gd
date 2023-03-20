@@ -21,12 +21,12 @@ func AddItem(itemName, quantity) -> void:
 			break
 		
 	if exists:
-		itemInInventory.nrOfStacks = int(min(item.maxStackSize, itemInInventory.nrOfStacks+quantity))
+		itemInInventory.nrOfStacks = int(min(item.itemStat.maxStackSize, itemInInventory.nrOfStacks+quantity))
 	else:
 		var newItemSlot = ItemSlot.new()
 		newItemSlot.nrOfStacks = 0
 		newItemSlot.item = item
-		newItemSlot.nrOfStacks = min(item.maxStackSize, newItemSlot.nrOfStacks+quantity)
+		newItemSlot.nrOfStacks = min(item.itemStat.maxStackSize, newItemSlot.nrOfStacks+quantity)
 		items.append(newItemSlot)
 	
 	emit_signal("inventoryChanged",items, itemName, quantity)

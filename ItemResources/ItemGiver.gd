@@ -19,7 +19,7 @@ func show_items(_maxExp, _level) -> void:
 	for i in GameHandler.discoveredItems.size():
 		var itemName = GameHandler.discoveredItems[i]
 		var itemSlot= player.inventory.GetItemByName(itemName)
-		var maxStacks = ItemDatabase.GetItem(itemName).maxStackSize
+		var maxStacks = ItemDatabase.GetItem(itemName).itemStat.maxStackSize
 		if itemSlot == null || itemSlot.nrOfStacks < maxStacks:
 			itemsIndex.append(i)
 	for i in 3:

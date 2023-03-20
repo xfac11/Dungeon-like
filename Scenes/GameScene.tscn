@@ -108,7 +108,10 @@ wait_time = 1.0
 wait_time = 30.0
 
 [node name="TreantNormal" parent="Spawner/Enemies" index="0"]
-chance = 0.398
+chance = 0.0
+
+[node name="Special" parent="Spawner/Enemies" index="1"]
+chance = 0.0
 
 [node name="Enemies" type="Node2D" parent="."]
 

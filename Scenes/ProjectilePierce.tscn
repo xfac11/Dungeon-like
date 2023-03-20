@@ -8,6 +8,7 @@
 script = ExtResource( 2 )
 speed = 1000.0
 lifeTime = 4.0
+pierceHits = 2
 
 [node name="Sprite" parent="." index="0"]
 rotation = -0.785398

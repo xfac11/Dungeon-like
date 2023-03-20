@@ -52,7 +52,7 @@ func create_possible_items(inventory):
 	for item in itemsInInventory:
 		var inventoryItemStack = item.nrOfStacks
 		var actualItem:Item = item.item
-		if actualItem.maxStackSize > inventoryItemStack:
+		if actualItem.itemStat.maxStackSize > inventoryItemStack:
 			possibleItems.append(item)
 	return possibleItems
 

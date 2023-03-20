@@ -21,6 +21,7 @@ func CalcTime(delta):
 	currentTime += delta
 	if currentTime >= lifeTime:
 		LifetimeEnd()
+		currentTime = 0
 
 func LifetimeEnd():
 	queue_free()
