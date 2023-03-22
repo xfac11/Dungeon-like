@@ -1,0 +1,32 @@
+[gd_resource type="Resource" load_steps=6 format=2]
+
+[ext_resource path="res://ItemResources/Item.gd" type="Script" id=1]
+[ext_resource path="res://ItemResources/ItemStat.gd" type="Script" id=2]
+[ext_resource path="res://Textures/WhiteAmulet.tres" type="Texture" id=3]
+[ext_resource path="res://Scenes/ProjectileBeam.tscn" type="PackedScene" id=4]
+
+[sub_resource type="Resource" id=1]
+script = ExtResource( 2 )
+damage = 2
+speed = 0.0
+health = 0
+armor = 0
+healthRegen = 0
+criticalChance = 0.5
+criticalDamage = 0.0
+stackable = true
+maxStackSize = 10
+frequency = 0
+lifetime = 0
+projectileSpeed = 1.0
+damageType = 1
+shootingType = 4
+itemType = 0
+
+[resource]
+script = ExtResource( 1 )
+name = "IceAmulet"
+description = "Long beam of ice "
+texture = ExtResource( 3 )
+projectilePS = ExtResource( 4 )
+itemStat = SubResource( 1 )

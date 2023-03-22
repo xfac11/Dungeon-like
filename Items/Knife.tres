@@ -20,25 +20,13 @@ frequency = 5
 lifetime = 0
 projectileSpeed = 100.0
 damageType = 0
-shootingType = 0
+shootingType = 4
 itemType = 0
 
 [resource]
 script = ExtResource( 1 )
 name = "Knife"
 description = "Shoots a knife toward enemy"
-stackable = true
-maxStackSize = 10
-frequency = 5
-damage = 8
-lifetime = 0
-health = 0
-armor = 0
-speed = 0.0
-projectileSpeed = 100.0
 texture = ExtResource( 2 )
 projectilePS = ExtResource( 3 )
 itemStat = SubResource( 1 )
-damageType = 0
-shootingType = 4
-itemType = 0

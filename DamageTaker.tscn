@@ -28,4 +28,5 @@ wait_time = 0.1
 
 [node name="Slow" type="Timer" parent="."]
 one_shot = true
+
 [connection signal="timeout" from="Slow" to="." method="_on_Slow_timeout"]

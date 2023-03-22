@@ -21,9 +21,7 @@ extents = Vector2( 6.10052, 8.12974 )
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 6.57299, 8.52346 )
 
-[node name="Enemy" type="KinematicBody2D" groups=[
-"ENEMIES",
-]]
+[node name="Enemy" type="KinematicBody2D" groups=["ENEMIES"]]
 collision_layer = 8
 collision_mask = 11
 script = ExtResource( 2 )
@@ -47,6 +45,9 @@ position = Vector2( -1.98682e-07, 1.98682e-07 )
 shape = SubResource( 1 )
 
 [node name="DamageTaker" parent="." instance=ExtResource( 6 )]
+
+[node name="Slow" parent="DamageTaker" index="3"]
+wait_time = 4.811
 
 [node name="Health" type="Node" parent="DamageTaker"]
 script = ExtResource( 4 )
@@ -80,6 +81,7 @@ staggeredSeconds = 0.25
 script = ExtResource( 3 )
 
 [node name="DeathTween" type="Tween" parent="."]
+
 [connection signal="OnSlowed" from="DamageTaker" to="." method="_on_DamageTaker_OnSlowed"]
 [connection signal="OnSlowedStop" from="DamageTaker" to="." method="_on_DamageTaker_OnSlowedStop"]
 [connection signal="bleedStarted" from="DamageTaker" to="." method="_on_DamageTaker_bleedStarted"]
@@ -88,8 +90,8 @@ script = ExtResource( 3 )
 [connection signal="timeout" from="DamageTaker/DoTFire" to="." method="_on_DoTFire_timeout"]
 [connection signal="timeout" from="DamageTaker/DoTPoison" to="." method="_on_DoTPoison_timeout"]
 [connection signal="timeout" from="DamageTaker/DoTBleed" to="." method="_on_DoTBleed_timeout"]
-[connection signal="damageTaken" from="DamageTaker/Health" to="FiniteStateMachine/IdleAI" method="_on_Health_damageTaken"]
 [connection signal="damageTaken" from="DamageTaker/Health" to="." method="_on_Health_damageTaken"]
+[connection signal="damageTaken" from="DamageTaker/Health" to="FiniteStateMachine/IdleAI" method="_on_Health_damageTaken"]
 [connection signal="healthDepleted" from="DamageTaker/Health" to="." method="_on_Health_healthDepleted"]
 [connection signal="body_entered" from="DamageArea" to="DamageArea" method="_on_DamageArea_body_entered"]
 [connection signal="body_exited" from="DamageArea" to="DamageArea" method="_on_DamageArea_body_exited"]

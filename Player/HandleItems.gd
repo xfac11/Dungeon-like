@@ -103,8 +103,8 @@ func ShootTowardEnemy(item, nrOfStacks, owner, global_transform):
 	var direction:Vector2 = nearestEnemy.position - playerPos
 	direction = direction.normalized()
 	var newBullet = item.projectilePS.instance()
+	newBullet.transform = global_transform
 	owner.add_child(newBullet)
-	newBullet.transform = global_transform * newBullet.transform
 	
 	newBullet.damageSrc = create_damage_source(newBullet, item, player, nrOfStacks)
 	newBullet.speed = item.itemStat.projectileSpeed

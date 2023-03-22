@@ -175,6 +175,11 @@ _global_script_classes=[ {
 "path": "res://ItemResources/ProjectileAxe.gd"
 }, {
 "base": "Projectile",
+"class": "ProjectileBeam",
+"language": "GDScript",
+"path": "res://ItemResources/ProjectileBeam.gd"
+}, {
+"base": "Projectile",
 "class": "ProjectileExplosion",
 "language": "GDScript",
 "path": "res://ItemResources/ProjectileExplosion.gd"
@@ -308,6 +313,7 @@ _global_script_class_icons={
 "Player": "",
 "Projectile": "",
 "ProjectileAxe": "",
+"ProjectileBeam": "",
 "ProjectileExplosion": "",
 "ProjectileOnHit": "",
 "ProjectilePierce": "",
