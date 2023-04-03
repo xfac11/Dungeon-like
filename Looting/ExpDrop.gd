@@ -6,3 +6,7 @@ export var value = 1
 func PickUp(character):
 	var expValue = value
 	character.GiveExp(expValue)
+
+
+func Traveling(area, delta):
+	pass

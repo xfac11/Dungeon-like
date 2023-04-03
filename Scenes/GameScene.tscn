@@ -107,11 +107,11 @@ wait_time = 5.0
 [node name="WaveTimer" parent="Spawner" index="1"]
 wait_time = 30.0
 
-[node name="TreantNormal" parent="Spawner/Enemies" index="0"]
-chance = 0.0
-
 [node name="Special" parent="Spawner/Enemies" index="1"]
-chance = 0.0
+chance = 0.01
+
+[node name="Normal" parent="Spawner/Enemies" index="2"]
+chance = 0.9
 
 [node name="Enemies" type="Node2D" parent="."]
 
