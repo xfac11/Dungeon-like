@@ -3,7 +3,7 @@ class_name PickupArea
 export var speed:float = 1.0
 var pickables = Array()
 var mCharacter
-
+signal item_picked_up(loot)
 func SetCharacter(character):
 	mCharacter = character
 
@@ -21,6 +21,7 @@ func _on_Pickup_area_entered(area:Lootable):
 		area.PickUp(mCharacter)
 	else:
 		print_debug("No character set for PickupArea", self)
+	emit_signal("item_picked_up", area)
 	area.queue_free()
 	for object in pickables:
 		if !is_instance_valid(object):

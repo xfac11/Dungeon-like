@@ -5,7 +5,10 @@
 [resource]
 script = ExtResource( 1 )
 damage = 25
-speed = 2.0
+speed = 0.5
 health = 0
 armor = 0
 healthRegen = 0
+criticalChance = 0.0
+criticalDamage = 0.0
+dodgeChance = 0.0

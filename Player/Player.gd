@@ -19,6 +19,7 @@ onready var health:Health = $DamageTaker/Health
 onready var pickUpArea:PickupArea = $PickupArea
 onready var damageTaker:DamageTaker = $DamageTaker
 
+export(PackedScene)var pickUpAnimation
 func _ready() -> void:
 	inventory.Clear()
 	SetBaseStat()
@@ -99,3 +100,13 @@ func _on_HPRegTimer_timeout():
 
 func _on_DamageTimer_timeout():
 	$HPRegTimer.start()
+
+
+func _on_PickupArea_item_picked_up(loot):
+	$Particles2D.emitting = true
+	var object = pickUpAnimation.instance()
+	self.add_child(object)
+	object.texture = loot.get_node("Sprite").texture
+	object.scale = loot.get_node("Sprite").scale
+	return object
+	

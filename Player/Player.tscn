@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://Player/Sword.tres" type="Texture" id=1]
 [ext_resource path="res://Player/Player.gd" type="Script" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://Curves/CurveLine.tres" type="Curve" id=8]
 [ext_resource path="res://Player/PlayerHoodRed.tres" type="Texture" id=9]
 [ext_resource path="res://DamageTaker.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Scenes/PickupAnimation.tscn" type="PackedScene" id=11]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 3.5, 6 )
@@ -135,6 +136,31 @@ tracks/2/keys = {
 [sub_resource type="RectangleShape2D" id=5]
 extents = Vector2( 9.33333, 20.6667 )
 
+[sub_resource type="Gradient" id=7]
+offsets = PoolRealArray( 0, 0.441176, 1 )
+colors = PoolColorArray( 0.992157, 0.635294, 0.270588, 1, 0.992157, 0.635294, 0.270588, 1, 1, 1, 1, 0 )
+
+[sub_resource type="GradientTexture" id=8]
+gradient = SubResource( 7 )
+
+[sub_resource type="ParticlesMaterial" id=6]
+emission_shape = 5
+emission_ring_radius = 5.0
+emission_ring_inner_radius = 4.0
+emission_ring_height = 0.0
+emission_ring_axis = Vector3( 0, 0, 1 )
+flag_disable_z = true
+direction = Vector3( 0, -1, 0 )
+spread = 0.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 5.0
+initial_velocity_random = 0.25
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+scale = 2.0
+color_ramp = SubResource( 8 )
+hue_variation_random = 1.0
+
 [node name="Player" type="KinematicBody2D"]
 z_as_relative = false
 collision_layer = 2
@@ -142,6 +168,7 @@ script = ExtResource( 2 )
 __meta__ = {
 "_edit_group_": true
 }
+pickUpAnimation = ExtResource( 11 )
 
 [node name="Body" type="CollisionShape2D" parent="."]
 position = Vector2( -0.5, 3 )
@@ -159,7 +186,6 @@ speed = 10.0
 script = ExtResource( 4 )
 
 [node name="DamageTaker" parent="." instance=ExtResource( 10 )]
-dodge = 0.75
 
 [node name="Health" type="Node" parent="DamageTaker"]
 script = ExtResource( 5 )
@@ -181,9 +207,9 @@ z_as_relative = false
 position = Vector2( 15, 2 )
 rotation = 0.785398
 scale = Vector2( 0.75, 0.75 )
-monitorable = false
 collision_layer = 16
 collision_mask = 8
+monitorable = false
 script = ExtResource( 7 )
 
 [node name="SwingAnimation" type="AnimationPlayer" parent="Pivot/WeaponPivot/MeleeWeapon"]
@@ -230,6 +256,15 @@ begin_cap_mode = 1
 end_cap_mode = 1
 
 [node name="Tween" type="Tween" parent="."]
+
+[node name="Particles2D" type="Particles2D" parent="."]
+position = Vector2( 5.2556, -5.88628 )
+emitting = false
+lifetime = 0.25
+one_shot = true
+process_material = SubResource( 6 )
+
+[connection signal="item_picked_up" from="PickupArea" to="." method="_on_PickupArea_item_picked_up"]
 [connection signal="damageTaken" from="DamageTaker/Health" to="." method="_on_Health_damageTaken"]
 [connection signal="timeout" from="HPRegTimer" to="." method="_on_HPRegTimer_timeout"]
 [connection signal="timeout" from="DamageTimer" to="." method="_on_DamageTimer_timeout"]

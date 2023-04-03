@@ -29,6 +29,9 @@ func _process(delta):
 func get_damage_info():
 	var info = ""
 	for weapon in dps:
+		if weapon == null:
+			dps.erase(weapon)
+			continue
 		var dpsInfo = dps[weapon]
 		var damageTotalInfo = weapons[weapon]
 		var itemName = weapon.name if "name" in weapon else "Sword"

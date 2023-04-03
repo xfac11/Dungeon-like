@@ -7,3 +7,8 @@ func Movement(delta):
 	position += delta * speed * direction
 	position += acc * speed * delta * 5
 	acc+= Vector2(0,1*deacc*delta)
+
+
+func SetDirection(var newDirection:Vector2):
+	direction = newDirection
+	var angle = direction.normalized().angle_to(forward)

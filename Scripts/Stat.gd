@@ -8,6 +8,7 @@ export var armor:int = 0
 export var healthRegen:int = 0
 export(float, 0.0, 1.0) var criticalChance:float = 0
 export(float, 0.0, 10.0) var criticalDamage:float = 0
+export(float, 0.0, 1.0) var dodgeChance:float = 0
 func GetStatsAsJSON() -> String:
 	var statsStr:String = ""
 	
@@ -45,3 +46,4 @@ func AddStat(stat:Stat, stack:int = 1):
 	healthRegen += stat.healthRegen * stack
 	criticalChance += stat.criticalChance * stack
 	criticalDamage += stat.criticalDamage * stack
+	dodgeChance += stat.dodgeChance * stack

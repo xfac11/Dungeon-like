@@ -1,19 +1,19 @@
 [gd_resource type="Resource" load_steps=5 format=2]
 
-[ext_resource path="res://ItemResources/Item.gd" type="Script" id=1]
-[ext_resource path="res://Textures/RedRing.tres" type="Texture" id=2]
-[ext_resource path="res://ItemResources/ItemStat.gd" type="Script" id=3]
+[ext_resource path="res://ItemResources/ItemStat.gd" type="Script" id=1]
+[ext_resource path="res://Textures/WhiteFlower.tres" type="Texture" id=2]
+[ext_resource path="res://ItemResources/Item.gd" type="Script" id=3]
 
 [sub_resource type="Resource" id=1]
-script = ExtResource( 3 )
+script = ExtResource( 1 )
 damage = 0
 speed = 0.0
-health = 20
+health = 0
 armor = 0
 healthRegen = 0
 criticalChance = 0.0
 criticalDamage = 0.0
-dodgeChance = 0.0
+dodgeChance = 0.025
 stackable = true
 maxStackSize = 10
 frequency = 0
@@ -24,8 +24,8 @@ shootingType = 0
 itemType = 2
 
 [resource]
-script = ExtResource( 1 )
-name = "Red Ring"
-description = "Increase hp by 20"
+script = ExtResource( 3 )
+name = "Swift Plant"
+description = "Increases dodge chance"
 texture = ExtResource( 2 )
 itemStat = SubResource( 1 )
