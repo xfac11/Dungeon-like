@@ -16,6 +16,12 @@ func _generate_stats_text(player:Player):
 	return statsText
 
 
+func visible_all(isVisible):
+	healthBar.visible = isVisible
+	$LevelNumber.visible = isVisible
+	$Panel.visible = isVisible
+
+
 func Pause(pause):
 	if pause:
 		pauses+= 1

@@ -392,6 +392,7 @@ __meta__ = {
 [node name="Timer" type="Timer" parent="Panel/Label"]
 pause_mode = 1
 autostart = true
+
 [connection signal="Pause" from="ChestUI" to="." method="_on_ChestUI_Pause"]
 [connection signal="pressed" from="ChestUI/Button" to="ChestUI" method="_on_Button_pressed"]
 [connection signal="Pause" from="PauseMenu" to="." method="_on_PauseMenu_Pause"]
