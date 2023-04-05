@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://UI/GameUI/ExpUITheme.tres" type="Theme" id=1]
 [ext_resource path="res://UI/GameUI/HealthUITheme.tres" type="Theme" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://UI/GameUI/BarUI.gd" type="Script" id=6]
 [ext_resource path="res://Fonts/BetterPixels.ttf" type="DynamicFontData" id=7]
 [ext_resource path="res://Fonts/FontBetterPixels24.tres" type="DynamicFont" id=8]
+[ext_resource path="res://Looting/Coin.tres" type="Texture" id=9]
 [ext_resource path="res://Fonts/FontBetterPixels32.tres" type="DynamicFont" id=10]
 [ext_resource path="res://UI/GameUI/HPbar.gd" type="Script" id=11]
 [ext_resource path="res://UI/GameUI/GameOver.tscn" type="PackedScene" id=12]
@@ -45,6 +46,21 @@ expand_margin_top = 2.0
 expand_margin_bottom = 2.0
 anti_aliasing = false
 
+[sub_resource type="StyleBoxFlat" id=4]
+bg_color = Color( 0.419608, 0.2, 0.027451, 1 )
+border_width_left = 2
+border_width_top = 2
+border_width_bottom = 2
+border_color = Color( 0, 0, 0, 1 )
+corner_radius_top_left = 4
+corner_radius_bottom_left = 4
+corner_detail = 1
+expand_margin_left = 2.0
+expand_margin_right = 2.0
+expand_margin_top = 2.0
+expand_margin_bottom = 2.0
+anti_aliasing = false
+
 [node name="UI" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -54,9 +70,6 @@ margin_right = -0.589478
 margin_bottom = -0.297302
 theme = ExtResource( 14 )
 script = ExtResource( 22 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="LevelNumber" type="Panel" parent="."]
 anchor_left = 0.5
@@ -374,9 +387,6 @@ margin_left = -116.0
 margin_top = 21.0
 margin_bottom = 64.0
 custom_styles/panel = SubResource( 2 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Label" type="Label" parent="Panel"]
 anchor_right = 1.0
@@ -392,6 +402,32 @@ __meta__ = {
 [node name="Timer" type="Timer" parent="Panel/Label"]
 pause_mode = 1
 autostart = true
+
+[node name="CoinDisplay" type="Panel" parent="."]
+margin_left = 571.534
+margin_top = 66.0
+margin_right = 639.534
+margin_bottom = 79.0
+custom_styles/panel = SubResource( 4 )
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CoinDisplay"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="TextureRect" type="TextureRect" parent="CoinDisplay/HBoxContainer"]
+margin_right = 49.0
+margin_bottom = 13.0
+size_flags_horizontal = 3
+texture = ExtResource( 9 )
+expand = true
+stretch_mode = 5
+
+[node name="Coins" type="Label" parent="CoinDisplay/HBoxContainer"]
+margin_left = 53.0
+margin_right = 68.0
+margin_bottom = 13.0
+custom_fonts/font = ExtResource( 8 )
+text = "10"
 
 [connection signal="Pause" from="ChestUI" to="." method="_on_ChestUI_Pause"]
 [connection signal="pressed" from="ChestUI/Button" to="ChestUI" method="_on_Button_pressed"]

@@ -18,7 +18,7 @@ onready var timer = $Timer
 onready var health:Health = $DamageTaker/Health
 onready var pickUpArea:PickupArea = $PickupArea
 onready var damageTaker:DamageTaker = $DamageTaker
-
+signal coin_picked(coins)
 export(PackedScene)var pickUpAnimation
 func _ready() -> void:
 	inventory.Clear()
@@ -51,6 +51,7 @@ func GiveExp(value):
 
 func GiveCoin(value):
 	coins += value
+	emit_signal("coin_picked", coins)
 
 
 func ProcessItems() -> void:

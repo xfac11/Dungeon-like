@@ -20,6 +20,7 @@ func visible_all(isVisible):
 	healthBar.visible = isVisible
 	$LevelNumber.visible = isVisible
 	$Panel.visible = isVisible
+	$CoinDisplay.visible = isVisible
 
 
 func Pause(pause):
@@ -73,3 +74,7 @@ func _on_Health_damageTaken(currentHealth, maximumHealth, damageAmount):
 
 func _on_Health_healthDepleted(parent):
 	pass # Replace with function body.
+
+
+func _on_Player_coin_picked(coins):
+	$CoinDisplay/HBoxContainer/Coins.text = str(coins)
