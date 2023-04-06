@@ -1,8 +1,9 @@
 extends ColorRect
 
-
+onready var confirmation_reset:ConfirmationDialog = $ConfirmationDialog
 onready var resolutionsOptBtn:OptionButton = $ResolutionOptBtn
 onready var windowModesOptBtn:OptionButton = $WindowModeOptBtn
+var _saveName = "res://Saves/new_save1.tres"
 const SETTINGSFILE = "user://settings.JSON"
 enum WindowMode {
 	Fullscreen = 1,
@@ -27,6 +28,8 @@ func _ready():
 	FillItemsWithWindowModes(windowModeDict)
 	SetSelectResolutions()
 	SetSelectWindowmode()
+	confirmation_reset.get_ok().text = "Yes"
+	confirmation_reset.get_cancel().text = "No"
 
 func _on_click_resolutions(resolution):
 	OS.set_window_size(resolutionDict[resolution])
@@ -89,3 +92,16 @@ func _on_WindowModeOptBtn_item_selected(index):
 
 func _on_BackToMenuBtn_pressed():
 	visible = false
+
+
+func _on_ResetButton_pressed():
+	confirmation_reset.popup()
+
+
+func _on_ConfirmationDialog_confirmed():
+	if ResourceLoader.exists(_saveName):
+		var saveStat:SaveStats = ResourceLoader.load(_saveName)
+		saveStat.stacks.clear()
+		saveStat.coins = 0
+		saveStat.discoveredItems.clear()
+		ResourceSaver.save(_saveName, saveStat)

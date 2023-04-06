@@ -5,13 +5,11 @@
 [resource]
 script = ExtResource( 1 )
 stacks = {
-"res://ShopSlots/Player/AddHealth.tres": 7,
-"res://ShopSlots/Player/AddHealthReg.tres": 3,
-"res://ShopSlots/Player/AddSpeed.tres": 7,
-"res://ShopSlots/Sword/AddDamageSS.tres": 10,
-"res://ShopSlots/Sword/AddLifeSteal.tres": 0,
-"res://ShopSlots/Sword/AddRange.tres": 0,
-"res://ShopSlots/Sword/AddSpeedSS.tres": 5
+"res://ShopSlots/Player/AddHealth.tres": 0,
+"res://ShopSlots/Player/AddHealthReg.tres": 0,
+"res://ShopSlots/Player/AddSpeed.tres": 0,
+"res://ShopSlots/Sword/AddDamageSS.tres": 1,
+"res://ShopSlots/Sword/AddSpeedSS.tres": 0
 }
-coins = 1193
-discoveredItems = [ "Red Ring", "Knife", "Fire Book", "White Ring", "Axe", "Spear", "Book", "BreastPlate", "Shotgun", "Gold Ring", "Magic Sword" ]
+coins = 48
+discoveredItems = [ "Red Ring", "Knife", "Shotgun" ]

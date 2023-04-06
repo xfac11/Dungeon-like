@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://UI/ShopUI/ShopUITheme.tres" type="Theme" id=1]
 [ext_resource path="res://Fonts/BetterPixels.ttf" type="DynamicFontData" id=2]
@@ -27,6 +27,10 @@ bg_color = Color( 0.6, 0.6, 0.6, 0 )
 size = 128
 outline_size = 2
 font_data = ExtResource( 2 )
+
+[sub_resource type="Theme" id=6]
+default_font = ExtResource( 3 )
+PopupDialog/styles/panel = null
 
 [node name="MainMenuUI" type="ViewportContainer"]
 anchor_right = 1.0
@@ -261,6 +265,30 @@ text = "Options"
 align = 1
 valign = 1
 
+[node name="ResetButton" type="Button" parent="OptionMenu"]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -153.5
+margin_top = -55.0
+margin_right = -21.5
+margin_bottom = -25.0
+text = "Reset save"
+
+[node name="ConfirmationDialog" type="ConfirmationDialog" parent="OptionMenu"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -117.0
+margin_top = -74.5
+margin_right = 117.0
+margin_bottom = 74.5
+theme = SubResource( 6 )
+dialog_text = "Do you want to reset your progress?"
+dialog_autowrap = true
+
 [node name="TextureRect3" type="TextureRect" parent="."]
 anchor_left = 0.0265625
 anchor_top = 0.127083
@@ -294,3 +322,5 @@ flip_h = true
 [connection signal="item_selected" from="OptionMenu/ResolutionOptBtn" to="OptionMenu" method="_on_ResolutionOptBtn_item_selected"]
 [connection signal="item_selected" from="OptionMenu/WindowModeOptBtn" to="OptionMenu" method="_on_WindowModeOptBtn_item_selected"]
 [connection signal="pressed" from="OptionMenu/BackToMenuBtn" to="OptionMenu" method="_on_BackToMenuBtn_pressed"]
+[connection signal="pressed" from="OptionMenu/ResetButton" to="OptionMenu" method="_on_ResetButton_pressed"]
+[connection signal="confirmed" from="OptionMenu/ConfirmationDialog" to="OptionMenu" method="_on_ConfirmationDialog_confirmed"]
