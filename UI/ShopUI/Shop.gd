@@ -5,6 +5,7 @@ export var discover_item_cost_increase:int = 250
 export(PackedScene) var shop_slot_button:PackedScene
 export var discover_item_cost:int = 100
 var _next_scene = load("res://Scenes/GameScene.tscn")
+var _main_menu_scene = load("res://UI/MainMenu/MainMenuUI.tscn")
 var _coin:int = 200
 var _saveStatsResource = preload("res://Scripts/SaveStats.gd")
 var _saveStat = _saveStatsResource.new()
@@ -151,3 +152,15 @@ func _start_game_scene() -> void:
 
 func _on_Button_pressed() -> void:
 	_start_game()
+
+func _start_main_menu():
+	_set_player_shop_stat()
+	_set_sword_shop_stat()
+	_saveStat.coins = _coin
+	_saveStat.discoveredItems = GameHandler.discoveredItems
+	ResourceSaver.save(_saveName, _saveStat)
+	get_tree().change_scene_to(_main_menu_scene)
+
+
+func _on_MainMenu_pressed():
+	_start_main_menu()
