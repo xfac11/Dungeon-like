@@ -11,5 +11,5 @@ stacks = {
 "res://ShopSlots/Sword/AddDamageSS.tres": 1,
 "res://ShopSlots/Sword/AddSpeedSS.tres": 0
 }
-coins = -68
+coins = -57
 discoveredItems = [ "Red Ring", "Knife", "Shotgun" ]
