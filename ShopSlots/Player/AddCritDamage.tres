@@ -1,0 +1,26 @@
+[gd_resource type="Resource" load_steps=5 format=2]
+
+[ext_resource path="res://UI/ShopUI/ShopSlot.gd" type="Script" id=1]
+[ext_resource path="res://Scripts/Stat.gd" type="Script" id=2]
+[ext_resource path="res://Textures/WhiteAmulet.tres" type="Texture" id=3]
+
+[sub_resource type="Resource" id=1]
+script = ExtResource( 2 )
+damage = 0
+speed = 0.0
+health = 0
+armor = 0
+healthRegen = 0
+criticalChance = 0.0
+criticalDamage = 0.05
+dodgeChance = 0.0
+
+[resource]
+script = ExtResource( 1 )
+cost = 350
+costIncrease = 100
+numberOfStacks = 5
+texture = ExtResource( 3 )
+description = "Increase critical damage"
+varaibleChange = ""
+stat = SubResource( 1 )
