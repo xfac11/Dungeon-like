@@ -1,9 +1,10 @@
 [gd_resource type="Resource" load_steps=6 format=2]
 
 [ext_resource path="res://ItemResources/Item.gd" type="Script" id=1]
-[ext_resource path="res://Scenes/ProjectileSeeker.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Projectiles/ProjectileSeeker.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Textures/MagicSword.tres" type="Texture" id=3]
 [ext_resource path="res://ItemResources/ItemStat.gd" type="Script" id=4]
+
 
 [sub_resource type="Resource" id=1]
 script = ExtResource( 4 )

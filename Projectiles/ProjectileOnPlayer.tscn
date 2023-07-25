@@ -1,0 +1,68 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://Projectiles/ProjectileOnPlayer.gd" type="Script" id=1]
+[ext_resource path="res://Textures/WhiteCircle.png" type="Texture" id=2]
+[ext_resource path="res://Projectiles/DamageSource.gd" type="Script" id=4]
+
+
+[sub_resource type="Resource" id=2]
+script = ExtResource( 4 )
+cold = 0.0
+fire = 0.0
+igniteChance = 0.0
+physical = 3.0
+bleedChance = 0.0
+poisonChance = 0.1
+criticalDamage = 1.0
+criticalChance = 0.0
+
+[sub_resource type="CircleShape2D" id=3]
+radius = 30.0
+
+[sub_resource type="Gradient" id=4]
+colors = PoolColorArray( 0.342749, 0.770996, 0.117456, 1, 1, 1, 1, 0 )
+
+[sub_resource type="GradientTexture" id=5]
+gradient = SubResource( 4 )
+
+[sub_resource type="ParticlesMaterial" id=1]
+emission_shape = 1
+emission_sphere_radius = 30.0
+flag_disable_z = true
+direction = Vector3( 0, 0, 0 )
+spread = 180.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 10.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+scale = 3.0
+scale_random = 1.0
+color_ramp = SubResource( 5 )
+
+[node name="ProjectileOnPlayer" type="Area2D"]
+scale = Vector2( 1.5, 1.5 )
+collision_layer = 16
+collision_mask = 8
+script = ExtResource( 1 )
+lifeTime = 1.0
+damage = 3
+damageSrc = SubResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="."]
+modulate = Color( 0.368627, 0.996078, 0.145098, 0.211765 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+texture = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 3 )
+
+[node name="Particles2D" type="Particles2D" parent="."]
+emitting = false
+lifetime = 0.8
+one_shot = true
+process_material = SubResource( 1 )
+
+[connection signal="area_entered" from="." to="." method="_on_Projectile_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_Projectile_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_ProjectileOnPlayer_body_exited"]

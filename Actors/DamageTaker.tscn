@@ -1,0 +1,32 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Actors/DamageTaker.gd" type="Script" id=1]
+
+[node name="DamageTaker" type="Node"]
+script = ExtResource( 1 )
+
+[node name="DoTFire" type="Timer" parent="."]
+wait_time = 4.0
+one_shot = true
+
+[node name="Damage" type="Timer" parent="DoTFire"]
+wait_time = 0.1
+
+[node name="DoTPoison" type="Timer" parent="."]
+wait_time = 4.0
+one_shot = true
+
+[node name="Damage" type="Timer" parent="DoTPoison"]
+wait_time = 0.1
+
+[node name="DoTBleed" type="Timer" parent="."]
+wait_time = 4.0
+one_shot = true
+
+[node name="Damage" type="Timer" parent="DoTBleed"]
+wait_time = 0.1
+
+[node name="Slow" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="Slow" to="." method="_on_Slow_timeout"]

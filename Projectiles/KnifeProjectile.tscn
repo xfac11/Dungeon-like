@@ -1,0 +1,37 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Projectiles/Projectile.gd" type="Script" id=1]
+[ext_resource path="res://Textures/Knife.tres" type="Texture" id=2]
+[ext_resource path="res://Projectiles/DamageSource.gd" type="Script" id=3]
+
+
+[sub_resource type="Resource" id=3]
+script = ExtResource( 3 )
+cold = 0.0
+fire = 0.0
+igniteChance = 0.0
+physical = 10.0
+bleedChance = 0.0
+poisonChance = 0.0
+criticalDamage = 1.0
+criticalChance = 0.0
+
+[sub_resource type="CircleShape2D" id=2]
+radius = 5.0
+
+[node name="KnifeProjectile" type="Area2D"]
+scale = Vector2( 0.5, 0.5 )
+collision_layer = 16
+collision_mask = 8
+script = ExtResource( 1 )
+damageSrc = SubResource( 3 )
+
+[node name="Sprite" type="Sprite" parent="."]
+rotation = -0.785398
+texture = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 2 )
+
+[connection signal="area_entered" from="." to="." method="_on_Projectile_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_Projectile_body_entered"]

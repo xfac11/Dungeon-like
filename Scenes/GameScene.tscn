@@ -1,23 +1,22 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=20 format=2]
 
-[ext_resource path="res://Player/Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Actors/Player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://UI/GameUI/GameUI.tscn" type="PackedScene" id=2]
 [ext_resource path="res://ItemResources/ItemGiver.gd" type="Script" id=3]
-[ext_resource path="res://Scenes/Spawner.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Spawners/Spawner.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Scripts/GameScene.gd" type="Script" id=5]
 [ext_resource path="res://Scenes/WorldMap.tscn" type="PackedScene" id=6]
-[ext_resource path="res://new_noisetexture.tres" type="Texture" id=7]
 [ext_resource path="res://UI/Text2DTimer.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Looting/ExpDropRed5.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Looting/ExpDrop.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Looting/Chest.tscn" type="PackedScene" id=11]
 [ext_resource path="res://Looting/Coin.tscn" type="PackedScene" id=12]
-[ext_resource path="res://Scripts/ChestDropper.gd" type="Script" id=13]
-[ext_resource path="res://Scripts/ExpDropper.gd" type="Script" id=14]
-[ext_resource path="res://Scripts/CoinDropper.gd" type="Script" id=15]
-[ext_resource path="res://BlinkingShader.tres" type="Shader" id=16]
+[ext_resource path="res://Spawners/ChestDropper.gd" type="Script" id=13]
+[ext_resource path="res://Spawners/ExpDropper.gd" type="Script" id=14]
+[ext_resource path="res://Spawners/CoinDropper.gd" type="Script" id=15]
+[ext_resource path="res://Actors/BlinkingShader.tres" type="Shader" id=16]
 [ext_resource path="res://UI/Text2DFactory.gd" type="Script" id=17]
-[ext_resource path="res://Scenes/SpawnParticles.tscn" type="PackedScene" id=18]
+[ext_resource path="res://Spawners/SpawnParticles.tscn" type="PackedScene" id=18]
 [ext_resource path="res://Scripts/DPSCalculator.gd" type="Script" id=19]
 
 [sub_resource type="ShaderMaterial" id=1]
@@ -33,7 +32,6 @@ shader_param/num_hor_frames = 3.0
 shader_param/hor_index = 0.0
 shader_param/num_ver_frames = 4.0
 shader_param/ver_index = 0.0
-shader_param/noise = ExtResource( 7 )
 
 [node name="GameScene" type="Node2D"]
 script = ExtResource( 5 )
@@ -119,8 +117,6 @@ chance = 0.9
 z_index = 5
 
 [connection signal="chest_items_added" from="ChestDropper" to="UICanvasLayer/UI" method="_on_ChestDropper_chest_items_added"]
-[connection signal="spawn_coin" from="ChestDropper" to="CoinDropper" method="_on_spawn_coin"]
-[connection signal="pause" from="UICanvasLayer/UI/ItemSelect" to="UICanvasLayer/UI" method="_on_ItemSelect_pause"]
 [connection signal="coin_picked" from="Player" to="UICanvasLayer/UI" method="_on_Player_coin_picked"]
 [connection signal="gainedExperience" from="Player/ExperienceSystem" to="UICanvasLayer/UI/LevelNumber/ExpBar" method="_on_ExperienceSystem_gainedExperience"]
 [connection signal="gainedExperience" from="Player/ExperienceSystem" to="UICanvasLayer/UI/LevelNumber/ExpLabel" method="_on_ExperienceSystem_gainedExperience"]

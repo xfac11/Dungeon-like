@@ -1,6 +1,5 @@
-[gd_resource type="Theme" load_steps=12 format=2]
+[gd_resource type="Theme" load_steps=11 format=2]
 
-[ext_resource path="res://UI/StyleWindowbox.tres" type="StyleBox" id=1]
 [ext_resource path="res://UI/ShopUI/ShopSlotButtonPressedFlat.tres" type="StyleBox" id=2]
 [ext_resource path="res://UI/ShopUI/ShopButtonNormalFlat.tres" type="StyleBox" id=3]
 [ext_resource path="res://UI/ShopUI/ShopSlotButtonHoverFlat.tres" type="StyleBox" id=4]
@@ -50,6 +49,6 @@ TooltipLabel/colors/font_color_shadow = Color( 0, 0, 0, 0.101961 )
 TooltipPanel/styles/panel = SubResource( 1 )
 VBoxContainer/constants/separation = 4
 VBoxContainer/icons/border = SubResource( 2 )
-VBoxContainer/styles/texture = ExtResource( 1 )
+VBoxContainer/styles/texture = null
 WindowDialog/colors/title_color = Color( 1, 1, 1, 1 )
 WindowDialog/styles/panel = ExtResource( 7 )

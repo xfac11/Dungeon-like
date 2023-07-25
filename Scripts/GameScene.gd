@@ -9,6 +9,7 @@ func _ready():
 	get_tree().paused = false
 	set_process(true)
 	seed(seed_variable)
+	randomize()
 	
 	if SaveLoad.data.discoveredItems.size() == 0:
 		SaveLoad.data.discoveredItems = GameHandler.discoveredItems

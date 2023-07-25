@@ -6,9 +6,9 @@
 [ext_resource path="res://UI/MainMenu/MainMenuUI.gd" type="Script" id=4]
 [ext_resource path="res://Fonts/FontBetterPixels56.tres" type="DynamicFont" id=5]
 [ext_resource path="res://UI/OptionsMenu/OptionMenu.tscn" type="PackedScene" id=6]
-[ext_resource path="res://Enemy/EnemyKnightTexture.tres" type="Texture" id=7]
-[ext_resource path="res://Player/PlayerHoodRed.tres" type="Texture" id=8]
-[ext_resource path="res://Player/Sword.tres" type="Texture" id=9]
+[ext_resource path="res://Actors/Enemy/EnemyKnightTexture.tres" type="Texture" id=7]
+[ext_resource path="res://Actors/Player/PlayerHoodRed.tres" type="Texture" id=8]
+[ext_resource path="res://Actors/Player/Sword.tres" type="Texture" id=9]
 
 [sub_resource type="ShaderMaterial" id=1]
 

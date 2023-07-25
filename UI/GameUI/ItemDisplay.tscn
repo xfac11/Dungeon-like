@@ -1,9 +1,10 @@
 [gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Fonts/FontBetterPixels32.tres" type="DynamicFont" id=1]
-[ext_resource path="res://Player/Sword.tres" type="Texture" id=2]
+[ext_resource path="res://Actors/Player/Sword.tres" type="Texture" id=2]
 [ext_resource path="res://UI/vboxstyle.tres" type="Theme" id=4]
 [ext_resource path="res://UI/GameUI/ItemDisplay.gd" type="Script" id=5]
+
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.207843, 0.184314, 0.184314, 1 )
