@@ -10,7 +10,7 @@ func onOptionsClicked():
 	pass
 func onQuitClicked():
 	pass
-
-
 func _on_OptionsButton_pressed():
 	optionMenu.visible = true
+func reset():
+	optionMenu.visible = false;

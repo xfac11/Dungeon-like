@@ -5,6 +5,7 @@ var pauses = 0
 var next_scene = preload("../MainMenu/MainMenuUI.tscn")
 func _input(event):
 	if event.is_action_pressed("exit_game"):
+		pauseMenu.reset()
 		pauseMenu.visible = !pauseMenu.visible
 		pauseMenu.statsLabel.text = _generate_stats_text(get_tree().get_nodes_in_group("PLAYER")[0])
 		Pause(pauseMenu.visible)

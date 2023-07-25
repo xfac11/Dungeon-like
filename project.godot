@@ -352,6 +352,7 @@ config/icon="res://icon.png"
 
 ItemDatabase="*res://ItemResources/ItemDatabase.gd"
 GameHandler="*res://Scripts/GameHandler.gd"
+SaveLoad="*res://Scripts/SaveLoad.gd"
 
 [display]
 
@@ -364,6 +365,7 @@ window/stretch/aspect="keep"
 [global]
 
 cursor=false
+user=false
 
 [importer_defaults]
 

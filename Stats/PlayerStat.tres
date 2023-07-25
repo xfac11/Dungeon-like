@@ -9,3 +9,6 @@ speed = 40.0
 health = 100
 armor = 0
 healthRegen = 0
+criticalChance = 0.0
+criticalDamage = 0.0
+dodgeChance = 0.0

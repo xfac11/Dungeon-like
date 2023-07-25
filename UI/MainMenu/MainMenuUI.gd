@@ -1,6 +1,7 @@
 extends Control
 
 var next_scene = load("res://Scenes/GameScene.tscn")
+var _shop_scene = load("res://UI/ShopUI/ShopUI.tscn")
 var startPos = Vector2.ZERO
 var endPos
 onready var tween = $Tween
@@ -12,6 +13,10 @@ func _ready():
 	endPos = playerTexture.rect_position - Vector2(0.0, 50.0)
 
 func StartGame():
+	SaveLoad.loadJSON()
+	if SaveLoad.file_exists():
+		get_tree().change_scene_to(_shop_scene)
+		return
 	get_tree().change_scene_to(next_scene)
 
 func QuitGame():

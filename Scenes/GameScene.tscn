@@ -148,6 +148,7 @@ z_index = 5
 
 [editable path="UICanvasLayer/UI"]
 [editable path="UICanvasLayer/UI/ItemSelect"]
+[editable path="UICanvasLayer/UI/PauseMenu/OptionMenu"]
 [editable path="Player"]
 [editable path="Player/PickupArea"]
 [editable path="Spawner"]

@@ -99,9 +99,4 @@ func _on_ResetButton_pressed():
 
 
 func _on_ConfirmationDialog_confirmed():
-	if ResourceLoader.exists(_saveName):
-		var saveStat:SaveStats = ResourceLoader.load(_saveName)
-		saveStat.stacks.clear()
-		saveStat.coins = 0
-		saveStat.discoveredItems.clear()
-		ResourceSaver.save(_saveName, saveStat)
+	SaveLoad.reset()

@@ -18,7 +18,7 @@ func set_shop_slot(value:ShopSlot):
 		return
 	get_node("Cost").text = str(shopSlot.cost)
 	$Description.text = str(shopSlot.description)
-	$Stacks.text = str(shopSlot.numberOfStacks)
+	$Stacks.text = str(stack)
 	$Texture.texture = shopSlot.texture
 	
 

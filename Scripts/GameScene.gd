@@ -9,11 +9,15 @@ func _ready():
 	get_tree().paused = false
 	set_process(true)
 	seed(seed_variable)
+	
+	if SaveLoad.data.discoveredItems.size() == 0:
+		SaveLoad.data.discoveredItems = GameHandler.discoveredItems
 
 
 func _on_Health_healthDepleted(parent:Player):
 	GameHandler._level = parent.experienceSystem.level
 	GameHandler.coins = parent.coins
+	SaveLoad.data.coins += GameHandler.calculate_coins()
 	_game_ui.visible_all(false)
 	_game_over_menu.ShowGameOver(parent.coins,
 			GameHandler.CoinsFromLevel(parent.experienceSystem.level),

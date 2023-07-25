@@ -7,9 +7,6 @@ export var discover_item_cost:int = 100
 var _next_scene = load("res://Scenes/GameScene.tscn")
 var _main_menu_scene = load("res://UI/MainMenu/MainMenuUI.tscn")
 var _coin:int = 200
-var _saveStatsResource = preload("res://Scripts/SaveStats.gd")
-var _saveStat = _saveStatsResource.new()
-var _saveName = "res://Saves/new_save1.tres"
 
 onready var _coins_UI:ShopCoinUI = $Coins
 onready var _shop_tab:TabContainer = $ShopTabContainer
@@ -17,8 +14,8 @@ onready var _discover_item_button:Button = $DiscoverItemButton
 
 
 func _ready() -> void:
-	_load_shop()
-	_coin = _saveStat.coins + GameHandler.calculate_coins()
+	_coin = SaveLoad.data.coins
+	GameHandler.discoveredItems = SaveLoad.data.discoveredItems
 	var newDiscoverCost = GameHandler.discoveredItems.size() - GameHandler.defaultDiscoveredSize
 	if newDiscoverCost > 0:
 		discover_item_cost += discover_item_cost_increase * newDiscoverCost
@@ -30,16 +27,7 @@ func _ready() -> void:
 	_update_slots("Player")
 	_discover_item_button.connect("pressed", self, "_on_discover_item_pressed")
 	_discover_item_button.get_node("Label").text = str(discover_item_cost)
-	_saveStat.coins = _coin
-	ResourceSaver.save(_saveName, _saveStat)
 	_update_discover_item()
-
-
-func _load_shop():
-	if ResourceLoader.exists(_saveName):
-		_saveStat = ResourceLoader.load(_saveName)
-		if _saveStat.discoveredItems.size() > 0:
-			GameHandler.discoveredItems = _saveStat.discoveredItems
 
 
 func _pressed_add_upgrade(cost,slot:ShopSlotButton) -> void:
@@ -110,18 +98,18 @@ func _add_tab(var name:String) -> void:
 		newButton.costIncrease = slot.costIncrease
 		newButton.connect("TestBuy", self, "_pressed_add_upgrade")
 		newButton.shopSlot = slot
-		if ResourceLoader.exists(_saveName):
-			if _saveStat.stacks.has(newButton.shopSlot.resource_path):
-				for i in _saveStat.stacks[newButton.shopSlot.resource_path]:
+		if SaveLoad.file_exists():
+			if SaveLoad.data.stacks.has(newButton.shopSlot.resource_path):
+				for i in SaveLoad.data.stacks[newButton.shopSlot.resource_path]:
 					newButton.AddToStack()
 
 
 func _start_game() -> void:
 	_set_player_shop_stat()
 	_set_sword_shop_stat()
-	_saveStat.coins = _coin
-	_saveStat.discoveredItems = GameHandler.discoveredItems
-	ResourceSaver.save(_saveName, _saveStat)
+	SaveLoad.data.coins = _coin
+	SaveLoad.data.discoveredItems = GameHandler.discoveredItems
+	SaveLoad.saveJSON()
 	_start_game_scene()
 
 
@@ -130,7 +118,7 @@ func _set_player_shop_stat() -> void:
 	for slot in _shop_tab.get_node("Player"+"/GridContainer").get_children():
 		var shopSlotUI:ShopSlotButton = slot
 		stat.AddStat(shopSlotUI.shopSlot.stat, shopSlotUI.stack)
-		_saveStat.stacks[shopSlotUI.shopSlot.resource_path] = shopSlotUI.stack
+		SaveLoad.data.stacks[shopSlotUI.shopSlot.resource_path] = shopSlotUI.stack
 	GameHandler.shopPlayerStat = stat
 
 
@@ -139,7 +127,7 @@ func _set_sword_shop_stat() -> void:
 	for slot in _shop_tab.get_node("Sword"+"/GridContainer").get_children():
 		var shopSlotUI:ShopSlotButton = slot
 		var shopSlotStat:Stat = shopSlotUI.shopSlot.stat
-		_saveStat.stacks[shopSlotUI.shopSlot.resource_path] = shopSlotUI.stack
+		SaveLoad.data.stacks[shopSlotUI.shopSlot.resource_path] = shopSlotUI.stack
 		if !is_instance_valid(shopSlotStat):
 			continue
 		stat.AddStat(shopSlotStat, shopSlotUI.stack)
@@ -154,11 +142,11 @@ func _on_Button_pressed() -> void:
 	_start_game()
 
 func _start_main_menu():
-	_set_player_shop_stat()
-	_set_sword_shop_stat()
-	_saveStat.coins = _coin
-	_saveStat.discoveredItems = GameHandler.discoveredItems
-	ResourceSaver.save(_saveName, _saveStat)
+	_set_player_shop_stat() ## Sets the stacks in SaveLoad.data
+	_set_sword_shop_stat() ## Sets the stacks in SaveLoad.data
+	SaveLoad.data.coins = _coin
+	SaveLoad.data.discoveredItems = GameHandler.discoveredItems
+	SaveLoad.saveJSON()
 	get_tree().change_scene_to(_main_menu_scene)
 
 
