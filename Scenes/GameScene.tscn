@@ -117,6 +117,7 @@ chance = 0.9
 z_index = 5
 
 [connection signal="chest_items_added" from="ChestDropper" to="UICanvasLayer/UI" method="_on_ChestDropper_chest_items_added"]
+[connection signal="pause" from="UICanvasLayer/UI/ItemSelect" to="UICanvasLayer/UI" method="_on_ItemSelect_pause"]
 [connection signal="coin_picked" from="Player" to="UICanvasLayer/UI" method="_on_Player_coin_picked"]
 [connection signal="gainedExperience" from="Player/ExperienceSystem" to="UICanvasLayer/UI/LevelNumber/ExpBar" method="_on_ExperienceSystem_gainedExperience"]
 [connection signal="gainedExperience" from="Player/ExperienceSystem" to="UICanvasLayer/UI/LevelNumber/ExpLabel" method="_on_ExperienceSystem_gainedExperience"]
