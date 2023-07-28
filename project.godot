@@ -9,11 +9,6 @@
 config_version=4
 
 _global_script_classes=[ {
-"base": "State",
-"class": "Charge",
-"language": "GDScript",
-"path": "res://Actors/Enemy/ChargerEnemyStates/Charge.gd"
-}, {
 "base": "Lootable",
 "class": "Chest",
 "language": "GDScript",
@@ -38,6 +33,11 @@ _global_script_classes=[ {
 "class": "DPSCalculator",
 "language": "GDScript",
 "path": "res://Scripts/DPSCalculator.gd"
+}, {
+"base": "Area2D",
+"class": "DamageArea",
+"language": "GDScript",
+"path": "res://Actors/Enemy/DamageArea.gd"
 }, {
 "base": "Resource",
 "class": "DamageSource",
@@ -278,24 +278,14 @@ _global_script_classes=[ {
 "class": "Text2DTimer",
 "language": "GDScript",
 "path": "res://UI/Text2DTimer.gd"
-}, {
-"base": "State",
-"class": "Walk",
-"language": "GDScript",
-"path": "res://Actors/Enemy/ChargerEnemyStates/Walk.gd"
-}, {
-"base": "State",
-"class": "WalkTowards",
-"language": "GDScript",
-"path": "res://Actors/Enemy/EnemyPackStates/WalkTowards.gd"
 } ]
 _global_script_class_icons={
-"Charge": "",
 "Chest": "",
 "ChestDropper": "",
 "Coin": "",
 "CoinDropper": "",
 "DPSCalculator": "",
+"DamageArea": "",
 "DamageSource": "",
 "DamageTaker": "",
 "Death": "",
@@ -343,9 +333,7 @@ _global_script_class_icons={
 "Stat": "",
 "State": "",
 "Text2D": "",
-"Text2DTimer": "",
-"Walk": "",
-"WalkTowards": ""
+"Text2DTimer": ""
 }
 
 [application]

@@ -1,23 +1,31 @@
+class_name DamageArea
 extends Area2D
 
-onready var timer = $Timer
-var player
-var IsNearPlayer = false
 export var damage = 10
-var dmgSrc = DamageSource.new()
+var player
+var is_near_player = false
+var damage_source = DamageSource.new()
+
+onready var timer = $Timer
+
+
 func _ready():
-	dmgSrc.physical = damage
+	damage_source.physical = damage
+
+
 func _on_DamageArea_body_entered(body):
 	player = body
-	IsNearPlayer = true
+	is_near_player = true
 	timer.start()
-	player.damageTaker.ResolveHit(dmgSrc)
+	player.damageTaker.ResolveHit(damage_source)
+
 
 func _on_Timer_timeout():
-	if IsNearPlayer:
-		player.damageTaker.ResolveHit(dmgSrc)
+	if is_near_player:
+		player.damageTaker.ResolveHit(damage_source)
 	else:
 		timer.stop()
 
+
 func _on_DamageArea_body_exited(_body):
-	IsNearPlayer = false
+	is_near_player = false

@@ -1,7 +1,7 @@
 extends Node
 
-export(PackedScene)var text2DTimerScene
-export(NodePath)var vfxOverAllPath
+export(PackedScene) var text2DTimer_Scene
+export(NodePath) var vfxOverAllPath
 
 func spawn_object(packedScene, parent):
 	var object = packedScene.instance()
@@ -11,7 +11,7 @@ func spawn_object(packedScene, parent):
 
 
 func create_text(fontColor, position, animation, text):
-	var text2D_timer = spawn_object(text2DTimerScene, get_node(vfxOverAllPath))
+	var text2D_timer = spawn_object(text2DTimer_Scene, get_node(vfxOverAllPath))
 	text2D_timer.position = position
 	text2D_timer.animation = animation
 	var text2D:Text2D = text2D_timer.text2D

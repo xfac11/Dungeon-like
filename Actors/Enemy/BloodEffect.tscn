@@ -1,13 +1,12 @@
 [gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://Actors/Enemy/BloodParticlesMaterial2.tres" type="Material" id=1]
-[ext_resource path="res://Actors/Enemy/BloodEffect.gd" type="Script" id=2]
-
+[ext_resource path="res://Scripts/Particles2DTimer.gd" type="Script" id=2]
 
 [node name="BloodEffect" type="Particles2D"]
+position = Vector2( 352.778, 238.125 )
 scale = Vector2( 10, 10 )
 z_index = 10
-emitting = false
 amount = 2
 one_shot = true
 speed_scale = 2.0
@@ -15,7 +14,6 @@ process_material = ExtResource( 1 )
 script = ExtResource( 2 )
 
 [node name="Particles2D" type="Particles2D" parent="."]
-emitting = false
 lifetime = 0.25
 one_shot = true
 explosiveness = 0.5
@@ -24,4 +22,5 @@ process_material = ExtResource( 1 )
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.25
 autostart = true
+
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

@@ -1,9 +1,10 @@
 class_name Text2D
 extends Node2D
 
-onready var _label = $Label
 export var font_color = Color.white setget set_font_color, get_font_color
 export var text = "" setget set_text, get_text
+
+onready var _label = $Label
 
 func _ready():
 	_label.text = text

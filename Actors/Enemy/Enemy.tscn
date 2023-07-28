@@ -76,11 +76,9 @@ script = ExtResource( 7 )
 
 [node name="IdleAI" type="Node" parent="FiniteStateMachine"]
 script = ExtResource( 10 )
-direction = Vector2( 0, -1 )
 
 [node name="Staggered" type="Node" parent="FiniteStateMachine"]
 script = ExtResource( 13 )
-staggeredSeconds = 0.25
 
 [node name="Death" type="Node" parent="FiniteStateMachine"]
 script = ExtResource( 9 )

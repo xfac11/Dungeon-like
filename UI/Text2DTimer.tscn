@@ -13,7 +13,7 @@ tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
 "times": PoolRealArray( 0, 0.5 ),
-"transitions": PoolRealArray( 0.267944, 0.0743257 ),
+"transitions": PoolRealArray( 0.267944, 0.341511 ),
 "update": 0,
 "values": [ Vector2( 0, 0 ), Vector2( 0, -20 ) ]
 }
@@ -38,8 +38,8 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"points": PoolRealArray( 1, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0 ),
-"times": PoolRealArray( 0.5, 1 )
+"points": PoolRealArray(  ),
+"times": PoolRealArray(  )
 }
 tracks/3/type = "bezier"
 tracks/3/path = NodePath("Text2D:scale:y")
@@ -48,8 +48,8 @@ tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"points": PoolRealArray( 1, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0 ),
-"times": PoolRealArray( 0.5, 1 )
+"points": PoolRealArray(  ),
+"times": PoolRealArray(  )
 }
 tracks/4/type = "value"
 tracks/4/path = NodePath("Text2D:modulate")
@@ -58,7 +58,7 @@ tracks/4/loop_wrap = true
 tracks/4/imported = false
 tracks/4/enabled = true
 tracks/4/keys = {
-"times": PoolRealArray( 0, 0.5, 1 ),
+"times": PoolRealArray( 0, 0.5, 0.7 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
 "values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
