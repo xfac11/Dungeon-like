@@ -5,7 +5,6 @@
 [ext_resource path="res://Projectiles/ProjectilePierce.tscn" type="PackedScene" id=3]
 [ext_resource path="res://ItemResources/ItemStat.gd" type="Script" id=4]
 
-
 [sub_resource type="Resource" id=1]
 script = ExtResource( 4 )
 damage = 10
@@ -15,6 +14,7 @@ armor = 0
 healthRegen = 0
 criticalChance = 0.0
 criticalDamage = 0.0
+dodgeChance = 0.0
 stackable = true
 maxStackSize = 10
 frequency = 5
@@ -28,18 +28,6 @@ itemType = 0
 script = ExtResource( 1 )
 name = "Spear"
 description = "Bullet can go through multiple enemies"
-stackable = true
-maxStackSize = 10
-frequency = 5
-damage = 10
-lifetime = 0
-health = 0
-armor = 0
-speed = 0.0
-projectileSpeed = 300.0
 texture = ExtResource( 2 )
 projectilePS = ExtResource( 3 )
 itemStat = SubResource( 1 )
-damageType = 1
-shootingType = 4
-itemType = 0

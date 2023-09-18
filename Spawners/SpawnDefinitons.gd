@@ -20,6 +20,5 @@ func enemy_damaged(damage, isCrit, parent, damageSrc):
 
 func setup_Enemy(enemy, position):
 	enemy.position = position
-	var movement:MovementAI = enemy
-	movement.player = get_tree().get_nodes_in_group("PLAYER")[0]
+	enemy.set_player(get_tree().get_nodes_in_group("PLAYER")[0])
 

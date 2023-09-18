@@ -11,4 +11,3 @@ func Movement(delta):
 
 func SetDirection(var newDirection:Vector2):
 	direction = newDirection
-	var angle = direction.normalized().angle_to(forward)

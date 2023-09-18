@@ -2,10 +2,9 @@
 
 [ext_resource path="res://Spawners/NormalSpawnDefiniton.gd" type="Script" id=1]
 [ext_resource path="res://Spawners/Spawner.gd" type="Script" id=2]
-[ext_resource path="res://Actors/Enemy/Enemy.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Actors/Enemy/EnemyTreant.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Spawners/SpecialSpawnDefiniton.gd" type="Script" id=5]
-
+[ext_resource path="res://Actors/Enemy/Enemy.tscn" type="PackedScene" id=6]
 
 [node name="Spawner" type="Node2D"]
 position = Vector2( -307, 66 )
@@ -32,7 +31,7 @@ coinCount = 5
 [node name="Special" type="Node" parent="Enemies"]
 script = ExtResource( 5 )
 chance = 0.1
-enemy_scene = ExtResource( 3 )
+enemy_scene = ExtResource( 6 )
 damageScale = 1.3
 speedScale = 1.2
 maxHealthScale = 3.0
@@ -41,7 +40,7 @@ expCount = 5
 
 [node name="Normal" type="Node" parent="Enemies"]
 script = ExtResource( 1 )
-enemy_scene = ExtResource( 3 )
+enemy_scene = ExtResource( 6 )
 
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_Timer_timeout"]
 [connection signal="timeout" from="WaveTimer" to="." method="_on_WaveTimer_timeout"]

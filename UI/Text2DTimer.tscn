@@ -129,9 +129,7 @@ tracks/4/keys = {
 script = ExtResource( 2 )
 
 [node name="Text2D" parent="." instance=ExtResource( 1 )]
-modulate = Color( 1, 1, 1, 0 )
-position = Vector2( 0, -20 )
-scale = Vector2( 1e-05, 1e-05 )
+position = Vector2( 0, 0 )
 text = "123"
 
 [node name="Label" parent="Text2D" index="0"]

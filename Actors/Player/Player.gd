@@ -17,7 +17,7 @@ onready var pivot = $Pivot
 onready var timer = $Timer
 onready var health:Health = $DamageTaker/Health
 onready var pickUpArea:PickupArea = $PickupArea
-onready var damageTaker:DamageTaker = $DamageTaker
+onready var damage_taker:DamageTaker = $DamageTaker
 signal coin_picked(coins)
 export(PackedScene)var pickUpAnimation
 func _ready() -> void:
@@ -46,7 +46,7 @@ func _physics_process(_delta:float) -> void:
 
 
 func GiveExp(value):
-	experienceSystem.AddExperience(value)
+	experienceSystem.add_experience(value)
 
 
 func GiveCoin(value):

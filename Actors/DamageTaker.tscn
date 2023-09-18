@@ -29,4 +29,7 @@ wait_time = 0.1
 [node name="Slow" type="Timer" parent="."]
 one_shot = true
 
+[connection signal="timeout" from="DoTFire" to="." method="_on_DoTFire_timeout"]
+[connection signal="timeout" from="DoTPoison" to="." method="_on_DoTPoison_timeout"]
+[connection signal="timeout" from="DoTBleed" to="." method="_on_DoTBleed_timeout"]
 [connection signal="timeout" from="Slow" to="." method="_on_Slow_timeout"]

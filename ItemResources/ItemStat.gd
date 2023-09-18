@@ -13,7 +13,7 @@ const ItemTypeResource = preload("res://ItemResources/ItemType.gd")
 export(ItemTypeResource.ItemType) var itemType
 func GetStatsAsJSON() -> String:
 	var baseStats:String = .GetStatsAsString()
-	var statsStr:String
+	var statsStr:String = ""
 	
 	var itemStatDictionary = {
 	"stackable" : stackable, 

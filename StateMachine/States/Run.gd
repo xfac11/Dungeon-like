@@ -24,4 +24,4 @@ func Update(object:Player, _delta):
 	var y:int = int(downInput) - int(upInput)
 	var direction = Vector2(x,y)
 	
-	object.Move(direction,mSpeed)
+	object.move(direction,mSpeed)

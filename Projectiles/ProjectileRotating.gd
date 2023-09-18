@@ -14,5 +14,5 @@ func Movement(delta):
 	if (vec.length() < 3):
 		position = newPosition
 
-func CalcTime(delta):#Do nothing. Will live forever until hit
+func CalcTime(_delta):#Do nothing. Will live forever until hit
 	return

@@ -20,7 +20,7 @@ func InputUpdate(event:Input, _object:Player, _delta):
 	return null
 func Update(object:Player, delta):
 	seconds += delta
-	object.Move(Vector2(0,direction),5)
+	object.move(Vector2(0,direction),5)
 	if seconds > 1:
 		if direction == 1:
 			direction = -1

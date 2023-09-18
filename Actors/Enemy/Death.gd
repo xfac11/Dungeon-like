@@ -1,11 +1,10 @@
 extends State
 class_name Death
-func Enter(object:MovementAI):
+func _enter(object):
 	pass
-func Exit(object:MovementAI):
+func _exit(object):
 	pass
-func InputUpdate(event, object:MovementAI, _delta):
+func _inputUpdate(event, object, _delta):
 	pass
-func Update(object:MovementAI, delta):
+func _update(object, delta):
 	pass
-

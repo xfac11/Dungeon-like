@@ -9,7 +9,7 @@ var armor = 0
 export var maximumHealth = 100
 var currentHealth = maximumHealth
 var dead:bool = false
-onready var parent = get_parent().get_parent()
+onready var parent = get_parent()
 func _ready():
 	currentHealth = maximumHealth
 
@@ -49,3 +49,8 @@ func Heal(health:int):
 		return
 	currentHealth = min(currentHealth+health, maximumHealth)
 	emit_signal("healed", currentHealth, maximumHealth, health)
+
+
+func increase_maximum_health(var percent_increase:float):
+	maximumHealth = maximumHealth*percent_increase
+	currentHealth = maximumHealth

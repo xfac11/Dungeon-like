@@ -32,7 +32,7 @@ func set_theOwner(obj):
 	theOwner = obj
 
 func HitBody(body):
-	body.damageTaker.ResolveHit(damageSrc)
+	body.damage_taker.ResolveHit(damageSrc)
 	queue_free()
 	
 func Movement(delta):

@@ -1,6 +1,5 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=22 format=2]
 
-[ext_resource path="res://Actors/Enemy/DeathSoulsEffect.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Actors/Enemy/BleedParticles.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Actors/Enemy/FireParticles.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Actors/Enemy/PoisonParticles.tscn" type="PackedScene" id=4]
@@ -58,8 +57,7 @@ scale = Vector2( 0.6, 0.6 )
 collision_layer = 8
 collision_mask = 10
 script = ExtResource( 6 )
-DeathEffect = ExtResource( 1 )
-startStatePath = NodePath("FiniteStateMachine/IdleAI")
+start_state_path = NodePath("FiniteStateMachine/IdleAI")
 speed = 5.0
 
 [node name="Particles2D" type="Particles2D" parent="."]
@@ -123,9 +121,6 @@ script = ExtResource( 9 )
 
 [connection signal="OnSlowed" from="DamageTaker" to="." method="_on_DamageTaker_OnSlowed"]
 [connection signal="OnSlowedStop" from="DamageTaker" to="." method="_on_DamageTaker_OnSlowedStop"]
-[connection signal="bleedStarted" from="DamageTaker" to="." method="_on_DamageTaker_bleedStarted"]
-[connection signal="fireStarted" from="DamageTaker" to="." method="_on_DamageTaker_fireStarted"]
-[connection signal="poisonStarted" from="DamageTaker" to="." method="_on_DamageTaker_poisonStarted"]
 [connection signal="timeout" from="DamageTaker/DoTFire" to="." method="_on_DoTFire_timeout"]
 [connection signal="timeout" from="DamageTaker/DoTPoison" to="." method="_on_DoTPoison_timeout"]
 [connection signal="timeout" from="DamageTaker/DoTBleed" to="." method="_on_DoTBleed_timeout"]

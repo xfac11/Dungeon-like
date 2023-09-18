@@ -45,7 +45,7 @@ func _create_enemy(enemyDefinition:SpawnDefinitons, enemyPosition:Vector2):
 	var health:Health = enemy.health
 	health.connect("healthDepleted", self, "DecreaseCurrentEnemies")
 	health.connect("healthDepleted", enemyDefinition, "enemy_died")
-	enemy.damageTaker.connect("damageTaken", enemyDefinition, "enemy_damaged")
+	enemy.damage_taker.connect("damage_taken", enemyDefinition, "enemy_damaged")
 	currentEnemies+= 1
 
 

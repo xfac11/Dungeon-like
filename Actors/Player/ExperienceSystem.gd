@@ -1,31 +1,35 @@
-extends Node
 class_name ExperienceSystem
+extends Node
+
+signal gained_level(maximum_exp, level)
+signal gained_experience(maximum_exp, current_exp)
+
 enum IncreaseMethod {ADDITIVE, MULTIPLE}
-var experiencePoints = 0
-var level = 1
-export var maximumExp = 10.0
+
+export var maximum_exp = 10.0
 export var increase = 10.0
-export(IncreaseMethod) var increaseMethod = IncreaseMethod.ADDITIVE
-signal leveledup(maximumExp, level)
-signal gainedExperience(maximumExp, currentExp)
+export(IncreaseMethod) var increase_method = IncreaseMethod.ADDITIVE
+
+var experience_points = 0
+var level = 1
 
 
-func AddExperience(var experience):
-	experiencePoints += experience
-	emit_signal("gainedExperience", maximumExp, experiencePoints)
-	if experiencePoints >= maximumExp:
-		experiencePoints = 0
-		IncreaseMaximum()
-		LevelUp()
+func add_experience(var experience):
+	experience_points += experience
+	emit_signal("gained_level", maximum_exp, experience_points)
+	if experience_points >= maximum_exp:
+		experience_points = 0
+		_increase_maximum_experience()
+		_level_up()
 
 
-func IncreaseMaximum():
-	if increaseMethod == IncreaseMethod.ADDITIVE:
-		maximumExp+=increase
-	elif increaseMethod == IncreaseMethod.MULTIPLE:
-		maximumExp*=increase
+func _increase_maximum_experience():
+	if increase_method == IncreaseMethod.ADDITIVE:
+		maximum_exp += increase
+	elif increase_method == IncreaseMethod.MULTIPLE:
+		maximum_exp *= increase
 
 
-func LevelUp():
+func _level_up():
 	level += 1
-	emit_signal("leveledup",maximumExp, level)
+	emit_signal("gained_level",maximum_exp, level)

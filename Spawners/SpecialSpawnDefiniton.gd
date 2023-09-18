@@ -13,9 +13,9 @@ export(Color) var outlineColor = Color.blue
 func setup_Enemy(enemy, position):
 	.setup_Enemy(enemy, position)
 	enemy.scale = Vector2(size, size)
-	enemy.damageArea.damage*= damageScale
-	enemy.speed*= speedScale
-	enemy.IncreaseMaximumHealth(maxHealthScale)
+	enemy.damage_area.damage*= damageScale
+	enemy.movement.speed*= speedScale
+	enemy.health.increase_maximum_health(maxHealthScale)
 	var enemyMat:ShaderMaterial = enemy.sprite.material
 	enemyMat.set_shader_param("edgeShading", true)
 	enemyMat.set_shader_param("edgeColor", outlineColor)

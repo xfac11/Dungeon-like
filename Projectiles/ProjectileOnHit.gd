@@ -6,8 +6,8 @@ export(PackedScene) var onHitProjectile
 #	call_deferred("SpawnProjectiles")
 #	queue_free()
 
-func HitBody(body):
-	body.damageTaker.ResolveHit(damageSrc)
+func HitBody(body:MovementAI):
+	body.damage_taker.ResolveHit(damageSrc)
 	call_deferred("SpawnProjectiles")
 	queue_free()
 

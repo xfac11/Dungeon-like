@@ -19,6 +19,6 @@ func setup_Enemy(enemy, position):
 
 
 func enemy_died(enemy):
-	emit_signal("spawn_exp", enemy.position, expCount)
+	emit_signal("spawn_exp", enemy.global_position, expCount)
 	if DiceRoll(coinChance):
-		emit_signal("spawn_coin", enemy.position, coinCount)
+		emit_signal("spawn_coin", enemy.global_position, coinCount)

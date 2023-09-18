@@ -36,7 +36,7 @@ func _on_Timer_timeout() -> void:
 		switchAnim = 1
 
 func _on_MeleeWeapon_body_entered(body) -> void:
-	var health = body.damageTaker
+	var health = body.damage_taker
 	if health:
 		health.ResolveHit(dmgSrc)
 

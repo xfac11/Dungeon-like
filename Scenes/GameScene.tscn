@@ -55,7 +55,7 @@ coinScene = ExtResource( 12 )
 
 [node name="Text2DFactory" type="Node" parent="."]
 script = ExtResource( 17 )
-text2DTimerScene = ExtResource( 8 )
+text2DTimer_Scene = ExtResource( 8 )
 vfxOverAllPath = NodePath("../VfxOverAll")
 
 [node name="DPSCalculator" type="Node" parent="."]
@@ -105,8 +105,11 @@ wait_time = 5.0
 [node name="WaveTimer" parent="Spawner" index="1"]
 wait_time = 30.0
 
+[node name="TreantNormal" parent="Spawner/Enemies" index="0"]
+chance = 0.0
+
 [node name="Special" parent="Spawner/Enemies" index="1"]
-chance = 0.01
+chance = 0.0
 
 [node name="Normal" parent="Spawner/Enemies" index="2"]
 chance = 0.9

@@ -1,134 +1,109 @@
-extends KinematicBody2D
 class_name MovementAI
+extends KinematicBody2D
+
+export(NodePath) var start_state_path
+export var speed:float = 50.0
+var slowed_speed = 0.25
+var player:Node2D
+var death = false
+var _normal_speed = 0.0
+
 onready var fsm:FiniteStateMachine = $FiniteStateMachine
 onready var sprite = $Sprite
-onready var damageArea = $DamageArea
+onready var damage_area = $DamageArea
 onready var health:Health = $DamageTaker/Health
-onready var damageTaker = $DamageTaker
-onready var damage_tween = $Tween
+onready var damage_taker = $DamageTaker
+onready var damage_tween = $DamageTween
 onready var death_tween = $DeathTween
-onready var bleedParticles = $BleedParticles
-onready var poisonParticles = $PoisonParticles
-onready var firePartcles = $FireParticles
+onready var bleed_particles = $BleedParticles
+onready var poison_particles = $PoisonParticles
+onready var fire_particles = $FireParticles
 onready var parent = get_parent()
-export(PackedScene) var DeathEffect
-export(NodePath) var startStatePath
-var right = Vector2(1,0)
-var left = Vector2(-1,0)
-var up = Vector2(0,-1)
-var down =  Vector2(0,1)
-var velocity:Vector2 = Vector2(0,0)
-export var speed:float = 50.0
-var slowedSpeed = 0.25
-var normalSpeed
-var player:Node2D
-var expOrbCount = 1
-var death = false
+
+
 func _ready():
-	fsm.Initiate(get_node(startStatePath), self)
+	fsm.initiate(get_node(start_state_path), self)
 
 
-func IncreaseMaximumHealth(var percentIncrease:float):
-	health.maximumHealth = health.maximumHealth*percentIncrease
+func _physics_process(delta):
+	fsm.update(self, delta)
+
+
+func _process(delta):
+	fsm.process_event(self, self, delta)
+
+
+func increase_maximum_health(var percent_increase:float):
+	health.maximumHealth = health.maximumHealth*percent_increase
 	health.currentHealth = health.maximumHealth
 
 
-func MoveTowardPlayer(speedMultiplier:float) -> bool:
-	var direction:Vector2
+func move_toward_player(speed_multiplier:float) -> bool:
+	var direction = _get_vector_to_player()
 	if is_instance_valid(player):
-		direction = GetVectorToPlayer()
-	else:
-		return false
-	direction = direction.normalized()
-	velocity = direction;
-	move_and_slide(velocity.normalized()*(speed*speedMultiplier))
-	return true
-
-
-func Move(direction:Vector2, speedMultiplier:float) -> void:
-	direction = direction.normalized()
-	velocity = direction;
-	move_and_slide(velocity.normalized()*(speed*speedMultiplier))
-
-
-func GetVectorToPlayer() -> Vector2:
-	return player.position - position
-
-
-func IsCloseToPlayer(var radius:float) -> bool:
-	var toPlayer = GetVectorToPlayer()
-	if toPlayer.length() < radius:
+		var _velocity = move_and_slide(direction.normalized()*(speed*speed_multiplier))
 		return true
 	return false
 
 
-func _physics_process(delta):
-	fsm.Update(self, delta)
+func move(direction:Vector2, speed_multiplier:float) -> void:
+	var _velocity = move_and_slide(direction.normalized()*(speed*speed_multiplier))
 
 
-func _process(delta):
-	fsm.ProcessEvent(self, self, delta)
-
-
-func _on_Health_healthDepleted(parent):
+func _on_Health_healthDepleted(_parent):
 	death = true
-	#sprite.material.set_shader_param("hor_index", 0)
-	var verIndex = 0.0
-	#sprite.material.set_shader_param("ver_index", verIndex);
 	death_tween.interpolate_property(sprite.material, "shader_param/noiseEffectivenes",
 		0, 0.6, 0.5,
 		Tween.TRANS_LINEAR, Tween.EASE_IN)
 	death_tween.start()
-	death_tween.connect("tween_completed",self,"QueueSelf")
-	#SpawnObject(DeathEffect).emitting = true
+	death_tween.connect("tween_completed",self,"_queue_self")
 
 
-func QueueSelf(object, key):
+func _queue_self(_object, _key):
 	queue_free()
 
 
-func _on_Health_damageTaken(currentHealth, maximumHealth, damageAmount):
+func _on_Health_damageTaken(_currentHealth, _maximumHealth, _damageAmount):
 	damage_tween.interpolate_property(sprite.material, "shader_param/blinkValue",
 		1, 0, 0.25,
 		Tween.TRANS_LINEAR, Tween.EASE_IN)
 	damage_tween.start()
 
 
-func SpawnObject(packedScene):
-	var object = packedScene.instance()
-	parent.call_deferred("add_child", object)
-	object.transform = global_transform
-	return object
-
 func _on_DamageTaker_bleedStarted():
-	bleedParticles.emitting = true
+	bleed_particles.emitting = true
 
 
 func _on_DoTBleed_timeout():
-	bleedParticles.emitting = false
+	bleed_particles.emitting = false
 
 
 func _on_DoTPoison_timeout():
-	poisonParticles.emitting = false
+	poison_particles.emitting = false
 
 
 func _on_DamageTaker_fireStarted():
-	firePartcles.emitting = true
+	fire_particles.emitting = true
 
 
 func _on_DamageTaker_poisonStarted():
-	poisonParticles.emitting = true
+	poison_particles.emitting = true
 
 
 func _on_DoTFire_timeout():
-	firePartcles.emitting = false
+	fire_particles.emitting = false
 
 
 func _on_DamageTaker_OnSlowed():
-	normalSpeed = speed
-	speed = slowedSpeed * speed
+	_normal_speed = speed
+	speed = slowed_speed * speed
 	sprite.modulate = Color.blue
 
+
 func _on_DamageTaker_OnSlowedStop():
-	speed = normalSpeed
+	speed = _normal_speed
 	sprite.modulate = Color.white
+
+
+func _get_vector_to_player() -> Vector2:
+	return player.position - position

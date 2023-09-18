@@ -9,11 +9,11 @@ func _ready():
 	newParticles.position = global_position
 
 
-func Movement(delta):
+func Movement(_delta):
 	var angle = direction.normalized().angle_to(forward)
 	rotation = -angle
 	return
 
 
-func HitBody(body):
-	body.damageTaker.ResolveHit(damageSrc)
+func HitBody(body:MovementAI):
+	body.damage_taker.ResolveHit(damageSrc)

@@ -1,11 +1,11 @@
 extends Node
 class_name State
 var stateDictionary
-func Enter(_object):
+func _enter(_object):
 	pass
-func Exit(_object):
+func _exit(_object):
 	pass
-func InputUpdate(_event, _object, _delta):
+func _inputUpdate(_event, _object, _delta):
 	return null
-func Update(_object, _delta):
+func _update(_object, _delta):
 	pass

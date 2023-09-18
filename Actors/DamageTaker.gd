@@ -1,20 +1,23 @@
 extends Node
 class_name DamageTaker
 
-signal bleedStarted()
-signal poisonStarted()
-signal fireStarted()
+signal bleed_started()
+signal poison_started()
+signal fire_started()
 signal OnSlowed()
 signal OnSlowedStop()
 signal dodged(parent)
 signal blocked(parent)
-signal damageTaken(damage, isCrit, parent, damageSrc)
+signal damage_taken(damage, isCrit, parent, damageSrc)
+signal bleed_stopped()
+signal poison_stopped()
+signal fire_stopped()
+
 
 onready var dotFire:Timer = $DoTFire
 onready var dotPoison:Timer = $DoTPoison
 onready var dotBleed:Timer = $DoTBleed
 onready var slowTimer:Timer = $Slow
-onready var health:Health = $Health
 
 const SLOWCHANCE:float = 0.25
 const RESISTANCECAP:float = 0.75
@@ -28,12 +31,13 @@ const BLEEDSTACKCAP:int = 8
 const POISONSTACKCAP:int = 8
 
 
-export var armor:float = 0.0
+export var armor_rate:float = 0.0
 export var block:float = 0.0
 export var dodge:float = 0.0
 
 export var fireResistance:float = 0.0
-export var coldResistance:float = 0.0
+export var cold_resistance:float = 0.0
+export(NodePath) var health_path
 
 var currentBleed = 0.0
 var bleedDuration = 8
@@ -44,13 +48,23 @@ var currentPoison = 0.0
 var poisonDuration = 4
 var poisonStacks = 0
 var coldStacks = 0
+var health_node:Health
 func _ready():
-	dotBleed.connect("timeout",self,"StopBleed")
-	dotPoison.connect("timeout",self,"StopPoison")
-	dotFire.connect("timeout",self,"StopIgnite")
-	dotBleed.get_child(0).connect("timeout",self,"DoBleedDamage")
-	dotPoison.get_child(0).connect("timeout",self,"DoPoisonDamage")
-	dotFire.get_child(0).connect("timeout",self,"DoIgniteDamage")
+	if dotBleed.connect("timeout",self,"StopBleed"):
+		print_debug("Failed to connect")
+	if dotPoison.connect("timeout",self,"StopPoison"):
+		print_debug("Failed to connect")
+	if dotFire.connect("timeout",self,"StopIgnite"):
+		print_debug("Failed to connect")
+	if dotBleed.get_child(0).connect("timeout",self,"DoBleedDamage"):
+		print_debug("Failed to connect")
+	if dotPoison.get_child(0).connect("timeout",self,"DoPoisonDamage"):
+		print_debug("Failed to connect")
+	if dotFire.get_child(0).connect("timeout",self,"DoIgniteDamage"):
+		print_debug("Failed to connect")
+	health_node = get_node(health_path)
+
+
 func StopBleed():
 	currentBleed = 0
 	bleedStacks = 0
@@ -63,24 +77,24 @@ func StopIgnite():
 	currentIgnite = 0
 	dotFire.get_child(0).stop()
 func DoBleedDamage():
-	health.TakeDotDamage(currentBleed * 0.1)
+	health_node.TakeDotDamage(currentBleed * 0.1)
 func DoPoisonDamage():
-	health.TakeDotDamage(currentPoison * 0.1)
+	health_node.TakeDotDamage(currentPoison * 0.1)
 func DoIgniteDamage():
-	health.TakeDotDamage(currentIgnite * 0.1)
+	health_node.TakeDotDamage(currentIgnite * 0.1)
 
-func ResolveHit(damageSrc:DamageSource) -> void:
+func ResolveHit(damageSrc:DamageSource) -> float:
 	var damage:float = 0.0
 	if Roll(min(dodge, DODGECAP)):
 		emit_signal("dodged", get_parent())
-		return
+		return 0.0
 	if Roll(min(block, BLOCKCAP)):
 		emit_signal("blocked", get_parent())
-		return##stun animation
+		return 0.0##stun animation
 	var crit = Roll(damageSrc.criticalChance)
 	var critAsFloat = float(crit)
 	if damageSrc.physical > 0.0:
-		var physicalDamageReduction:float = PhysicalReduction(armor,damageSrc.physical)
+		var physicalDamageReduction:float = PhysicalReduction(armor_rate,damageSrc.physical)
 		var physicalDamage = damageSrc.physical
 		physicalDamage+= physicalDamage * critAsFloat * damageSrc.criticalDamage
 		if Roll(damageSrc.poisonChance):
@@ -91,7 +105,7 @@ func ResolveHit(damageSrc:DamageSource) -> void:
 			ApplyBleed(physicalDamage)
 			##apply bleed based on calculated damage and dot effectiveness
 	if damageSrc.fire > 0.0:
-		var fireDamageReduction:float = FireDamageReduction(fireResistance, damageSrc.fire)
+		var fireDamageReduction:float = FireDamageReduction()
 		var fireDamage = damageSrc.fire
 		fireDamage+= fireDamage * critAsFloat * damageSrc.criticalDamage
 		fireDamage*= (1 - fireDamageReduction)
@@ -99,7 +113,7 @@ func ResolveHit(damageSrc:DamageSource) -> void:
 		if Roll(damageSrc.igniteChance):
 			ApplyIgnite(fireDamage)
 	if damageSrc.cold > 0.0:
-		var coldDamageReduction:float = ColdDamageReduction(coldResistance, damageSrc.cold)
+		var coldDamageReduction:float = ColdDamageReduction()
 		var coldDamage = damageSrc.cold
 		coldDamage+= coldDamage * critAsFloat * damageSrc.criticalDamage
 		coldDamage*= (1 - coldDamageReduction)
@@ -107,16 +121,17 @@ func ResolveHit(damageSrc:DamageSource) -> void:
 			if slowTimer.is_stopped():
 				Slow()
 		damage+= coldDamage
-	emit_signal("damageTaken", damage, crit, get_parent(), damageSrc)
-	health.TakeDamage(damage)
+	emit_signal("damage_taken", damage, crit, get_parent(), damageSrc)
+	health_node.TakeDamage(int(damage))
+	return damage
 func Slow():
 	slowTimer.start()
 	emit_signal("OnSlowed")
 func PhysicalReduction(armor:float, physicalDamage:float) -> float:
 	return armor / (armor + 5.0 * physicalDamage)
-func ColdDamageReduction(coldResistance, coldDamage) -> float:
-	return min(RESISTANCECAP, coldResistance)
-func FireDamageReduction(fireResistance:float, fireDamage:float) -> float:
+func ColdDamageReduction() -> float:
+	return min(RESISTANCECAP, cold_resistance)
+func FireDamageReduction() -> float:
 	return min(RESISTANCECAP, fireResistance)
 
 func Roll(chance:float) -> bool:
@@ -128,7 +143,7 @@ func ApplyBleed(physicalDamage:float) -> void:
 	if currentBleed < bleedDamage:
 		currentBleed = bleedDamage
 	dotBleed.start()
-	emit_signal("bleedStarted")
+	emit_signal("bleed_started")
 	dotBleed.get_child(0).start()
 
 func ApplyIgnite(fireDamage:float) -> void:
@@ -136,22 +151,34 @@ func ApplyIgnite(fireDamage:float) -> void:
 	if currentIgnite < igniteDamage:
 		currentIgnite = igniteDamage
 	dotFire.start()
-	emit_signal("fireStarted")
+	emit_signal("fire_started")
 	dotFire.get_child(0).start()
 func ApplyPoison(physicalDamage:float) -> void:
 	poisonStacks = min(POISONSTACKCAP, poisonStacks + 1)
 	var poisonDamage = PoisonDamage(physicalDamage, poisonStacks)
 	currentPoison += poisonDamage
 	dotPoison.start()
-	emit_signal("poisonStarted")
+	emit_signal("poison_started")
 	dotPoison.get_child(0).start()
-func BleedDamage(physicalDamage:float, bleedStacks:int) -> float:
-	return physicalDamage * BLEEDMODIFIER * bleedStacks
-func PoisonDamage(physicalDamage:float, poisonStacks:int) -> float:
-	return physicalDamage * POISONMODIFIER * poisonStacks
+func BleedDamage(physicalDamage:float, stacks:int) -> float:
+	return physicalDamage * BLEEDMODIFIER * stacks
+func PoisonDamage(physicalDamage:float, stacks:int) -> float:
+	return physicalDamage * POISONMODIFIER * stacks
 func IgniteDamage(fireDamage:float) -> float:
 	return fireDamage * IGNITEMODIFIER
 
 
 func _on_Slow_timeout():
 	emit_signal("OnSlowedStop")
+
+
+func _on_DoTFire_timeout():
+	emit_signal("fire_stopped")
+
+
+func _on_DoTPoison_timeout():
+	emit_signal("poison_stopped")
+
+
+func _on_DoTBleed_timeout():
+	emit_signal("bleed_stopped")

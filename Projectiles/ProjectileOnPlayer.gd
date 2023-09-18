@@ -12,7 +12,7 @@ func set_area_size(new_size):
 func LifetimeEnd():
 	$Particles2D.emitting = true
 	for body in bodies:
-		body.damageTaker.ResolveHit(damageSrc)
+		body.damage_taker.ResolveHit(damageSrc)
 
 func HitBody(body):
 	if !bodies.has(body):
@@ -23,5 +23,5 @@ func _on_ProjectileOnPlayer_body_exited(body):
 	bodies.erase(body)
 
 
-func Movement(delta):
+func Movement(_delta):
 	position = theOwner.get_tree().get_nodes_in_group("PLAYER")[0].position

@@ -1,27 +1,26 @@
 extends Node
 class_name FiniteStateMachine
-export var printNewState:bool = false
-var mCurrentState:State
-var statesReference = {}
+var current_state:State
+var states_reference = {}
 func _ready():
 	#Get the children and add it to the dictionary
 	#Give the dictionary to the states to be used as references to change state
 	var states = get_children()
 	for stateRef in states:
-		 statesReference[stateRef.get_name()] = stateRef
+		 states_reference[stateRef.get_name()] = stateRef
 	for statesRef in states:
-		statesRef.stateDictionary = statesReference
+		statesRef.stateDictionary = states_reference
 
-func ProcessEvent(event, object, delta):
-	var state = mCurrentState.InputUpdate(event, object, delta)
+func process_event(event, object, delta):
+	var state = current_state._inputUpdate(event, object, delta)
 	if state != null:
-		mCurrentState.Exit(object)
-		mCurrentState = state
-		mCurrentState.Enter(object)
+		current_state._exit(object)
+		current_state = state
+		current_state._enter(object)
 
-func Update(object, delta):
-	mCurrentState.Update(object, delta)
+func update(object, delta):
+	current_state._update(object, delta)
 
-func Initiate(startState:State,object):
-	mCurrentState = startState
-	mCurrentState.Enter(self)
+func initiate(start_state:State, _object):
+	current_state = start_state
+	current_state._enter(self)

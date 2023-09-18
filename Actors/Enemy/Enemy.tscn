@@ -1,103 +1,90 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=20 format=2]
 
-[ext_resource path="res://Actors/Enemy/DeathSoulsEffect.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Actors/Enemy/BleedParticles.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Actors/Enemy/FireParticles.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Actors/Enemy/PoisonParticles.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Actors/DamageTaker.tscn" type="PackedScene" id=5]
-[ext_resource path="res://Actors/Enemy/MovementAI.gd" type="Script" id=6]
-[ext_resource path="res://StateMachine/FiniteStateMachine.gd" type="Script" id=7]
-[ext_resource path="res://Actors/Health.gd" type="Script" id=8]
-[ext_resource path="res://Actors/Enemy/Death.gd" type="Script" id=9]
-[ext_resource path="res://Actors/Enemy/DefaultEnemyStates/IdleAI.gd" type="Script" id=10]
-[ext_resource path="res://BuchOpenGameArt/dungeon_sheet.png" type="Texture" id=11]
-[ext_resource path="res://Actors/Enemy/DamageArea.gd" type="Script" id=12]
-[ext_resource path="res://Actors/Enemy/DefaultEnemyStates/Staggered.gd" type="Script" id=13]
-[ext_resource path="res://Actors/BlinkingMaterial.tres" type="Material" id=14]
-
-[sub_resource type="AtlasTexture" id=3]
-atlas = ExtResource( 11 )
-region = Rect2( 368, 111, 16, 18 )
-filter_clip = true
+[ext_resource path="res://Actors/Enemy/Death.gd" type="Script" id=1]
+[ext_resource path="res://Actors/Enemy/Enemy.gd" type="Script" id=2]
+[ext_resource path="res://Actors/Enemy/DefaultEnemyStates/Staggered.gd" type="Script" id=3]
+[ext_resource path="res://Actors/Enemy/EnemyKnightTexture.tres" type="Texture" id=4]
+[ext_resource path="res://Actors/Movement.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Actors/DamageEffect.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Actors/Enemy/BleedEffect.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Actors/Enemy/FireEffect.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Actors/Enemy/PoisonEffect.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Actors/Enemy/SlowEffect.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Actors/Health.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Actors/Enemy/DamageArea.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Actors/DamageTaker.tscn" type="PackedScene" id=13]
+[ext_resource path="res://Actors/DeathEffect.tscn" type="PackedScene" id=14]
+[ext_resource path="res://StateMachine/FiniteStateMachine.tscn" type="PackedScene" id=15]
+[ext_resource path="res://Actors/Enemy/DefaultEnemyStates/ChasePlayer.gd" type="Script" id=16]
+[ext_resource path="res://Actors/BlinkingMaterial.tres" type="Material" id=17]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 6.10052, 8.12974 )
+extents = Vector2( 6.37115, 8.49487 )
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 6.57299, 8.52346 )
+extents = Vector2( 6.37115, 8.19991 )
 
-[node name="Enemy" type="KinematicBody2D" groups=["ENEMIES"]]
+[node name="Enemy" type="KinematicBody2D"]
 collision_layer = 8
 collision_mask = 11
-script = ExtResource( 6 )
-DeathEffect = ExtResource( 1 )
-startStatePath = NodePath("FiniteStateMachine/IdleAI")
-speed = 20.0
+script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
-material = ExtResource( 14 )
-texture = SubResource( 3 )
-
-[node name="FireParticles" parent="." instance=ExtResource( 3 )]
-
-[node name="BleedParticles" parent="." instance=ExtResource( 2 )]
-
-[node name="PoisonParticles" parent="." instance=ExtResource( 4 )]
+material = ExtResource( 17 )
+texture = ExtResource( 4 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
-position = Vector2( -1.98682e-07, 1.98682e-07 )
+position = Vector2( 0.0442352, 0.0229111 )
 shape = SubResource( 1 )
 
-[node name="DamageTaker" parent="." instance=ExtResource( 5 )]
+[node name="Movement" parent="." instance=ExtResource( 5 )]
+speed = 10.0
+damage_taker_path = NodePath("../DamageTaker")
 
-[node name="Slow" parent="DamageTaker" index="3"]
-wait_time = 4.811
+[node name="DamageTaker" parent="." instance=ExtResource( 13 )]
+health_path = NodePath("../Health")
 
-[node name="Health" type="Node" parent="DamageTaker"]
-script = ExtResource( 8 )
+[node name="DamageEffect" parent="." instance=ExtResource( 6 )]
+sprite_path = NodePath("../Sprite")
+elapsed_time = 0.25
+health_path = NodePath("../Health")
 
-[node name="DamageArea" type="Area2D" parent="."]
-visible = false
-collision_layer = 32
-collision_mask = 2
-script = ExtResource( 12 )
+[node name="BleedEffect" parent="." instance=ExtResource( 7 )]
+damage_taker_path = NodePath("../DamageTaker")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="DamageArea"]
-shape = SubResource( 2 )
+[node name="FireEffect" parent="." instance=ExtResource( 8 )]
+damage_taker_path = NodePath("../DamageTaker")
 
-[node name="Timer" type="Timer" parent="DamageArea"]
-wait_time = 2.0
+[node name="PoisonEffect" parent="." instance=ExtResource( 9 )]
+damage_taker_path = NodePath("../DamageTaker")
 
-[node name="Tween" type="Tween" parent="."]
+[node name="SlowEffect" parent="." instance=ExtResource( 10 )]
+color_to = Color( 0, 0.109804, 1, 1 )
+sprite_path = NodePath("../Sprite")
+damage_taker_path = NodePath("../DamageTaker")
 
-[node name="FiniteStateMachine" type="Node" parent="."]
-script = ExtResource( 7 )
+[node name="DeathEffect" parent="." instance=ExtResource( 14 )]
+sprite_path = NodePath("../Sprite")
+health_path = NodePath("../Health")
 
-[node name="IdleAI" type="Node" parent="FiniteStateMachine"]
-script = ExtResource( 10 )
+[node name="Health" parent="." instance=ExtResource( 11 )]
+
+[node name="FiniteStateMachine" parent="." instance=ExtResource( 15 )]
+
+[node name="ChasePlayer" type="Node" parent="FiniteStateMachine"]
+script = ExtResource( 16 )
 
 [node name="Staggered" type="Node" parent="FiniteStateMachine"]
-script = ExtResource( 13 )
+script = ExtResource( 3 )
 
 [node name="Death" type="Node" parent="FiniteStateMachine"]
-script = ExtResource( 9 )
+script = ExtResource( 1 )
 
-[node name="DeathTween" type="Tween" parent="."]
+[node name="DamageArea" parent="." instance=ExtResource( 12 )]
 
-[connection signal="OnSlowed" from="DamageTaker" to="." method="_on_DamageTaker_OnSlowed"]
-[connection signal="OnSlowedStop" from="DamageTaker" to="." method="_on_DamageTaker_OnSlowedStop"]
-[connection signal="bleedStarted" from="DamageTaker" to="." method="_on_DamageTaker_bleedStarted"]
-[connection signal="fireStarted" from="DamageTaker" to="." method="_on_DamageTaker_fireStarted"]
-[connection signal="poisonStarted" from="DamageTaker" to="." method="_on_DamageTaker_poisonStarted"]
-[connection signal="timeout" from="DamageTaker/DoTFire" to="." method="_on_DoTFire_timeout"]
-[connection signal="timeout" from="DamageTaker/DoTPoison" to="." method="_on_DoTPoison_timeout"]
-[connection signal="timeout" from="DamageTaker/DoTBleed" to="." method="_on_DoTBleed_timeout"]
-[connection signal="damageTaken" from="DamageTaker/Health" to="." method="_on_Health_damageTaken"]
-[connection signal="damageTaken" from="DamageTaker/Health" to="FiniteStateMachine/IdleAI" method="_on_Health_damageTaken"]
-[connection signal="healthDepleted" from="DamageTaker/Health" to="." method="_on_Health_healthDepleted"]
-[connection signal="body_entered" from="DamageArea" to="DamageArea" method="_on_DamageArea_body_entered"]
-[connection signal="body_exited" from="DamageArea" to="DamageArea" method="_on_DamageArea_body_exited"]
-[connection signal="timeout" from="DamageArea/Timer" to="DamageArea" method="_on_Timer_timeout"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DamageArea"]
+position = Vector2( -0.131866, -0.264435 )
+shape = SubResource( 2 )
 
 [editable path="DamageTaker"]
+[editable path="DeathEffect"]
