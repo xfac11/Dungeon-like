@@ -4,7 +4,7 @@
 [ext_resource path="res://Actors/Player/Player.gd" type="Script" id=2]
 [ext_resource path="res://Looting/PickupArea.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Actors/Player/ExperienceSystem.gd" type="Script" id=4]
-[ext_resource path="res://Actors/Health.gd" type="Script" id=5]
+[ext_resource path="res://Actors/Health.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Actors/BlinkingMaterial.tres" type="Material" id=6]
 [ext_resource path="res://Actors/Player/MeleeWeapon.gd" type="Script" id=7]
 [ext_resource path="res://Curves/CurveLine.tres" type="Curve" id=8]
@@ -186,13 +186,12 @@ speed = 10.0
 script = ExtResource( 4 )
 
 [node name="DamageTaker" parent="." instance=ExtResource( 10 )]
-health_path = NodePath("Health")
-
-[node name="Health" type="Node" parent="DamageTaker"]
-script = ExtResource( 5 )
+health_path = NodePath("../Health")
 
 [node name="Timer" type="Timer" parent="."]
 autostart = true
+
+[node name="Health" parent="." instance=ExtResource( 5 )]
 
 [node name="HPRegTimer" type="Timer" parent="."]
 
@@ -266,7 +265,7 @@ one_shot = true
 process_material = SubResource( 6 )
 
 [connection signal="item_picked_up" from="PickupArea" to="." method="_on_PickupArea_item_picked_up"]
-[connection signal="damageTaken" from="DamageTaker/Health" to="." method="_on_Health_damageTaken"]
+[connection signal="damageTaken" from="Health" to="." method="_on_Health_damageTaken"]
 [connection signal="timeout" from="HPRegTimer" to="." method="_on_HPRegTimer_timeout"]
 [connection signal="timeout" from="DamageTimer" to="." method="_on_DamageTimer_timeout"]
 [connection signal="body_entered" from="Pivot/WeaponPivot/MeleeWeapon" to="Pivot/WeaponPivot/MeleeWeapon" method="_on_MeleeWeapon_body_entered"]

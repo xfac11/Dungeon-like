@@ -15,7 +15,7 @@ onready var experienceSystem:ExperienceSystem = $ExperienceSystem
 onready var sprite = $Sprite
 onready var pivot = $Pivot
 onready var timer = $Timer
-onready var health:Health = $DamageTaker/Health
+onready var health:Health = $Health
 onready var pickUpArea:PickupArea = $PickupArea
 onready var damage_taker:DamageTaker = $DamageTaker
 signal coin_picked(coins)
