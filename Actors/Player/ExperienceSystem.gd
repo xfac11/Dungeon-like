@@ -16,7 +16,7 @@ var level = 1
 
 func add_experience(var experience):
 	experience_points += experience
-	emit_signal("gained_level", maximum_exp, experience_points)
+	emit_signal("gained_experience", maximum_exp, experience_points)
 	if experience_points >= maximum_exp:
 		experience_points = 0
 		_increase_maximum_experience()

@@ -8,6 +8,7 @@ export var items = Array() setget SetItems, GetItems
 signal inventoryChanged(items, itemName, quantity)
 func Clear() -> void:
 	items.clear()
+#itemName is the name given in the resource of the item. Not the resources' file name.
 func AddItem(itemName, quantity) -> void:
 	var item = ItemDatabase.GetItem(itemName)
 	if item == null:

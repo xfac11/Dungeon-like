@@ -4,7 +4,7 @@ extends Node2D
 export var seed_variable = 1337
 onready var _game_over_menu = $UICanvasLayer/UI/GameOver
 onready var _game_ui = $UICanvasLayer/UI
-
+onready var player = $Player
 func _ready():
 	get_tree().paused = false
 	set_process(true)
@@ -13,6 +13,7 @@ func _ready():
 	
 	if SaveLoad.data.discoveredItems.size() == 0:
 		SaveLoad.data.discoveredItems = GameHandler.discoveredItems
+	
 
 
 func _on_Health_healthDepleted(parent:Player):

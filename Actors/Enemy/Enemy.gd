@@ -14,6 +14,7 @@ onready var sprite = $Sprite
 
 
 func _ready():
+	add_to_group("ENEMIES")
 	$FiniteStateMachine/ChasePlayer.connect_health(health)
 	$DeathEffect/Tween.connect("tween_completed", self, "queue_self")
 	state_machine.initiate(start_state, self)

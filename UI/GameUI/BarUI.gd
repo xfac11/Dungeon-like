@@ -1,5 +1,5 @@
 extends ProgressBar
-func _on_ExperienceSystem_gainedExperience(maximumExp, currentExp):
+func _on_ExperienceSystem_gained_experience(maximumExp, currentExp):
 	if(currentExp >= maximumExp):
 		value = 0
 	else:
@@ -9,6 +9,5 @@ func _on_ExperienceSystem_gainedExperience(maximumExp, currentExp):
 		
 		
 
-
-func _on_ExperienceSystem_leveledup(maximumExp, level):
+func _on_ExperienceSystem_gained_level(maximum_exp, level):
 	value = 0

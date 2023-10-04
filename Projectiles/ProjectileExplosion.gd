@@ -6,7 +6,7 @@ func Movement(_delta):
 	return##NO movement
 
 
-func HitBody(body:MovementAI):
+func HitBody(body):
 	body.damage_taker.ResolveHit(damageSrc)
 
 

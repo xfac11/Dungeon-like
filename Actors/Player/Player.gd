@@ -62,7 +62,7 @@ func ProcessItems() -> void:
 		var nrOfStacks:int = itemSlot.nrOfStacks
 		
 		if item.itemStat.itemType == ItemTypeResource.ItemType.WEAPON:
-			itemHandler.Shoot(item, nrOfStacks, owner, global_transform)
+			itemHandler.shoot(item, nrOfStacks, owner, global_transform)
 
 
 func ApplyStat(_items:Array, newItemName:String, stacks:int) -> void:

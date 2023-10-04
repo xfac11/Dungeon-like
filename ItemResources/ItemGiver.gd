@@ -10,7 +10,7 @@ onready var player:Player = get_tree().get_nodes_in_group("PLAYER")[0]
 
 func _ready() -> void:
 	_item_select = get_node(item_select_node_path)
-	player.get_node("ExperienceSystem").connect("leveledup", self, "show_items")
+	player.get_node("ExperienceSystem").connect("gained_level", self, "show_items")
 
 
 func show_items(_maxExp, _level) -> void:
