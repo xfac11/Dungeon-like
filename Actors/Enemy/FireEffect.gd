@@ -10,10 +10,10 @@ func _ready():
 	damage_taker.connect("fire_stopped", self, "_on_DamageTaker_fire_stopped")
 
 
-func _on_DamageTaker_bleed_started():
+func _on_DamageTaker_fire_started():
 	.start_effect()
 
 
-func _on_DamageTaker_bleed_stopped():
+func _on_DamageTaker_fire_stopped():
 	.end_effect()
 

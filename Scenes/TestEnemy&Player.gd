@@ -7,7 +7,7 @@ onready var enemy:Enemy = $Enemy
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	player.inventory.AddItem("Knife", 1)
+	player.inventory.AddItem("Fire Book", 1)
 	enemy.set_player(player)
 
 
