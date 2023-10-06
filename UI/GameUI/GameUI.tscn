@@ -134,9 +134,6 @@ theme = ExtResource( 2 )
 value = 100.0
 percent_visible = false
 script = ExtResource( 11 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="HPtext" type="Label" parent="HPbar"]
 anchor_right = 1.0
