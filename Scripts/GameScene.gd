@@ -14,6 +14,8 @@ func _ready():
 	if SaveLoad.data.discoveredItems.size() == 0:
 		SaveLoad.data.discoveredItems = GameHandler.discoveredItems
 	
+	
+	connect_health_ui(get_node("Player/Health"), get_node("UICanvasLayer/UI/HPbar"))
 
 
 func _on_Health_healthDepleted(parent:Player):
@@ -24,3 +26,9 @@ func _on_Health_healthDepleted(parent:Player):
 	_game_over_menu.ShowGameOver(parent.coins,
 			GameHandler.CoinsFromLevel(parent.experienceSystem.level),
 			get_node("Spawner").wave, OS.get_ticks_msec()*0.001)
+
+
+func connect_health_ui(health:Health, healthBar:HealthBar) -> void:
+	health.connect("damageTaken", healthBar, "update_health_UI")
+	health.connect("healed", healthBar, "update_health_UI")
+	health.connect("healthSet", healthBar, "update_health_UI")

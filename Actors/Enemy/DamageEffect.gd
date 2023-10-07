@@ -8,5 +8,5 @@ func _ready():
 	if health_node.connect("damageTaken", self, "_on_Health_damageTaken"):
 		print_debug("Connection failed")
 
-func _on_Health_damageTaken(_currentHealth, _maximumHealth, _damageAmount):
+func _on_Health_damageTaken(hpStat:HealthStat):
 	.blink()

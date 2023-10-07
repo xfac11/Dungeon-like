@@ -149,6 +149,16 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Actors/Health.gd"
 }, {
+"base": "ProgressBar",
+"class": "HealthBar",
+"language": "GDScript",
+"path": "res://UI/GameUI/HPbar.gd"
+}, {
+"base": "Object",
+"class": "HealthStat",
+"language": "GDScript",
+"path": "res://Actors/HealthStat.gd"
+}, {
 "base": "State",
 "class": "Idle",
 "language": "GDScript",
@@ -378,6 +388,8 @@ _global_script_class_icons={
 "Grounded": "",
 "HandleItems": "",
 "Health": "",
+"HealthBar": "",
+"HealthStat": "",
 "Idle": "",
 "IdleAI": "",
 "Inventory": "",

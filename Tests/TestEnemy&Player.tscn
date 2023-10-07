@@ -2,7 +2,7 @@
 
 [ext_resource path="res://Actors/Player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Actors/Enemy/Enemy.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Scenes/TestEnemy&Player.gd" type="Script" id=3]
+[ext_resource path="res://Tests/TestEnemy&Player.gd" type="Script" id=3]
 
 [node name="TestEnemy&Player" type="Node2D"]
 script = ExtResource( 3 )

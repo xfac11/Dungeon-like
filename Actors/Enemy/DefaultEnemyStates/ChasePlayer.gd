@@ -33,5 +33,5 @@ func connect_health(health:Health):
 	return err
 
 
-func _on_Health_damageTaken(_currentHealth, _maximumHealth, _damageAmount):
+func _on_Health_damageTaken(hpStat:HealthStat):
 	damage_taken = true

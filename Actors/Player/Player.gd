@@ -83,7 +83,7 @@ func SetBaseStat() -> void:
 	health.SetCurrentHealth(currentStat.health)
 
 
-func _on_Health_damageTaken(currentHealth, maximumHealth, damageAmount):
+func _on_Health_damageTaken(hpStat:HealthStat):
 	var tween = get_node("Tween")
 	tween.interpolate_property(sprite.material, "shader_param/blinkValue",
 		1, 0, 0.25,
