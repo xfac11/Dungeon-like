@@ -436,7 +436,7 @@ _global_script_class_icons={
 
 config/name="Rouge Like Project"
 run/main_scene="res://UI/MainMenu/MainMenuUI.tscn"
-config/icon="res://icon.png"
+config/icon="res://BuchOpenGameArt/player.png"
 
 [autoload]
 

@@ -1,6 +1,7 @@
 extends Panel
 onready var optionMenu = $OptionMenu
-onready var statsLabel = $StatsPanel/VBoxContainer/StatsLabel
+onready var statsLabel:Label = $StatsPanel/VBoxContainer/HBoxContainer/StatsLabel
+onready var statsNumber:Label = $StatsPanel/VBoxContainer/HBoxContainer/StatsNumber
 signal Pause(isPaused)
 
 func onResumeClicked():

@@ -32,10 +32,22 @@ func GetStatAsString() -> String:
 	statStr += "Speed: " + String(speed) + "\n"
 	statStr += "Health: " + String(health) + "\n"
 	statStr += "Armor: " + String(armor) + "\n"
-	statStr += "Health Regeneration:" + String(healthRegen) + "\n"
-	statStr += "Critical Chance:" + String(criticalChance) + "\n"
-	statStr += "Critical Damage:" + String(criticalDamage) + "\n"
+	statStr += "HP Regen: " + String(healthRegen) + "\n"
+	statStr += "Crit chance: " + String(criticalChance) + "\n"
+	statStr += "Crit dmg: " + String(criticalDamage) + "\n"
 	return statStr
+
+
+func get_stat_as_dictionary() -> Dictionary:
+	var itemStatDictionary = {
+	"Damage" : damage,
+	"Speed" : speed,
+	"Health" : health,
+	"Armor" : armor,
+	"HP regen" : healthRegen,
+	"Crit chance" : criticalChance,
+	"Crit dmg" : criticalDamage}
+	return itemStatDictionary
 
 
 func AddStat(stat:Stat, stack:int = 1):

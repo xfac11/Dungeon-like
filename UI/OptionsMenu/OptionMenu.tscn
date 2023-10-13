@@ -11,7 +11,7 @@ PopupDialog/styles/panel = null
 [node name="OptionMenu" type="ColorRect"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-color = Color( 0.145098, 0.12549, 0.12549, 1 )
+color = Color( 0.211765, 0.0862745, 0.0156863, 1 )
 script = ExtResource( 3 )
 
 [node name="ResolutionOptBtn" type="OptionButton" parent="."]

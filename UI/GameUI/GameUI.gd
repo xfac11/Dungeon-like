@@ -7,14 +7,25 @@ func _input(event):
 	if event.is_action_pressed("exit_game"):
 		pauseMenu.reset()
 		pauseMenu.visible = !pauseMenu.visible
-		pauseMenu.statsLabel.text = _generate_stats_text(get_tree().get_nodes_in_group("PLAYER")[0])
+		_generate_stats_text(get_tree().get_nodes_in_group("PLAYER")[0])
 		Pause(pauseMenu.visible)
 
 
 func _generate_stats_text(player:Player):
-	var statsText = ""
-	statsText += player.currentStat.GetStatAsString()
-	return statsText
+	var statsDict = player.currentStat.get_stat_as_dictionary()
+	var statLabelStr = ""
+	var statLabelNumber = ""
+	for stat in statsDict:
+		if stat == "Crit chance":
+			statLabelNumber += String(statsDict[stat]*100) + "%\n"
+		else:
+			statLabelNumber += String(statsDict[stat]) + "\n"
+		statLabelStr += stat + "\n"
+		
+	
+	pauseMenu.statsLabel.text = statLabelStr
+	pauseMenu.statsNumber.text = statLabelNumber 
+	
 
 
 func visible_all(isVisible):

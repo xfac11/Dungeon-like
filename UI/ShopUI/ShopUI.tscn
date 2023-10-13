@@ -21,14 +21,11 @@ HBoxContainer/constants/separation = 4
 HBoxContainer/styles/Box = SubResource( 2 )
 Label/styles/normal = SubResource( 3 )
 
-[node name="ShopUI" type="Control"]
+[node name="ShopUI" type="Panel"]
 margin_right = 640.0
 margin_bottom = 480.0
 theme = ExtResource( 6 )
 script = ExtResource( 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 shop_slot_button = ExtResource( 4 )
 
 [node name="DiscoverItemButton" type="Button" parent="."]
