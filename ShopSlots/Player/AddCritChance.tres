@@ -17,7 +17,7 @@ dodgeChance = 0.0
 
 [resource]
 script = ExtResource( 2 )
-cost = 1
+cost = 75
 costIncrease = 30
 numberOfStacks = 10
 texture = ExtResource( 3 )

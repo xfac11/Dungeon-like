@@ -11,7 +11,7 @@ var _coin:int = 200
 onready var _coins_UI:ShopCoinUI = $Coins
 onready var _shop_tab:TabContainer = $ShopTabContainer
 onready var _discover_item_button:Button = $DiscoverItemButton
-
+onready var _discoverd_item:Panel = $DiscoveredItem
 
 func _ready() -> void:
 	_coin = SaveLoad.data.coins
@@ -42,9 +42,15 @@ func _on_discover_item_pressed() -> void:
 		var newItem = GameHandler.AddDiscoveredItem()
 		if !is_instance_valid(newItem):
 			return
+		_show_discovered_item(newItem)
 		discover_item_cost += discover_item_cost_increase
 		_update_discover_item()
 		##Show the new item with some particles and animations
+
+
+func _show_discovered_item(newItem:Item):
+	_discoverd_item.visible = true
+	_discoverd_item.get_node("TextureRect").texture = newItem.texture
 
 
 func _update_coins(cost) -> void:
@@ -152,3 +158,7 @@ func _start_main_menu():
 
 func _on_MainMenu_pressed():
 	_start_main_menu()
+
+
+func _on_Discovered_Button_pressed():
+	_discoverd_item.visible = false

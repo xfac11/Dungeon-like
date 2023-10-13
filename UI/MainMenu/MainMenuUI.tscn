@@ -77,13 +77,13 @@ custom_constants/margin_bottom = 64
 [node name="VBoxContainer2" type="VBoxContainer" parent="PanelContainer/MarginContainer"]
 margin_left = 64.0
 margin_top = 64.0
-margin_right = 435.0
+margin_right = 436.0
 margin_bottom = 202.0
 custom_constants/separation = 20
 alignment = 1
 
 [node name="MarginContainer2" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer2"]
-margin_right = 371.0
+margin_right = 372.0
 margin_bottom = 38.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -94,13 +94,13 @@ custom_constants/margin_left = 0
 custom_constants/margin_bottom = 0
 
 [node name="Button" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer2/MarginContainer2"]
-margin_right = 371.0
+margin_right = 372.0
 margin_bottom = 38.0
 size_flags_horizontal = 7
 size_flags_vertical = 7
 
 [node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer2/MarginContainer2"]
-margin_right = 371.0
+margin_right = 372.0
 margin_bottom = 38.0
 size_flags_horizontal = 3
 size_flags_vertical = 7
@@ -112,7 +112,7 @@ valign = 1
 
 [node name="MarginContainer3" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer2"]
 margin_top = 58.0
-margin_right = 371.0
+margin_right = 372.0
 margin_bottom = 88.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -124,14 +124,14 @@ custom_constants/margin_bottom = 0
 
 [node name="Button" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer2/MarginContainer3"]
 margin_left = 32.0
-margin_right = 339.0
+margin_right = 340.0
 margin_bottom = 30.0
 size_flags_horizontal = 7
 size_flags_vertical = 7
 
 [node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer2/MarginContainer3"]
 margin_left = 32.0
-margin_right = 339.0
+margin_right = 340.0
 margin_bottom = 30.0
 size_flags_horizontal = 3
 size_flags_vertical = 7
@@ -142,7 +142,7 @@ valign = 1
 
 [node name="MarginContainer4" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer2"]
 margin_top = 108.0
-margin_right = 371.0
+margin_right = 372.0
 margin_bottom = 138.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -153,14 +153,14 @@ custom_constants/margin_bottom = 0
 
 [node name="Button" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer2/MarginContainer4"]
 margin_left = 64.0
-margin_right = 307.0
+margin_right = 308.0
 margin_bottom = 30.0
 size_flags_horizontal = 7
 size_flags_vertical = 7
 
 [node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer2/MarginContainer4"]
 margin_left = 64.0
-margin_right = 307.0
+margin_right = 308.0
 margin_bottom = 30.0
 size_flags_horizontal = 3
 size_flags_vertical = 7
@@ -188,6 +188,7 @@ align = 1
 valign = 1
 
 [node name="OptionMenu" parent="." instance=ExtResource( 6 )]
+visible = false
 
 [node name="TextureRect3" type="TextureRect" parent="."]
 anchor_left = 0.0265625
