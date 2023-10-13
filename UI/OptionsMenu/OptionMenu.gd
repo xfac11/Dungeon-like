@@ -3,7 +3,6 @@ extends ColorRect
 onready var confirmation_reset:ConfirmationDialog = $ConfirmationDialog
 onready var resolutionsOptBtn:OptionButton = $ResolutionOptBtn
 onready var windowModesOptBtn:OptionButton = $WindowModeOptBtn
-var _saveName = "res://Saves/new_save1.tres"
 const SETTINGSFILE = "user://settings.JSON"
 enum WindowMode {
 	Fullscreen = 1,
@@ -13,8 +12,9 @@ var windowModeDict = {"Fullscreen" : WindowMode.Fullscreen,
 						"Windowed" : WindowMode.Windowed}
 var resolutionDict = {"1920x1080" : Vector2(1920,1080),
 						"1280x720" : Vector2(1280,720),
-						"800x600" : Vector2(800,600)}
-var saveSettings = {"resolution" : "1920x1080",
+						"800x600" : Vector2(800,600),
+						"640x480" : Vector2(640, 480)}
+var saveSettings = {"resolution" : "640x480",
 					 "windowMode" : WindowMode.Windowed}
 func _init():
 	var file = File.new()

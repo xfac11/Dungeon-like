@@ -3,7 +3,6 @@
 [ext_resource path="res://Looting/ExpDrop.tscn" type="PackedScene" id=1]
 
 [node name="ExpDrop" instance=ExtResource( 1 )]
-value = 5
 
 [node name="Sprite" parent="." index="0"]
 modulate = Color( 1, 0.08, 0.08, 1 )

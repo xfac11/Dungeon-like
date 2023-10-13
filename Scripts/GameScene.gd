@@ -16,6 +16,9 @@ func _ready():
 	
 	
 	connect_health_ui(get_node("Player/Health"), get_node("UICanvasLayer/UI/HPbar"))
+	get_node("Player/Health").connect("healthDepleted", self, "_on_Health_healthDepleted")
+	$UICanvasLayer/UI/InventoryUI.connect_inventory($Player.inventory)
+	$UICanvasLayer/UI/ItemSelect.set_player($Player)
 
 
 func _on_Health_healthDepleted(parent:Player):

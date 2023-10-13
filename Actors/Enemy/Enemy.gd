@@ -11,7 +11,7 @@ onready var movement:Movement = $Movement
 onready var state_machine:FiniteStateMachine = $FiniteStateMachine
 onready var start_state = $FiniteStateMachine/ChasePlayer
 onready var sprite = $Sprite
-
+onready var damage_area = $DamageArea
 
 func _ready():
 	add_to_group("ENEMIES")

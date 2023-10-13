@@ -10,7 +10,7 @@ onready var playerTexture = $PlayerTexture
 func _ready():
 	get_tree().paused = false
 	startPos = playerTexture.rect_position
-	endPos = playerTexture.rect_position - Vector2(0.0, 50.0)
+	endPos = playerTexture.rect_position - Vector2(0.0, 20.0)
 
 func StartGame():
 	SaveLoad.loadJSON()

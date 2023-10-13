@@ -41,6 +41,7 @@ expCount = 5
 [node name="Normal" type="Node" parent="Enemies"]
 script = ExtResource( 1 )
 enemy_scene = ExtResource( 6 )
+expCount = 5
 
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_Timer_timeout"]
 [connection signal="timeout" from="WaveTimer" to="." method="_on_WaveTimer_timeout"]

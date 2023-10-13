@@ -75,14 +75,13 @@ script = ExtResource( 22 )
 [node name="LevelNumber" type="Panel" parent="."]
 anchor_left = 0.5
 anchor_right = 0.5
-margin_left = -13.5
-margin_right = 13.5
+margin_left = -17.5
+margin_right = 17.5
 margin_bottom = 35.0
 grow_horizontal = 2
 grow_vertical = 2
 __meta__ = {
-"_edit_group_": true,
-"_edit_use_anchors_": false
+"_edit_group_": true
 }
 
 [node name="LevelLabel" type="Label" parent="LevelNumber"]
@@ -295,7 +294,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 
 [node name="TextureRect" type="TextureRect" parent="CoinDisplay/HBoxContainer"]
-margin_right = 49.0
+margin_right = 57.0
 margin_bottom = 13.0
 size_flags_horizontal = 3
 texture = ExtResource( 9 )
@@ -303,11 +302,11 @@ expand = true
 stretch_mode = 5
 
 [node name="Coins" type="Label" parent="CoinDisplay/HBoxContainer"]
-margin_left = 53.0
+margin_left = 61.0
 margin_right = 68.0
 margin_bottom = 13.0
 custom_fonts/font = ExtResource( 8 )
-text = "10"
+text = "0"
 
 [node name="PauseMenu" type="Panel" parent="."]
 pause_mode = 2
@@ -390,9 +389,6 @@ __meta__ = {
 [node name="VBoxContainer" type="VBoxContainer" parent="PauseMenu/StatsPanel"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Label" type="Label" parent="PauseMenu/StatsPanel/VBoxContainer"]
 margin_right = 108.0
@@ -431,6 +427,7 @@ __meta__ = {
 margin_left = -175.0
 margin_top = -24.0
 margin_right = 176.0
+margin_bottom = 24.0
 
 [node name="ResetButton" parent="PauseMenu/OptionMenu" index="4"]
 visible = false

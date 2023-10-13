@@ -184,6 +184,8 @@ speed = 10.0
 
 [node name="ExperienceSystem" type="Node" parent="."]
 script = ExtResource( 4 )
+increase = 1.02
+increase_method = 1
 
 [node name="DamageTaker" parent="." instance=ExtResource( 10 )]
 health_path = NodePath("../Health")

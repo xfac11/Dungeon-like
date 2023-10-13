@@ -1,6 +1,6 @@
 extends Button
 
-var itemName
+var itemName = ""
 onready var itemTexture = $ItemTexture
 onready var itemDescription = $Panel/VBoxContainer/Label
 onready var itemNameLabel = $Panel/VBoxContainer/Label2

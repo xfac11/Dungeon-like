@@ -15,5 +15,5 @@ func Movement(_delta):
 	return
 
 
-func HitBody(body:MovementAI):
+func HitBody(body):
 	body.damage_taker.ResolveHit(damageSrc)

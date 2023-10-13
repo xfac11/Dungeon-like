@@ -75,8 +75,8 @@ position = Vector2( -214, 0 )
 [node name="Sprite" parent="Player" index="1"]
 material = SubResource( 1 )
 
-[node name="Items" type="Node2D" parent="Player"]
-position = Vector2( 55, 55 )
+[node name="ExperienceSystem" parent="Player" index="3"]
+increase = 1.25
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 current = true
@@ -96,7 +96,7 @@ enemiesPath = NodePath("../Enemies")
 mRadius = 50
 mWidth = 550
 mHeight = 400
-decreaseSpawnTime = 0.8
+decreaseSpawnTime = 0.35
 pathToRoot = NodePath("..")
 
 [node name="SpawnTimer" parent="Spawner" index="0"]
@@ -109,10 +109,12 @@ wait_time = 30.0
 chance = 0.0
 
 [node name="Special" parent="Spawner/Enemies" index="1"]
-chance = 0.0
+chance = 0.05
 
 [node name="Normal" parent="Spawner/Enemies" index="2"]
 chance = 0.9
+expCount = 3
+coinChance = 0.5
 
 [node name="Enemies" type="Node2D" parent="."]
 

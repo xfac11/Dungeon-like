@@ -61,7 +61,7 @@ func Heal(health:int):
 		return
 	currentHealth = min(currentHealth+health, maximumHealth)
 	
-	var hpStat:HealthStat
+	var hpStat:HealthStat = HealthStat.new()
 	hpStat.current_health = currentHealth
 	hpStat.maximum_health = maximumHealth
 	hpStat.difference = health

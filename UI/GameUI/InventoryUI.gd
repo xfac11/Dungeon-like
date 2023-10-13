@@ -3,11 +3,8 @@ extends NinePatchRect
 onready var container = $HBoxContainer
 export(PackedScene) var itemDisplay:PackedScene
 
-func _ready():
-	ConnectInventory()
-
-func ConnectInventory():
-	get_tree().get_nodes_in_group("PLAYER")[0].inventory.connect("inventoryChanged", self, "UpdateInventoryUI")
+func connect_inventory(inventory:Inventory):
+	inventory.connect("inventoryChanged", self, "UpdateInventoryUI")
 
 func UpdateInventoryUI(items, _newItemName, _quantity):
 	for i in items:

@@ -10,9 +10,9 @@ func _ready():
 	damage_taker.connect("poison_stopped", self, "_on_DamageTaker_poison_stopped")
 
 
-func _on_DamageTaker_bleed_started():
+func _on_DamageTaker_poison_started():
 	.start_effect()
 
 
-func _on_DamageTaker_bleed_stopped():
+func _on_DamageTaker_poison_stopped():
 	.end_effect()

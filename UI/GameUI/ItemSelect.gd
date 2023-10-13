@@ -1,8 +1,8 @@
 extends Panel
 class_name ItemSelect
 onready var buttons:Array = $HBoxContainer.get_children()
-onready var player:Player = owner.get_tree().get_nodes_in_group("PLAYER")[0]
-var coinTexture = preload("res://Looting/Coin.tres")
+var player
+var coin_texture = preload("res://Looting/Coin.tres")
 signal pause(pause)
 func _ready() -> void:
 	for button in buttons:
@@ -15,19 +15,23 @@ func init_buttons(itemNames:Array) -> void:
 	for i in range(itemNames.size()):
 		if itemNames[i] == "Coins":
 			_coin_button(i)
-			continue
-		var item:Item = ItemDatabase.GetItem(itemNames[i])
-		buttons[i].itemName = item.name
-		buttons[i].itemNameLabel.text = item.name
-		buttons[i].itemTexture.texture = item.texture
-		buttons[i].itemDescription.text = item.description
-		buttons[i].itemStatsLabel.text = _generate_stats_text(item)
+		else:
+			var item:Item = ItemDatabase.GetItem(itemNames[i])
+			_item_button(i, item)
+
+
+func _item_button(index, item:Item):
+	buttons[index].itemName = item.name
+	buttons[index].itemNameLabel.text = item.name
+	buttons[index].itemTexture.texture = item.texture
+	buttons[index].itemDescription.text = item.description
+	buttons[index].itemStatsLabel.text = _generate_stats_text(item)
 
 
 func _coin_button(index):
 	buttons[index].itemName = "Coins"
 	buttons[index].itemNameLabel.text = "Coins"
-	buttons[index].itemTexture.texture = coinTexture
+	buttons[index].itemTexture.texture = coin_texture
 	buttons[index].itemDescription.text = "Recieve some coins"
 	buttons[index].itemStatsLabel.text = "Value: 10"
 
@@ -47,11 +51,14 @@ func _generate_stats_text(item:Item):
 
 
 func add_item_to_inventory(name:String) -> void:
-	if name == "Coins":
-		player.GiveCoin(10)
-	else:
-		player.inventory.AddItem(name,1)
-	visible = false
-	emit_signal("pause", false)
+	if name != "":
+		if name == "Coins":
+			player.GiveCoin(10)
+		else:
+			player.inventory.AddItem(name,1)
+		visible = false
+		emit_signal("pause", false)
 
 
+func set_player(a_player:Player):
+	player = a_player
