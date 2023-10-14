@@ -16,7 +16,7 @@ func _generate_stats_text(player:Player):
 	var statLabelStr = ""
 	var statLabelNumber = ""
 	for stat in statsDict:
-		if stat == "Crit chance":
+		if stat == "Crit chance" || stat == "Dodge chance":
 			statLabelNumber += String(statsDict[stat]*100) + "%\n"
 		else:
 			statLabelNumber += String(statsDict[stat]) + "\n"

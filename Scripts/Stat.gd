@@ -19,7 +19,8 @@ func GetStatsAsJSON() -> String:
 	"armor" : armor,
 	"healthRegen" : healthRegen,
 	"criticalChance" : criticalChance,
-	"criticalDamage" : criticalDamage}
+	"criticalDamage" : criticalDamage,
+	"dodgeChance" : dodgeChance}
 	
 	statsStr += JSON.print(itemStatDictionary, "\t")
 	
@@ -35,6 +36,7 @@ func GetStatAsString() -> String:
 	statStr += "HP Regen: " + String(healthRegen) + "\n"
 	statStr += "Crit chance: " + String(criticalChance) + "\n"
 	statStr += "Crit dmg: " + String(criticalDamage) + "\n"
+	statStr += "Dodge chance: " + String(dodgeChance) + "\n"
 	return statStr
 
 
@@ -46,7 +48,8 @@ func get_stat_as_dictionary() -> Dictionary:
 	"Armor" : armor,
 	"HP regen" : healthRegen,
 	"Crit chance" : criticalChance,
-	"Crit dmg" : criticalDamage}
+	"Crit dmg" : criticalDamage,
+	"Dodge chance" : dodgeChance}
 	return itemStatDictionary
 
 
