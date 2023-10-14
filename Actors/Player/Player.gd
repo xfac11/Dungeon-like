@@ -70,17 +70,15 @@ func ApplyStat(_items:Array, newItemName:String, stacks:int) -> void:
 	if item.itemStat.itemType == ItemTypeResource.ItemType.PASSIVE:
 		currentStat.AddStat(item.itemStat, stacks)
 		health.SetHealth(currentStat.health)
+		damage_taker.dodge = currentStat.dodgeChance
 
 
 func SetBaseStat() -> void:
-	currentStat.health = baseStat.health
-	currentStat.damage = baseStat.damage
-	currentStat.speed = baseStat.speed
-	currentStat.healthRegen = baseStat.healthRegen
-	
+	currentStat.AddStat(baseStat, 1)
 	currentStat.AddStat(GameHandler.shopPlayerStat, 1)
 	health.SetHealth(currentStat.health)
 	health.SetCurrentHealth(currentStat.health)
+	damage_taker.dodge = currentStat.dodgeChance
 
 
 func _on_Health_damageTaken(hpStat:HealthStat):

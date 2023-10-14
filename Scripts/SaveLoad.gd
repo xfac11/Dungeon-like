@@ -24,11 +24,11 @@ func loadJSON() -> void:
 	var jsonDictionary = jsonResult.result
 	
 	data = SaveStats.new() ##Overwrite
-	data.stacks = jsonDictionary["shop_stacks"]
+	data.shop_stacks = jsonDictionary["shop_stacks"]
 	data.coins = jsonDictionary["coins"]
 	var itemDictionary = jsonDictionary["discovered_items"]
 	for item in itemDictionary:
-		data.discoveredItems.append(itemDictionary[item])
+		data.discovered_items.append(itemDictionary[item])
 	
 
 ##Take the data and save it to SAVE_GAME_PATH
@@ -39,12 +39,12 @@ func saveJSON() -> void:
 		return
 	
 	var saveData:Dictionary = {
-		"shop_stacks" : data.stacks,
+		"shop_stacks" : data.shop_stacks,
 		"discovered_items" : {},
 		"coins" : data.coins,
 	}
-	for i in data.discoveredItems.size():
-		 saveData["discovered_items"][i] = data.discoveredItems[i]
+	for i in data.discovered_items.size():
+		 saveData["discovered_items"][i] = data.discovered_items[i]
 	var json_string = JSON.print(saveData)
 	_file.store_string(json_string)
 	_file.close()

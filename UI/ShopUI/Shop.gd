@@ -15,7 +15,7 @@ onready var _discoverd_item:Panel = $DiscoveredItem
 
 func _ready() -> void:
 	_coin = SaveLoad.data.coins
-	GameHandler.discoveredItems = SaveLoad.data.discoveredItems
+	GameHandler.discoveredItems = SaveLoad.data.discovered_items
 	var newDiscoverCost = GameHandler.discoveredItems.size() - GameHandler.defaultDiscoveredSize
 	if newDiscoverCost > 0:
 		discover_item_cost += discover_item_cost_increase * newDiscoverCost
@@ -105,8 +105,8 @@ func _add_tab(var name:String) -> void:
 		newButton.connect("TestBuy", self, "_pressed_add_upgrade")
 		newButton.shopSlot = slot
 		if SaveLoad.file_exists():
-			if SaveLoad.data.stacks.has(newButton.shopSlot.resource_path):
-				for i in SaveLoad.data.stacks[newButton.shopSlot.resource_path]:
+			if SaveLoad.data.shop_stacks.has(newButton.shopSlot.resource_path):
+				for i in SaveLoad.data.shop_stacks[newButton.shopSlot.resource_path]:
 					newButton.AddToStack()
 
 
@@ -114,7 +114,7 @@ func _start_game() -> void:
 	_set_player_shop_stat()
 	_set_sword_shop_stat()
 	SaveLoad.data.coins = _coin
-	SaveLoad.data.discoveredItems = GameHandler.discoveredItems
+	SaveLoad.data.discovered_items = GameHandler.discoveredItems
 	SaveLoad.saveJSON()
 	_start_game_scene()
 
@@ -124,7 +124,7 @@ func _set_player_shop_stat() -> void:
 	for slot in _shop_tab.get_node("Player"+"/GridContainer").get_children():
 		var shopSlotUI:ShopSlotButton = slot
 		stat.AddStat(shopSlotUI.shopSlot.stat, shopSlotUI.stack)
-		SaveLoad.data.stacks[shopSlotUI.shopSlot.resource_path] = shopSlotUI.stack
+		SaveLoad.data.shop_stacks[shopSlotUI.shopSlot.resource_path] = shopSlotUI.stack
 	GameHandler.shopPlayerStat = stat
 
 
@@ -133,7 +133,7 @@ func _set_sword_shop_stat() -> void:
 	for slot in _shop_tab.get_node("Sword"+"/GridContainer").get_children():
 		var shopSlotUI:ShopSlotButton = slot
 		var shopSlotStat:Stat = shopSlotUI.shopSlot.stat
-		SaveLoad.data.stacks[shopSlotUI.shopSlot.resource_path] = shopSlotUI.stack
+		SaveLoad.data.shop_stacks[shopSlotUI.shopSlot.resource_path] = shopSlotUI.stack
 		if !is_instance_valid(shopSlotStat):
 			continue
 		stat.AddStat(shopSlotStat, shopSlotUI.stack)
@@ -151,7 +151,7 @@ func _start_main_menu():
 	_set_player_shop_stat() ## Sets the stacks in SaveLoad.data
 	_set_sword_shop_stat() ## Sets the stacks in SaveLoad.data
 	SaveLoad.data.coins = _coin
-	SaveLoad.data.discoveredItems = GameHandler.discoveredItems
+	SaveLoad.data.discovered_items = GameHandler.discoveredItems
 	SaveLoad.saveJSON()
 	get_tree().change_scene_to(_main_menu_scene)
 

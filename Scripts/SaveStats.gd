@@ -1,6 +1,6 @@
 extends Resource
 class_name SaveStats
-export var stacks:Dictionary
+export var shop_stacks:Dictionary
 export var coins:int
-export var discoveredItems:Array
+export var discovered_items:Array
 

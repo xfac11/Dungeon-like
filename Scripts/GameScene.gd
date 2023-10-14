@@ -11,8 +11,8 @@ func _ready():
 	seed(seed_variable)
 	randomize()
 	
-	if SaveLoad.data.discoveredItems.size() == 0:
-		SaveLoad.data.discoveredItems = GameHandler.discoveredItems
+	if SaveLoad.data.discovered_items.size() == 0:
+		SaveLoad.data.discovered_items = GameHandler.discoveredItems
 	
 	
 	connect_health_ui(get_node("Player/Health"), get_node("UICanvasLayer/UI/HPbar"))
