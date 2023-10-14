@@ -71,6 +71,7 @@ func ApplyStat(_items:Array, newItemName:String, stacks:int) -> void:
 		currentStat.AddStat(item.itemStat, stacks)
 		health.SetHealth(currentStat.health)
 		damage_taker.dodge = currentStat.dodgeChance
+		damage_taker.armor_rate = currentStat.armor
 
 
 func SetBaseStat() -> void:
@@ -79,6 +80,7 @@ func SetBaseStat() -> void:
 	health.SetHealth(currentStat.health)
 	health.SetCurrentHealth(currentStat.health)
 	damage_taker.dodge = currentStat.dodgeChance
+	damage_taker.armor_rate = currentStat.armor
 
 
 func _on_Health_damageTaken(hpStat:HealthStat):

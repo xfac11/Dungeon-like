@@ -5,7 +5,6 @@ signal healthDepleted(parent)
 signal damageTaken(health_stat)
 signal healed(health_stat)
 signal healthSet(health_stat)
-var armor = 0
 export var maximumHealth = 100
 var currentHealth = maximumHealth
 var dead:bool = false
@@ -17,7 +16,7 @@ func _ready():
 func TakeDotDamage(damage:int):
 	if dead:
 		return
-	currentHealth -= max(damage-armor, 0)
+	currentHealth -= max(damage, 0)
 	if currentHealth <= 0:
 		currentHealth = 0
 		emit_signal("healthDepleted", parent)
@@ -26,7 +25,7 @@ func TakeDotDamage(damage:int):
 func TakeDamage(damage:int):
 	if dead:
 		return
-	currentHealth -= max(damage-armor, 0)
+	currentHealth -= max(damage, 0)
 	if currentHealth <= 0:
 		currentHealth = 0
 		emit_signal("healthDepleted", parent)
@@ -34,7 +33,7 @@ func TakeDamage(damage:int):
 	var hpStat:HealthStat = HealthStat.new()
 	hpStat.current_health = currentHealth
 	hpStat.maximum_health = maximumHealth
-	hpStat.difference = damage-armor
+	hpStat.difference = damage
 	emit_signal("damageTaken", hpStat)
 
 
